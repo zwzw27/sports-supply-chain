@@ -6,7 +6,7 @@
 <title>The Global Sports Supply Chain</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f4f0;--card:#edeae4;--land:#ddd9d0;--land-s:#ccc8be;--border:#d5d1c9;--text:#1a1a1a;--text-m:#5c5c5c;--text-d:#999590;--pl:#d9453c;--ipl:#c8900a;--nfl:#2a8a4b;--nba:#1a8f96;--laliga:#7b5cc2;--anime:#8a837a;--tennis:#d4890f;--f1:#e03030;--accent:#d9453c;--sheet-bg:#f6f4f0}
+:root{--bg:#f6f4f0;--card:#edeae4;--land:#ddd9d0;--land-s:#ccc8be;--border:#d5d1c9;--text:#1a1a1a;--text-m:#5c5c5c;--text-d:#999590;--pl:#d9453c;--ipl:#c8900a;--nfl:#2a8a4b;--nba:#1a8f96;--laliga:#7b5cc2;--japac:#5a7a9a;--tennis:#d4890f;--f1:#e03030;--accent:#d9453c;--sheet-bg:#f6f4f0}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
 .page{max-width:1440px;margin:0 auto;padding:16px 16px 24px}
@@ -39,9 +39,10 @@ h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28px;l
 .story-dest-label.vis{opacity:1}
 .hint{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:10px;color:var(--text-d);pointer-events:none;opacity:.7;transition:opacity .5s}
 .hint.gone{opacity:0}
+.group-label{font-family:'DM Sans',sans-serif;font-size:7.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;fill:var(--text-d);pointer-events:none;opacity:.6}
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.2);z-index:90;opacity:0;pointer-events:none;transition:opacity .3s}
 .ov.open{opacity:1;pointer-events:all}
-.sheet{position:fixed;bottom:0;left:0;right:0;max-height:82vh;max-height:82dvh;background:var(--sheet-bg);border-top:1px solid var(--border);border-radius:18px 18px 0 0;z-index:100;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(0,0,0,.08)}
+.sheet{position:fixed;bottom:0;left:0;right:0;max-height:85vh;max-height:85dvh;background:var(--sheet-bg);border-top:1px solid var(--border);border-radius:18px 18px 0 0;z-index:100;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(0,0,0,.08)}
 .sheet.open{transform:translateY(0)}
 .sh-bar{display:flex;justify-content:center;padding:10px 0 4px;flex-shrink:0;cursor:grab}
 .sh-nub{width:36px;height:4px;background:var(--text-d);border-radius:2px;opacity:.35}
@@ -61,20 +62,38 @@ h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28px;l
 .story-card{padding:10px 12px;border:1px solid transparent;cursor:pointer;transition:all .2s;margin:0 -4px 6px;border-radius:8px}
 .story-card:hover{background:rgba(0,0,0,.025);border-color:var(--border)}
 .story-card.active{background:rgba(0,0,0,.04);border-color:var(--border)}
+.story-card.manual{border-left:2px solid var(--accent)}
 .story-title{font-size:13px;font-weight:600;line-height:1.35;color:var(--text)}
 .story-meta{font-size:10px;color:var(--text-d);margin-top:3px}
 .story-sum{font-size:12px;color:var(--text-m);margin-top:4px;line-height:1.45}
 .story-link{font-size:11px;color:var(--accent);text-decoration:none;font-weight:600;margin-top:4px;display:inline-block}
 .story-link:hover{text-decoration:underline}
-/* Global label for paired groups */
-.group-label{font-family:'DM Sans',sans-serif;font-size:7.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;fill:var(--text-d);pointer-events:none;opacity:.6}
+.story-del{font-size:10px;color:var(--text-d);background:none;border:none;cursor:pointer;float:right;padding:2px 4px;border-radius:4px}
+.story-del:hover{color:var(--accent);background:rgba(0,0,0,.04)}
+.paste-box{margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.paste-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-d);margin-bottom:8px}
+.paste-row{display:flex;gap:6px;margin-bottom:6px}
+.paste-input{flex:1;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;background:var(--card);color:var(--text);outline:none}
+.paste-input:focus{border-color:#aaa}
+.paste-input::placeholder{color:var(--text-d)}
+.paste-small{display:flex;gap:6px;margin-bottom:8px}
+.paste-small input{flex:1;padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:11px;background:var(--card);color:var(--text);outline:none}
+.paste-small input:focus{border-color:#aaa}
+.paste-small input::placeholder{color:var(--text-d)}
+.paste-add{padding:8px 16px;border-radius:8px;background:var(--accent);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:opacity .2s;white-space:nowrap}
+.paste-add:hover{opacity:.85}
+.paste-added{font-size:11px;color:var(--nfl);font-weight:600;display:none;margin-top:4px}
+.paste-added.vis{display:block}
+.export-bar{margin-top:20px;padding-top:12px;border-top:1px dashed var(--border);display:flex;align-items:center;justify-content:space-between}
+.export-count{font-size:10px;color:var(--text-d)}
+.export-btn{font-size:10px;color:var(--accent);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;text-decoration:underline}
 .foot{margin-top:16px;font-size:12.5px;line-height:1.6;color:var(--text-m)}
 .foot strong{color:var(--text);font-weight:600}
 .by{margin-top:8px;font-size:10px;color:var(--text-d)}
 @media(min-width:768px){
   .page{padding:36px 36px 28px}h1{font-size:clamp(38px,4.5vw,58px)}.sub{font-size:15px;margin-top:8px}.pills-wrap{margin:18px 0 14px;padding:0}
   .ov{display:none!important}
-  .sheet{position:absolute;bottom:auto;left:auto;top:16px;right:16px;width:380px;max-height:calc(100% - 32px);border-radius:12px;border:1px solid var(--border);background:rgba(246,244,240,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transform:translateX(20px);opacity:0;pointer-events:none;transition:all .4s cubic-bezier(.16,1,.3,1);box-shadow:0 4px 24px rgba(0,0,0,.06)}
+  .sheet{position:absolute;bottom:auto;left:auto;top:16px;right:16px;width:390px;max-height:calc(100% - 32px);border-radius:12px;border:1px solid var(--border);background:rgba(246,244,240,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transform:translateX(20px);opacity:0;pointer-events:none;transition:all .4s cubic-bezier(.16,1,.3,1);box-shadow:0 4px 24px rgba(0,0,0,.06)}
   .sheet.open{transform:translateX(0);opacity:1;pointer-events:all}.sh-bar{display:none}.sh-body{padding:22px 22px 26px}
 }
 @media(min-width:1024px){.page{padding:44px 44px 32px}.foot-wrap{display:flex;justify-content:space-between;align-items:flex-start;gap:40px}.foot{max-width:700px}.by{margin-top:0;text-align:right;white-space:nowrap;flex-shrink:0}}
@@ -95,160 +114,82 @@ h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28px;l
   </div>
   <div class="ov" id="ov"></div>
   <div class="foot-wrap">
-    <div class="foot"><strong>The thesis:</strong> American domestic rights fees are plateauing. Europe and Asia are where the incremental money is. Sports inventory is going global — and that fragments audiences, complicates planning, and creates opportunities for buyers who move early.</div>
+    <div class="foot"><strong>The thesis:</strong> American domestic rights fees are plateauing. Europe and Asia are where the incremental money is. Sports inventory is going global — fragments audiences, complicates planning, creates opportunity.</div>
     <div class="by">The Current · Ahead of FIFA World Cup 2026</div>
   </div>
 </div>
 <script>
+const LS_KEY='ssc_manual_articles';
+function getManual(){try{return JSON.parse(localStorage.getItem(LS_KEY)||'{}')}catch(e){return{}}}
+function saveManual(d){localStorage.setItem(LS_KEY,JSON.stringify(d))}
+function addManualArticle(league,article){const d=getManual();if(!d[league])d[league]=[];d[league].unshift(article);saveManual(d)}
+function removeManualArticle(league,url){const d=getManual();if(!d[league])return;d[league]=d[league].filter(a=>a.url!==url);saveManual(d)}
+function getManualForLeague(k){return(getManual()[k]||[])}
+function getAllManual(){return getManual()}
+
 let feedData=null;
 const feedPromise=fetch('data.json').then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(d=>{feedData=d}).catch(()=>{feedData={articles:{}}});
 
 function boot(){
   const L={
-    pl:{full:'Premier League',color:'#d9453c',marker:'PL',kicker:'Established Export',
-      desc:"The Premier League's US expansion is the most mature sports export in the world. NBC's $2.7bn deal proved the model. Peacock streaming locks in recurring revenue. Pre-season tours are brand infrastructure, not exhibitions.",
-      stats:[['US rights value','$2.7bn (2022–28)'],['US viewership','+ 28% since 2019'],['Strategy','Streaming lock-in']],
-      sw:"PL inventory in the US is priced like domestic premium. Arbitrage window closed — but the audience skews younger and more affluent than NFL."},
-    laliga:{full:'La Liga',color:'#7b5cc2',marker:'LaLiga',kicker:'Star-Driven Export',
-      desc:"La Liga's global play leans on individual star power. India is the growth bet — La Liga opened an office in Delhi. The US is contested territory with MLS and Liga MX. Middle East sovereign wealth is buying clubs and rights simultaneously.",
-      stats:[['Broadcast reach','182 countries'],['India office','Opened 2024'],['Strategy','Star power + offices']],
-      sw:"La Liga inventory is cheaper than PL in most export markets, but audience is less predictable without marquee names. Planning on squad rosters is fragile."},
-    nfl:{full:'NFL',color:'#2a8a4b',marker:'NFL',kicker:'Scarcity Pricing',
-      desc:"The NFL killed its DAZN pay-TV deal in Germany two years early — even as Game Pass grew 24% — to shop domestic rights separately at a premium. Munich, Frankfurt, and London games anchor long-term rights packages.",
-      stats:[['Game Pass growth','+24% YoY'],['DAZN deal','Terminated early'],['Strategy','Scarcity export']],
-      sw:"The NFL is betting it can command US-style pricing in Europe by keeping supply tight. If it works, it resets the benchmark for all imported sports rights."},
-    nba:{full:'NBA',color:'#1a8f96',marker:'NBA',kicker:'Volume Expansion',
-      desc:"The NBA runs the widest export operation in sports. A professional league launching in Europe for 2027 with FIBA, Amazon in early broadcast talks. China remains complicated but infrastructure persists.",
-      stats:[["Int'l revenue",'~30% of total'],['European league','Launching 2027'],['Strategy','Volume play']],
-      sw:"The NBA is creating inventory where none existed. European basketball league competes directly with domestic football for premium budgets. Watch for Amazon bundling."},
-    ipl:{full:'IPL Cricket',color:'#c8900a',marker:'IPL',kicker:'Diaspora + Digital',
-      desc:"The IPL follows the Indian diaspora, but the T20 format is built for global export — three hours, guaranteed result, prime-time friendly. The Middle East is the beachhead. US cricket gets an Olympics boost for 2028.",
-      stats:[['Global media rights','$6.2bn (2023–28)'],['Format length','~3 hours'],['Strategy','Diaspora-first']],
-      sw:"IPL reaches high-income diaspora audiences underserved by Western sports inventory. CPMs lower than PL or NFL — for now."},
-    anime:{full:'Anime-adj. Sports',color:'#8a837a',marker:'JP',kicker:'Niche Fandom Global',
-      desc:"Japanese sports — sumo, anime-adjacent sports content — spread through fandom networks and streaming platforms. The audience is small but obsessively engaged and globally distributed.",
-      stats:[['Distribution','Streaming / fandom'],['Audience','Niche, high-engagement'],['Strategy','Cultural IP export']],
-      sw:"Nearly impossible to reach via traditional sports buys. But they index high on digital spend, merch, and loyalty. Influencer economics applied to sports."},
-    tennis:{full:'Tennis (ATP/WTA)',color:'#d4890f',marker:'Tennis',kicker:'Global Circuit',
-      desc:"Tennis is inherently global — Grand Slams span four continents, the tour visits 30+ countries. The ATP and WTA are expanding into Saudi Arabia and China. Streaming rights are fragmenting across platforms.",
-      stats:[['Grand Slams','4 continents'],['Saudi expansion','New ATP events'],['Strategy','Circuit expansion']],
-      sw:"Tennis already has global distribution but rights are fragmenting. The Saudi push is adding premium inventory in a new market — buyers need to track which platform holds what, where."},
-    f1:{full:'Formula 1',color:'#e03030',marker:'F1',kicker:'Entertainment Export',
-      desc:"F1 transformed from a European motorsport into a global entertainment brand via Netflix's Drive to Survive. New races in Las Vegas, Miami, and Saudi Arabia are purpose-built for commercial value. Liberty Media prices like the NFL.",
-      stats:[['US viewership','+ 60% since 2018'],['New races','Vegas, Miami, Saudi'],['Strategy','Entertainment-first']],
-      sw:"F1 proved content (Netflix) can create demand for live rights. Vegas and Miami priced at US sports levels. The playbook is exportable — other leagues are watching."},
+    pl:{full:'Premier League',color:'#d9453c',marker:'PL',kicker:'Established Export',desc:"NBC's $2.7bn deal proved the US model. Peacock locks in streaming revenue. Pre-season tours are brand infrastructure.",stats:[['US rights value','$2.7bn (2022–28)'],['US viewership','+ 28% since 2019'],['Strategy','Streaming lock-in']],sw:"PL inventory in the US is priced like domestic premium. But the audience skews younger and more affluent than NFL."},
+    laliga:{full:'La Liga',color:'#7b5cc2',marker:'LaLiga',kicker:'Star-Driven Export',desc:"Star power drives the global play. India is the growth bet. The US is contested. Middle East sovereign wealth buying clubs and rights.",stats:[['Broadcast reach','182 countries'],['India office','Opened 2024'],['Strategy','Star power + offices']],sw:"Cheaper than PL in most export markets, but audience is less predictable without marquee names."},
+    nfl:{full:'NFL',color:'#2a8a4b',marker:'NFL',kicker:'Scarcity Pricing',desc:"Killed the DAZN deal to shop rights separately. Munich, Frankfurt, London, Australia anchor international packages.",stats:[['Game Pass growth','+24% YoY'],['DAZN deal','Terminated early'],['Strategy','Scarcity export']],sw:"Betting it can command US-style pricing abroad by keeping supply tight."},
+    nba:{full:'NBA',color:'#1a8f96',marker:'NBA',kicker:'Volume Expansion',desc:"Widest export operation in sports. European league with FIBA launching 2027. Amazon in broadcast talks.",stats:[["Int'l revenue",'~30% of total'],['European league','2027'],['Strategy','Volume play']],sw:"Creating inventory where none existed. European basketball competes with domestic football for premium budgets."},
+    ipl:{full:'IPL Cricket',color:'#c8900a',marker:'IPL',kicker:'Diaspora + Digital',desc:"T20 format built for global export — three hours, guaranteed result. Middle East is the beachhead. US cricket gets Olympics boost.",stats:[['Global rights','$6.2bn (2023–28)'],['Format','~3 hours'],['Strategy','Diaspora-first']],sw:"Reaches high-income diaspora audiences. CPMs lower than PL or NFL — for now."},
+    japac:{full:'Japan / APAC Sports',color:'#5a7a9a',marker:'APAC',kicker:'Cultural Export',desc:"From Ohtani's global brand to sumo streaming — Asian sports reach international audiences through cultural crossover and streaming platforms.",stats:[['Ohtani deal','$700m / 10yr'],['APAC streaming','Growing 30%+ YoY'],['Strategy','Cultural crossover']],sw:"Asian sports don't follow Western rights models. They spread via fandom, streaming bundles, and star power."},
+    tennis:{full:'Tennis (ATP/WTA)',color:'#d4890f',marker:'Tennis',kicker:'Global Circuit',desc:"Grand Slams span four continents. Saudi Arabia and China expansion underway. Streaming rights fragmenting across platforms.",stats:[['Grand Slams','4 continents'],['Saudi push','New ATP events'],['Strategy','Circuit expansion']],sw:"Rights fragmenting — buyers need to track which platform holds what, where."},
+    f1:{full:'Formula 1',color:'#e03030',marker:'F1',kicker:'Entertainment Export',desc:"Netflix transformed F1 from European motorsport to global entertainment. Vegas, Miami, Saudi races built for commercial value.",stats:[['US viewership','+ 60% since 2018'],['New races','Vegas, Miami, Saudi'],['Strategy','Entertainment-first']],sw:"F1 proved content can create demand for live rights. Vegas priced at US sports levels."},
   };
 
-  // Marker positions — use pixel offsets for paired groups
-  // These are geo coords that get projected, then we'll adjust pixel positions for alignment
-  const GEO_ORIGINS={
-    pl:[-1.5,52.5], laliga:[-3.7,40.4],
-    nfl:[-90,40], nba:[-90,40],  // same geo, offset in pixels
-    ipl:[78,22], anime:[139,36],
-    tennis:[18,-42], f1:[18,-42],  // same geo, offset in pixels
-  };
+  const DEST={'usa':[-95,38],'us':[-95,38],'united states':[-95,38],'america':[-95,38],'american':[-95,38],'uk':[-1,53],'united kingdom':[-1,53],'england':[-1,53],'britain':[-1,53],'british':[-1,53],'london':[-0.1,51.5],'germany':[10,51],'munich':[11.5,48],'frankfurt':[8.7,50],'german':[10,51],'europe':[10,48],'european':[10,48],'france':[2,47],'spain':[-3.7,40],'italy':[12,42],'china':[105,35],'chinese':[105,35],'beijing':[116,40],'shanghai':[121,31],'india':[78,22],'indian':[78,22],'delhi':[77,28],'mumbai':[72,19],'africa':[20,0],'african':[20,0],'nigeria':[8,10],'south africa':[25,-30],'kenya':[37,-1],'middle east':[50,24],'dubai':[55,25],'saudi arabia':[45,25],'saudi':[45,25],'japan':[139,36],'japanese':[139,36],'australia':[135,-25],'australian':[135,-25],'new zealand':[174,-41],'brazil':[-50,-15],'mexico':[-99,19],'canada':[-100,55],'south korea':[127,37],'korea':[127,37],'las vegas':[-115,36],'miami':[-80,26]};
 
-  const DEST={
-    'usa':[-95,38],'us':[-95,38],'united states':[-95,38],'america':[-95,38],'american':[-95,38],
-    'uk':[-1,53],'united kingdom':[-1,53],'england':[-1,53],'britain':[-1,53],'british':[-1,53],'london':[-0.1,51.5],
-    'germany':[10,51],'munich':[11.5,48],'frankfurt':[8.7,50],'german':[10,51],
-    'europe':[10,48],'european':[10,48],'france':[2,47],'spain':[-3.7,40],'italy':[12,42],
-    'china':[105,35],'chinese':[105,35],'beijing':[116,40],'shanghai':[121,31],
-    'india':[78,22],'indian':[78,22],'delhi':[77,28],'mumbai':[72,19],
-    'africa':[20,0],'african':[20,0],'nigeria':[8,10],'south africa':[25,-30],'kenya':[37,-1],
-    'middle east':[50,24],'dubai':[55,25],'saudi arabia':[45,25],'saudi':[45,25],
-    'japan':[139,36],'japanese':[139,36],'australia':[135,-25],'australian':[135,-25],
-    'new zealand':[174,-41],'brazil':[-50,-15],'brazilian':[-50,-15],
-    'mexico':[-99,19],'mexican':[-99,19],'canada':[-100,55],
-    'south korea':[127,37],'korea':[127,37],'las vegas':[-115,36],'miami':[-80,26],
-  };
-
-  const KS=Object.keys(L);
-  const active=new Set(KS);
-  let curLeague=null;
+  const GEO={pl:[-1.5,52.5],laliga:[-3.7,40.4],nfl:[-90,40],nba:[-90,40],ipl:[78,22],japac:[139,36],tennis:[18,-45],f1:[18,-45]};
+  const KS=Object.keys(L);const active=new Set(KS);let curLeague=null;
 
   const W=1200,H=620;
   const svg=d3.select('#mapsvg').attr('viewBox',`0 0 ${W} ${H}`).attr('preserveAspectRatio','xMidYMid meet');
   const defs=svg.append('defs');
-  defs.append('pattern').attr('id','grid').attr('width',30).attr('height',30).attr('patternUnits','userSpaceOnUse')
-    .append('path').attr('d','M 30 0 L 0 0 0 30').attr('fill','none').attr('stroke','#d0cdc5').attr('stroke-width','.2');
-  KS.forEach(k=>{
-    defs.append('marker').attr('id','arr-'+k).attr('markerWidth',10).attr('markerHeight',7)
-      .attr('refX',9).attr('refY',3.5).attr('orient','auto').attr('markerUnits','strokeWidth')
-      .append('path').attr('d','M0,0 L10,3.5 L0,7 L2,3.5 Z').attr('fill',L[k].color);
-  });
+  defs.append('pattern').attr('id','grid').attr('width',30).attr('height',30).attr('patternUnits','userSpaceOnUse').append('path').attr('d','M 30 0 L 0 0 0 30').attr('fill','none').attr('stroke','#d0cdc5').attr('stroke-width','.2');
+  KS.forEach(k=>{defs.append('marker').attr('id','arr-'+k).attr('markerWidth',10).attr('markerHeight',7).attr('refX',9).attr('refY',3.5).attr('orient','auto').attr('markerUnits','strokeWidth').append('path').attr('d','M0,0 L10,3.5 L0,7 L2,3.5 Z').attr('fill',L[k].color)});
   svg.append('rect').attr('width',W).attr('height',H).attr('fill','url(#grid)').attr('opacity','.2');
 
   const proj=d3.geoNaturalEarth1().rotate([-20,0]).scale(260).translate([W/2,H/2+70]);
   const pathGen=d3.geoPath(proj);
-
-  // Compute pixel positions with offsets for paired groups
-  const spacing=24; // horizontal offset for side-by-side markers
-  function markerPos(k){
-    const base=proj(GEO_ORIGINS[k]);
-    // US pair: NFL left, NBA right
-    if(k==='nfl') return [base[0]-spacing, base[1]];
-    if(k==='nba') return [base[0]+spacing, base[1]];
-    // Global pair: Tennis left, F1 right
-    if(k==='tennis') return [base[0]-spacing, base[1]];
-    if(k==='f1') return [base[0]+spacing, base[1]];
-    // European pair: PL and La Liga stay at their geo coords (already separated geographically)
-    return base;
-  }
-
-  // Store computed positions for arrow origins
-  const markerPx={};
-  KS.forEach(k=>{ markerPx[k]=markerPos(k) });
+  const sp=24;
+  function mP(k){const b=proj(GEO[k]);if(k==='nfl')return[b[0]-sp,b[1]];if(k==='nba')return[b[0]+sp,b[1]];if(k==='tennis')return[b[0]-sp,b[1]];if(k==='f1')return[b[0]+sp,b[1]];return b}
+  const MP={};KS.forEach(k=>{MP[k]=mP(k)});
 
   d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world=>{
     const countries=topojson.feature(world,world.objects.countries);
     svg.append('path').datum(d3.geoGraticule10()).attr('class','grat').attr('d',pathGen);
     svg.selectAll('.land').data(countries.features).enter().append('path').attr('class','land').attr('d',pathGen);
-
     const arrowLayer=svg.append('g').attr('id','arrowLayer');
     const markerLayer=svg.append('g');
-
-    // Group labels
-    const usBase=proj(GEO_ORIGINS.nfl);
-    markerLayer.append('text').attr('class','group-label').attr('x',usBase[0]).attr('y',usBase[1]-30).attr('text-anchor','middle').text('United States');
-    const globalBase=proj(GEO_ORIGINS.tennis);
-    markerLayer.append('text').attr('class','group-label').attr('x',globalBase[0]).attr('y',globalBase[1]-30).attr('text-anchor','middle').text('Global circuits');
+    const usB=proj(GEO.nfl);markerLayer.append('text').attr('class','group-label').attr('x',usB[0]).attr('y',usB[1]-30).attr('text-anchor','middle').text('United States');
+    const gB=proj(GEO.tennis);markerLayer.append('text').attr('class','group-label').attr('x',gB[0]).attr('y',gB[1]-30).attr('text-anchor','middle').text('Global circuits');
 
     KS.forEach(k=>{
-      const d=L[k],p=markerPx[k];
+      const d=L[k],p=MP[k];
       const g=markerLayer.append('g').attr('class','league-marker').attr('data-k',k).on('click',()=>openLeague(k));
       g.append('circle').attr('class','marker-ring').attr('cx',p[0]).attr('cy',p[1]).attr('r',22).attr('fill','none').attr('stroke',d.color).attr('stroke-width',2).attr('stroke-opacity',.25);
       g.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',18).attr('fill',d.color).attr('opacity',.9);
-      const ml=d.marker;
-      g.append('text').attr('class','marker-label').attr('x',p[0]).attr('y',p[1]+1)
-        .attr('text-anchor','middle').attr('dominant-baseline','central')
-        .attr('font-size',ml.length>5?'5.5px':ml.length>3?'7px':'9px')
-        .text(ml);
+      g.append('text').attr('class','marker-label').attr('x',p[0]).attr('y',p[1]+1).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size',d.marker.length>5?'5.5px':d.marker.length>3?'7px':'9px').text(d.marker);
     });
 
-    function drawArrowsForArticle(k,a){
-      clearArrows();
-      if(!a)return;
+    function drawArrows(k,a){
+      clearArrows();if(!a)return;
       const text=((a.title||'')+' '+(a.summary||'')).toLowerCase();
       const hits=[];
-      for(const[name,coords]of Object.entries(DEST)){
-        if(text.includes(name)){
-          const op=markerPx[k],dp=proj(coords);
-          if(Math.abs(dp[0]-op[0])>30||Math.abs(dp[1]-op[1])>30)hits.push({name,coords,px:dp});
-        }
-      }
-      const unique=[];
-      hits.forEach(h=>{if(!unique.some(u=>Math.abs(u.px[0]-h.px[0])<50&&Math.abs(u.px[1]-h.px[1])<50))unique.push(h)});
+      for(const[name,coords]of Object.entries(DEST)){if(text.includes(name)){const op=MP[k],dp=proj(coords);if(Math.abs(dp[0]-op[0])>30||Math.abs(dp[1]-op[1])>30)hits.push({name,px:dp})}}
+      const unique=[];hits.forEach(h=>{if(!unique.some(u=>Math.abs(u.px[0]-h.px[0])<50&&Math.abs(u.px[1]-h.px[1])<50))unique.push(h)});
       if(!unique.length)return;
-      const op=markerPx[k],layer=svg.select('#arrowLayer');
+      const op=MP[k],layer=svg.select('#arrowLayer');
       unique.forEach((dest,i)=>{
-        const dx=dest.px[0]-op[0],dy=dest.px[1]-op[1],dist=Math.sqrt(dx*dx+dy*dy);
-        const off=Math.min(dist*.28,110),mx=(op[0]+dest.px[0])/2,my=(op[1]+dest.px[1])/2;
-        const nx=-dy/dist,ny=dx/dist;
+        const dx=dest.px[0]-op[0],dy=dest.px[1]-op[1],dist=Math.sqrt(dx*dx+dy*dy),off=Math.min(dist*.28,110),mx=(op[0]+dest.px[0])/2,my=(op[1]+dest.px[1])/2,nx=-dy/dist,ny=dx/dist;
         const arc=`M${op[0]},${op[1]} Q${mx+nx*off},${my+ny*off} ${dest.px[0]},${dest.px[1]}`;
         const path=layer.append('path').attr('class','story-arrow').attr('d',arc).attr('stroke',L[k].color).attr('marker-end','url(#arr-'+k+')');
-        const len=path.node().getTotalLength();
-        path.attr('stroke-dasharray',len).attr('stroke-dashoffset',len);
+        const len=path.node().getTotalLength();path.attr('stroke-dasharray',len).attr('stroke-dashoffset',len);
         setTimeout(()=>{path.classed('vis',true).transition().duration(700).ease(d3.easeCubicOut).attr('stroke-dashoffset',0)},i*120);
         layer.append('circle').attr('class','story-dest').attr('cx',dest.px[0]).attr('cy',dest.px[1]).attr('r',5).attr('fill',L[k].color).transition().delay(500+i*120).duration(300).attr('class','story-dest vis');
         const lbl=dest.name.charAt(0).toUpperCase()+dest.name.slice(1);
@@ -256,13 +197,32 @@ function boot(){
       });
     }
 
+    function mergedArticles(k){
+      const api=(feedData&&feedData.articles&&feedData.articles[k])||[];
+      const manual=getManualForLeague(k).map(a=>({...a,_manual:true}));
+      const seen=new Set();const merged=[];
+      [...manual,...api].forEach(a=>{if(a.url&&!seen.has(a.url)){seen.add(a.url);merged.push(a)}});
+      return merged;
+    }
+
     function openLeague(k){
       const d=L[k];
       svg.selectAll('.league-marker').classed('active',false);
       svg.select(`.league-marker[data-k="${k}"]`).classed('active',true);
-      clearArrows();
-      const body=document.getElementById('shBody');
-      const articles=(feedData&&feedData.articles&&feedData.articles[k])||[];
+      clearArrows();renderPanel(k);
+      document.getElementById('sheet').classList.add('open');
+      document.getElementById('ov').classList.add('open');
+      document.getElementById('hint').classList.add('gone');
+      curLeague=k;
+      const articles=mergedArticles(k);
+      if(articles.length)drawArrows(k,articles[0]);
+    }
+
+    function renderPanel(k){
+      const d=L[k],body=document.getElementById('shBody');
+      const articles=mergedArticles(k);
+      const manualCount=Object.values(getAllManual()).flat().length;
+
       let html=`<div class="sk" style="color:${d.color}">${d.kicker}</div>
         <div class="st">${d.full}</div>
         <div class="sr">International expansion tracker</div>
@@ -272,56 +232,89 @@ function boot(){
           <span class="sw-l" style="color:${d.color}">So what for buyers</span>${d.sw}
         </div>
         <div class="feed-hdr">Latest coverage</div>`;
+
       if(!articles.length){
-        html+='<p class="feed-empty">No articles yet — feed updates daily.</p>';
+        html+='<p class="feed-empty">No articles yet — add one below or wait for the daily feed.</p>';
       } else {
-        articles.slice(0,12).forEach((a,i)=>{
-          html+=`<div class="story-card${i===0?' active':''}" data-idx="${i}" data-league="${k}" onclick="window._sel('${k}',${i})">
+        articles.slice(0,15).forEach((a,i)=>{
+          const isManual=a._manual;
+          html+=`<div class="story-card${i===0?' active':''}${isManual?' manual':''}" data-idx="${i}" data-league="${k}" onclick="window._sel('${k}',${i})">
+            ${isManual?`<button class="story-del" onclick="event.stopPropagation();window._delManual('${k}','${encodeURIComponent(a.url)}')">✕</button>`:''}
             <div class="story-title">${a.title||'Untitled'}</div>
-            <div class="story-meta">${a.source||''} · ${(a.fetched_at||'').slice(0,10)}</div>
+            <div class="story-meta">${a.source||''}${isManual?' · Added manually':''} · ${(a.fetched_at||'').slice(0,10)}</div>
             ${a.summary?`<div class="story-sum">${a.summary}</div>`:''}
             <a class="story-link" href="${a.url||'#'}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Read →</a>
           </div>`;
         });
       }
+
+      html+=`<div class="paste-box">
+        <div class="paste-label">Add an article</div>
+        <div class="paste-row"><input class="paste-input" id="pasteUrl" type="url" placeholder="Paste URL here"></div>
+        <div class="paste-small"><input id="pasteTitle" placeholder="Title"><input id="pasteSource" placeholder="Source" style="max-width:120px"></div>
+        <div class="paste-row"><input class="paste-input" id="pasteSummary" placeholder="One-line summary (optional)" maxlength="120"><button class="paste-add" onclick="window._addArticle('${k}')">Add</button></div>
+        <div class="paste-added" id="pasteConfirm">Added! It now appears in the feed above.</div>
+      </div>`;
+
+      if(manualCount>0){
+        html+=`<div class="export-bar">
+          <span class="export-count">${manualCount} manually added article${manualCount>1?'s':''}</span>
+          <button class="export-btn" onclick="window._exportManual()">Export full data.json</button>
+        </div>`;
+      }
       body.innerHTML=html;
-      document.getElementById('sheet').classList.add('open');
-      document.getElementById('ov').classList.add('open');
-      document.getElementById('hint').classList.add('gone');
-      curLeague=k;
-      if(articles.length)drawArrowsForArticle(k,articles[0]);
     }
 
+    window._addArticle=function(k){
+      const url=document.getElementById('pasteUrl').value.trim();
+      if(!url){document.getElementById('pasteUrl').focus();return}
+      const title=document.getElementById('pasteTitle').value.trim()||'Untitled';
+      const source=document.getElementById('pasteSource').value.trim()||'Manual';
+      const summary=document.getElementById('pasteSummary').value.trim();
+      addManualArticle(k,{title,source,url,summary,score:10,fetched_at:new Date().toISOString(),league:k});
+      renderPanel(k);
+      setTimeout(()=>{const c=document.getElementById('pasteConfirm');if(c)c.classList.add('vis')},100);
+      const body=document.getElementById('shBody');
+      const feedHdr=body.querySelector('.feed-hdr');
+      if(feedHdr)feedHdr.scrollIntoView({behavior:'smooth',block:'start'});
+    };
+
+    window._delManual=function(k,encodedUrl){removeManualArticle(k,decodeURIComponent(encodedUrl));renderPanel(k)};
+
+    window._exportManual=function(){
+      const manual=getAllManual();
+      const base=feedData||{articles:{}};
+      const merged={last_updated:new Date().toISOString(),articles:{}};
+      const allKeys=new Set([...Object.keys(base.articles||{}),...Object.keys(manual)]);
+      allKeys.forEach(k=>{
+        const apiArts=(base.articles&&base.articles[k])||[];
+        const manArts=(manual[k]||[]).map(a=>{const c={...a};delete c._manual;return c});
+        const seen=new Set();const combined=[];
+        [...manArts,...apiArts].forEach(a=>{if(a.url&&!seen.has(a.url)){seen.add(a.url);combined.push(a)}});
+        merged.articles[k]=combined;
+      });
+      const json=JSON.stringify(merged,null,2);
+      navigator.clipboard.writeText(json).then(()=>{alert('Copied the complete data.json! Go to GitHub, open data.json, select all, paste, and commit.')}).catch(()=>{prompt('Copy this and replace all of data.json on GitHub:',json)});
+    };
+
     window._sel=function(k,idx){
-      const articles=(feedData&&feedData.articles&&feedData.articles[k])||[];
-      const a=articles[idx];if(!a)return;
+      const articles=mergedArticles(k);const a=articles[idx];if(!a)return;
       document.querySelectorAll('.story-card').forEach(c=>c.classList.remove('active'));
       const card=document.querySelector(`.story-card[data-idx="${idx}"][data-league="${k}"]`);
       if(card)card.classList.add('active');
-      drawArrowsForArticle(k,a);
+      drawArrows(k,a);
     };
 
     function clearArrows(){svg.select('#arrowLayer').selectAll('*').remove()}
-    function closeSheet(){
-      document.getElementById('sheet').classList.remove('open');
-      document.getElementById('ov').classList.remove('open');
-      svg.selectAll('.league-marker').classed('active',false);
-      clearArrows();curLeague=null;
-    }
+    function closeSheet(){document.getElementById('sheet').classList.remove('open');document.getElementById('ov').classList.remove('open');svg.selectAll('.league-marker').classed('active',false);clearArrows();curLeague=null}
     document.getElementById('ov').addEventListener('click',closeSheet);
     document.getElementById('outer').addEventListener('click',e=>{if(!e.target.closest('.league-marker')&&!e.target.closest('.sheet'))closeSheet()});
     document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
-    let ty=0;
-    document.getElementById('shBar').addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});
+    let ty=0;document.getElementById('shBar').addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});
     document.getElementById('shBar').addEventListener('touchmove',e=>{if(e.touches[0].clientY-ty>50)closeSheet()},{passive:true});
 
     const pb=document.getElementById('pills');
-    KS.forEach(k=>{
-      const b=document.createElement('button');b.className='pill on';b.dataset.k=k;
-      b.innerHTML=`<span class="dt" style="background:${L[k].color}"></span>${L[k].full}`;
-      b.onclick=()=>{if(active.has(k)){active.delete(k);b.classList.replace('on','off');svg.select(`.league-marker[data-k="${k}"]`).classed('dim',true);if(curLeague===k)closeSheet()}else{active.add(k);b.classList.replace('off','on');svg.select(`.league-marker[data-k="${k}"]`).classed('dim',false)}};
-      pb.appendChild(b);
-    });
+    KS.forEach(k=>{const b=document.createElement('button');b.className='pill on';b.dataset.k=k;b.innerHTML=`<span class="dt" style="background:${L[k].color}"></span>${L[k].full}`;b.onclick=()=>{if(active.has(k)){active.delete(k);b.classList.replace('on','off');svg.select(`.league-marker[data-k="${k}"]`).classed('dim',true);if(curLeague===k)closeSheet()}else{active.add(k);b.classList.replace('off','on');svg.select(`.league-marker[data-k="${k}"]`).classed('dim',false)}};pb.appendChild(b)});
   });
 }
 
