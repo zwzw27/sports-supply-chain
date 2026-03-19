@@ -17,7 +17,7 @@ QUERIES={
     "nfl":["NFL Germany Europe expansion","NFL international games rights","NFL Game Pass Europe","NFL international broadcast deal"],
     "nba":["NBA international expansion","NBA Europe basketball league FIBA","NBA Africa China broadcast"],
     "laliga":["La Liga international rights","La Liga India expansion","Spanish football global broadcast"],
-    "anime":["sumo international broadcast streaming","Japanese sports culture global audience"],
+    "japac":["sumo international broadcast streaming","Japanese sports culture global audience"],
     "tennis":["ATP WTA international broadcast rights","tennis Grand Slam streaming deal","tennis Saudi Arabia expansion"],
     "f1":["Formula 1 new race international","F1 Las Vegas Miami Saudi broadcast","Formula 1 streaming rights global"],
 }
