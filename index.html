@@ -6,51 +6,39 @@
 <title>The Global Sports Supply Chain</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#f6f4f0;--card:#edeae4;--land:#ddd9d0;--land-s:#ccc8be;--border:#d5d1c9;
-  --text:#1a1a1a;--text-m:#5c5c5c;--text-d:#999590;
-  --pl:#d9453c;--ipl:#c8900a;--nfl:#2a8a4b;--nba:#1a8f96;--laliga:#7b5cc2;--anime:#8a837a;
-  --accent:#d9453c;--sheet-bg:#f6f4f0;
-}
+:root{--bg:#f6f4f0;--card:#edeae4;--land:#ddd9d0;--land-s:#ccc8be;--border:#d5d1c9;--text:#1a1a1a;--text-m:#5c5c5c;--text-d:#999590;--pl:#d9453c;--ipl:#c8900a;--nfl:#2a8a4b;--nba:#1a8f96;--laliga:#7b5cc2;--anime:#8a837a;--accent:#d9453c;--sheet-bg:#f6f4f0}
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
 .page{max-width:1440px;margin:0 auto;padding:16px 16px 24px}
-
 header{margin-bottom:12px}
 .kicker{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
-h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28px;line-height:1.0;letter-spacing:-.02em;color:var(--text)}
+h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28px;line-height:1.0;letter-spacing:-.02em}
 .sub{font-size:13px;color:var(--text-m);line-height:1.5;margin-top:6px;max-width:600px}
-
 .pills-wrap{margin:12px -16px 10px;padding:0 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .pills-wrap::-webkit-scrollbar{display:none}
 .pills{display:flex;gap:7px;width:max-content}
-.pill{display:flex;align-items:center;gap:6px;padding:7px 13px;border:1px solid var(--border);border-radius:100px;background:transparent;color:var(--text-m);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .25s;user-select:none;-webkit-user-select:none;touch-action:manipulation}
-.pill .dt{width:7px;height:7px;border-radius:50%;flex-shrink:0;transition:transform .2s}
+.pill{display:flex;align-items:center;gap:6px;padding:7px 13px;border:1px solid var(--border);border-radius:100px;background:transparent;color:var(--text-m);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .25s;user-select:none;touch-action:manipulation}
+.pill .dt{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .pill.on{color:var(--text);border-color:#aaa69e;background:rgba(0,0,0,.03)}
 .pill.off{opacity:.3}
-.pill.off .dt{transform:scale(.4)}
-
 .map-outer{position:relative;border-radius:12px;border:1px solid var(--border);overflow:hidden;background:var(--card);aspect-ratio:16/9}
 #mapsvg{display:block;width:100%;height:100%}
-.land{fill:var(--land);stroke:var(--land-s);stroke-width:.35}
-.grat{fill:none;stroke:var(--border);stroke-width:.2;opacity:.4}
-.route{fill:none;stroke-linecap:round;cursor:pointer;transition:opacity .35s,filter .25s}
-.route.dim{opacity:.06;pointer-events:none}
-.hitzone{fill:none;stroke:transparent;stroke-width:28;stroke-linecap:round;cursor:pointer;pointer-events:stroke}
-.hitzone.dim{pointer-events:none}
-.src{cursor:pointer;transition:opacity .35s}
-.src.dim{opacity:.06;pointer-events:none}
-.glo{pointer-events:none;transition:opacity .35s}
-.glo.dim{opacity:0}
-.dst{transition:opacity .35s}
-.dst.dim{opacity:.06}
-.tag{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;pointer-events:none;transition:opacity .35s}
-.tag.dim{opacity:.06}
-.tagsub{font-family:'DM Sans',sans-serif;font-size:7.5px;pointer-events:none;transition:opacity .35s}
-.tagsub.dim{opacity:.06}
+.land{fill:var(--land);stroke:var(--land-s);stroke-width:.4}
+.grat{fill:none;stroke:var(--border);stroke-width:.2;opacity:.3}
+.league-marker{cursor:pointer;transition:opacity .3s}
+.league-marker:hover .marker-ring{stroke-opacity:.5}
+.league-marker.dim{opacity:.1;pointer-events:none}
+.league-marker.active .marker-ring{stroke-width:3;stroke-opacity:.7}
+.marker-ring{transition:stroke-opacity .2s,stroke-width .2s}
+.marker-label{font-family:'DM Sans',sans-serif;font-weight:700;letter-spacing:.04em;text-transform:uppercase;pointer-events:none;fill:#fff}
+.story-arrow{fill:none;stroke-linecap:round;stroke-width:2.5;opacity:0;transition:opacity .5s}
+.story-arrow.vis{opacity:.55}
+.story-dest{opacity:0;transition:opacity .4s}
+.story-dest.vis{opacity:.8}
+.story-dest-label{font-family:'DM Sans',sans-serif;font-size:9px;font-weight:600;fill:var(--text-m);opacity:0;transition:opacity .4s;pointer-events:none}
+.story-dest-label.vis{opacity:1}
 .hint{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:10px;color:var(--text-d);pointer-events:none;opacity:.7;transition:opacity .5s}
 .hint.gone{opacity:0}
-
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.2);z-index:90;opacity:0;pointer-events:none;transition:opacity .3s}
 .ov.open{opacity:1;pointer-events:all}
 .sheet{position:fixed;bottom:0;left:0;right:0;max-height:80vh;max-height:80dvh;background:var(--sheet-bg);border-top:1px solid var(--border);border-radius:18px 18px 0 0;z-index:100;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(0,0,0,.08)}
@@ -58,43 +46,31 @@ h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28px;l
 .sh-bar{display:flex;justify-content:center;padding:10px 0 4px;flex-shrink:0;cursor:grab}
 .sh-nub{width:36px;height:4px;background:var(--text-d);border-radius:2px;opacity:.35}
 .sh-body{padding:2px 20px 32px;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1}
-
 .sk{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
-.st{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:26px;line-height:1.1;letter-spacing:-.01em;margin-bottom:5px;color:var(--text)}
-.sr{font-size:11px;color:var(--text-d);margin-bottom:14px;display:flex;align-items:center;gap:6px}
-.sr .rl{width:18px;height:2px;border-radius:1px;flex-shrink:0}
-.sd{font-size:13.5px;line-height:1.65;color:var(--text-m);margin-bottom:18px}
-.ss{margin-bottom:18px}
-.ss-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-top:1px solid var(--border)}
-.ss-l{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-d)}
-.ss-v{font-size:13px;font-weight:600;color:var(--text)}
+.st{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:26px;line-height:1.1;letter-spacing:-.01em;margin-bottom:5px}
+.sr{font-size:11px;color:var(--text-d);margin-bottom:14px}
 .sw{padding:14px;border-radius:0 10px 10px 0;font-size:12.5px;line-height:1.6;color:var(--text-m);margin-bottom:20px}
 .sw-l{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:5px}
-
-/* Article feed */
-.feed-hdr{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-d);margin-bottom:10px;padding-top:16px;border-top:1px solid var(--border)}
-.feed-empty{font-size:12px;color:var(--text-d);font-style:italic;margin-bottom:8px}
-.feed-item{margin-bottom:12px}
-.feed-item a{text-decoration:none;color:var(--text);font-size:13px;font-weight:600;line-height:1.35;display:block;transition:color .2s}
-.feed-item a:hover{color:var(--accent)}
-.feed-meta{font-size:10px;color:var(--text-d);margin-top:3px}
-.feed-sum{font-size:12px;color:var(--text-m);margin-top:3px;line-height:1.45}
-.feed-more{display:none;margin-top:8px}
-.feed-more.vis{display:block}
-.feed-toggle{font-size:11px;color:var(--accent);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;padding:4px 0;transition:opacity .2s}
-.feed-toggle:hover{opacity:.7}
-
+.feed-hdr{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-d);margin-bottom:10px;padding-top:14px;border-top:1px solid var(--border)}
+.feed-empty{font-size:12px;color:var(--text-d);font-style:italic}
+.story-card{padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;margin:0 -4px;padding-left:4px;padding-right:4px;border-radius:6px}
+.story-card:hover{background:rgba(0,0,0,.03)}
+.story-card.active{background:rgba(0,0,0,.05)}
+.story-title{font-size:13px;font-weight:600;line-height:1.35;color:var(--text)}
+.story-meta{font-size:10px;color:var(--text-d);margin-top:3px}
+.story-sum{font-size:12px;color:var(--text-m);margin-top:4px;line-height:1.45}
+.story-link{font-size:11px;color:var(--accent);text-decoration:none;font-weight:600;margin-top:4px;display:inline-block}
+.story-link:hover{text-decoration:underline}
 .foot{margin-top:16px;font-size:12.5px;line-height:1.6;color:var(--text-m)}
 .foot strong{color:var(--text);font-weight:600}
 .by{margin-top:8px;font-size:10px;color:var(--text-d)}
-
 @media(min-width:768px){
   .page{padding:36px 36px 28px}
   h1{font-size:clamp(38px,4.5vw,58px)}
   .sub{font-size:15px;margin-top:8px}
   .pills-wrap{margin:18px 0 14px;padding:0}
   .ov{display:none!important}
-  .sheet{position:absolute;bottom:auto;left:auto;top:16px;right:16px;width:360px;max-height:calc(100% - 32px);border-radius:12px;border:1px solid var(--border);background:rgba(246,244,240,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transform:translateX(20px);opacity:0;pointer-events:none;transition:all .4s cubic-bezier(.16,1,.3,1);box-shadow:0 4px 24px rgba(0,0,0,.06)}
+  .sheet{position:absolute;bottom:auto;left:auto;top:16px;right:16px;width:370px;max-height:calc(100% - 32px);border-radius:12px;border:1px solid var(--border);background:rgba(246,244,240,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transform:translateX(20px);opacity:0;pointer-events:none;transition:all .4s cubic-bezier(.16,1,.3,1);box-shadow:0 4px 24px rgba(0,0,0,.06)}
   .sheet.open{transform:translateX(0);opacity:1;pointer-events:all}
   .sh-bar{display:none}
   .sh-body{padding:22px 22px 26px}
@@ -121,152 +97,175 @@ h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28px;l
       <div class="sh-bar" id="shBar"><div class="sh-nub"></div></div>
       <div class="sh-body" id="shBody"></div>
     </div>
-    <div class="hint" id="hint">Tap a route to explore →</div>
+    <div class="hint" id="hint">Tap a league to explore →</div>
   </div>
   <div class="ov" id="ov"></div>
   <div class="foot-wrap">
-    <div class="foot"><strong>The thesis:</strong> American domestic rights fees are plateauing. Europe and Asia are where the incremental money is. A German buyer could soon choose between NFL, NBA, and a new basketball league — all fighting for the same "premium live" budget alongside Champions League.</div>
+    <div class="foot"><strong>The thesis:</strong> American domestic rights fees are plateauing. Europe and Asia are where the incremental money is. A German buyer could soon choose between NFL, NBA, and a new basketball league — all fighting for the same "premium live" budget.</div>
     <div class="by">The Current · Ahead of FIFA World Cup 2026</div>
   </div>
 </div>
 <script>
-// ── ARTICLE FEED DATA (loaded async) ──
-let feedData = {articles:{}};
-fetch('data.json').then(r=>r.json()).then(d=>{feedData=d}).catch(()=>{});
+let feedData=null;
+const feedPromise=fetch('data.json').then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(d=>{feedData=d}).catch(()=>{feedData={articles:{}}});
 
 function boot(){
-  const D={
-    pl:{name:'Premier League',color:'#d9453c',sub:'ENG → USA',kicker:'Established Export',title:'Premier League → USA',rl:'England → United States',origin:[-1.5,52.5],dest:[-95,38],
-      desc:"The Premier League's US expansion is the most mature sports export in the world. NBC's $2.7bn deal proved the model. Peacock streaming locks in recurring revenue. Pre-season tours are infrastructure, not exhibitions.",
-      stats:[['US rights value','$2.7bn (2022–28)'],['US viewership','+ 28% since 2019'],['Strategy','Streaming lock-in']],
-      sw:"PL inventory in the US is already priced like domestic premium. The arbitrage window is closed. But the audience skews younger and more affluent than NFL — that's the pitch to brands."},
-    ipl:{name:'IPL',color:'#c8900a',sub:'IND → UK / ME / USA',kicker:'Diaspora + Digital',title:'IPL → UK, Middle East, USA',rl:'India → UK, Middle East, USA',origin:[78,22],dest:[0,52],
-      desc:"The IPL follows the Indian diaspora, but the T20 format is built for global export — three hours, guaranteed result, prime-time friendly. The Middle East is the beachhead. US cricket gets an Olympics boost for 2028.",
-      stats:[['Global media rights','$6.2bn (2023–28)'],['Format length','~3 hours'],['Strategy','Diaspora-first']],
-      sw:"IPL reaches high-income diaspora audiences underserved by Western sports inventory. CPMs are lower than PL or NFL equivalents — for now. Early movers get reach at a discount."},
-    nfl:{name:'NFL',color:'#2a8a4b',sub:'USA → Germany',kicker:'Scarcity Pricing',title:'NFL → Germany',rl:'United States → Germany',origin:[-90,40],dest:[10,51],
-      desc:"The NFL killed its DAZN pay-TV deal in Germany two years early — even as Game Pass grew 24% — so it could shop domestic rights separately at a premium. Munich and Frankfurt games anchor long-term rights packages.",
-      stats:[['Game Pass growth','+24% YoY'],['DAZN deal','Terminated early'],['Strategy','Scarcity export']],
-      sw:"The NFL is betting it can command US-style pricing in Europe by keeping supply tight. If it works, it resets the benchmark for all imported sports rights."},
-    nba:{name:'NBA',color:'#1a8f96',sub:'USA → China / Africa / Europe',kicker:'Volume Expansion',title:'NBA → China, Africa, Europe',rl:'USA → China, Africa, Europe',origin:[-85,36],dest:[105,35],
-      desc:"The NBA runs the widest export operation in sports. A professional league launching in Europe for 2027 with FIBA, Amazon in early broadcast talks. China remains complicated but infrastructure persists.",
-      stats:[["Int'l revenue",'~30% of total'],['European league','Launching 2027'],['Strategy','Volume play']],
-      sw:"The NBA is creating inventory where none existed. A European basketball league competes directly with domestic football for 'premium live' budgets. Watch for Amazon bundling."},
-    laliga:{name:'La Liga',color:'#7b5cc2',sub:'ESP → India / USA / ME',kicker:'Star-Driven Export',title:'La Liga → India, USA, Middle East',rl:'Spain → India, USA, Middle East',origin:[-3.7,40.4],dest:[78,20],
-      desc:"La Liga's global play leans on individual star power. India is the growth bet — La Liga opened an office in Delhi. The US is contested territory with MLS and Liga MX.",
-      stats:[['Broadcast reach','182 countries'],['India office','Opened 2024'],['Strategy','Star power + offices']],
-      sw:"La Liga inventory is cheaper than PL in most export markets, but the audience is less predictable without marquee names. Planning on squad rosters is fragile."},
-    anime:{name:'Anime-adj.',color:'#8a837a',sub:'JPN → Global niche',kicker:'Niche Fandom Global',title:'Anime-Adjacent Sports',rl:'Japan → Global (fragmented)',origin:[139,36],dest:[10,50],
-      desc:"Japanese sports — sumo, NPB, B.League, anime-adjacent content — spread through fandom and streaming. Small audiences, obsessively engaged, globally distributed.",
-      stats:[['Distribution','Streaming / fandom'],['Audience','Niche, high-engagement'],['Strategy','Cultural IP export']],
-      sw:"Nearly impossible to reach via traditional sports buys. But they index high on digital spend, merch, and brand loyalty. Influencer economics applied to sports."},
+  const L={
+    pl:{name:'PL',full:'Premier League',color:'#d9453c',origin:[-1.5,52.5],label:'PL',kicker:'Established Export',sw:"PL inventory in the US is priced like domestic premium. Arbitrage window closed — but the audience skews younger and more affluent than NFL."},
+    ipl:{name:'IPL',full:'IPL Cricket',color:'#c8900a',origin:[78,22],label:'IPL',kicker:'Diaspora + Digital',sw:"IPL reaches high-income diaspora audiences underserved by Western sports inventory. CPMs lower than PL or NFL — for now."},
+    nfl:{name:'NFL',full:'NFL',color:'#2a8a4b',origin:[-90,40],label:'NFL',kicker:'Scarcity Pricing',sw:"The NFL is betting it can command US-style pricing in Europe by keeping supply tight. If it works, it resets the benchmark."},
+    nba:{name:'NBA',full:'NBA',color:'#1a8f96',origin:[-85,36],label:'NBA',kicker:'Volume Expansion',sw:"The NBA is creating inventory where none existed. European basketball league competes directly with domestic football for premium budgets."},
+    laliga:{name:'LaLiga',full:'La Liga',color:'#7b5cc2',origin:[-3.7,40.4],label:'LaLiga',kicker:'Star-Driven Export',sw:"La Liga inventory is cheaper than PL in most export markets, but audience is less predictable without marquee names."},
+    anime:{name:'Anime',full:'Anime-adj. Sports',color:'#8a837a',origin:[139,36],label:'JP',kicker:'Niche Fandom Global',sw:"Nearly impossible to reach via traditional sports buys. But they index high on digital spend, merch, and loyalty."},
+  };
+
+  const DEST={
+    'usa':[-95,38],'us':[-95,38],'united states':[-95,38],'america':[-95,38],'american':[-95,38],
+    'uk':[-1,53],'united kingdom':[-1,53],'england':[-1,53],'britain':[-1,53],'british':[-1,53],'london':[-0.1,51.5],
+    'germany':[10,51],'munich':[11.5,48],'frankfurt':[8.7,50],'german':[10,51],
+    'europe':[10,48],'european':[10,48],'france':[2,47],'spain':[-3.7,40],'italy':[12,42],
+    'china':[105,35],'chinese':[105,35],'beijing':[116,40],'shanghai':[121,31],
+    'india':[78,22],'indian':[78,22],'delhi':[77,28],'mumbai':[72,19],
+    'africa':[20,0],'african':[20,0],'nigeria':[8,10],'south africa':[25,-30],'kenya':[37,-1],
+    'middle east':[50,24],'dubai':[55,25],'saudi arabia':[45,25],'saudi':[45,25],
+    'japan':[139,36],'japanese':[139,36],
+    'australia':[135,-25],'australian':[135,-25],'new zealand':[174,-41],
+    'brazil':[-50,-15],'brazilian':[-50,-15],'mexico':[-99,19],'mexican':[-99,19],
+    'canada':[-100,55],'south korea':[127,37],'korea':[127,37],
   };
 
   const KS=['pl','ipl','nfl','nba','laliga','anime'];
   const active=new Set(KS);
-  let cur=null;
+  let curLeague=null;
 
-  const W=1200,H=675;
+  const W=1200,H=620;
   const svg=d3.select('#mapsvg').attr('viewBox',`0 0 ${W} ${H}`).attr('preserveAspectRatio','xMidYMid meet');
   const defs=svg.append('defs');
   defs.append('pattern').attr('id','grid').attr('width',30).attr('height',30).attr('patternUnits','userSpaceOnUse')
     .append('path').attr('d','M 30 0 L 0 0 0 30').attr('fill','none').attr('stroke','#d0cdc5').attr('stroke-width','.2');
-  const fl=defs.append('filter').attr('id','glo').attr('x','-50%').attr('y','-50%').attr('width','200%').attr('height','200%');
-  fl.append('feGaussianBlur').attr('in','SourceGraphic').attr('stdDeviation','4').attr('result','b');
-  const mg=fl.append('feMerge');mg.append('feMergeNode').attr('in','b');mg.append('feMergeNode').attr('in','SourceGraphic');
-  KS.forEach(k=>{defs.append('marker').attr('id','arr-'+k).attr('markerWidth',10).attr('markerHeight',7).attr('refX',9).attr('refY',3.5).attr('orient','auto').attr('markerUnits','strokeWidth').append('path').attr('d','M0,0 L10,3.5 L0,7 L2,3.5 Z').attr('fill',D[k].color)});
-  svg.append('rect').attr('width',W).attr('height',H).attr('fill','url(#grid)').attr('opacity','.35');
+  KS.forEach(k=>{
+    defs.append('marker').attr('id','arr-'+k).attr('markerWidth',10).attr('markerHeight',7)
+      .attr('refX',9).attr('refY',3.5).attr('orient','auto').attr('markerUnits','strokeWidth')
+      .append('path').attr('d','M0,0 L10,3.5 L0,7 L2,3.5 Z').attr('fill',L[k].color);
+  });
+  svg.append('rect').attr('width',W).attr('height',H).attr('fill','url(#grid)').attr('opacity','.25');
 
-  const proj=d3.geoNaturalEarth1().scale(210).translate([W/2-20,H/2+40]);
+  // Atlantic-centred projection: rotate to -20° so Americas left, Europe centre, Asia/NZ right
+  const proj=d3.geoNaturalEarth1()
+    .rotate([-20, 0])
+    .scale(240)
+    .translate([W/2, H/2+50]);
   const pathGen=d3.geoPath(proj);
-  const LPOS={pl:[-12,-16,'end'],ipl:[14,5,'start'],nfl:[-12,-18,'end'],nba:[14,16,'start'],laliga:[-14,16,'end'],anime:[14,-8,'start']};
 
   d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world=>{
     const countries=topojson.feature(world,world.objects.countries);
     svg.append('path').datum(d3.geoGraticule10()).attr('class','grat').attr('d',pathGen);
     svg.selectAll('.land').data(countries.features).enter().append('path').attr('class','land').attr('d',pathGen);
-    const rl=svg.append('g');
 
-    KS.forEach((k,ki)=>{
-      const d=D[k],c=d.color,o=proj(d.origin),dp=proj(d.dest),g=rl.append('g').attr('data-k',k);
-      const dx=dp[0]-o[0],dy=dp[1]-o[1],dist=Math.sqrt(dx*dx+dy*dy);
-      const off=Math.min(dist*.28,100),mx=(o[0]+dp[0])/2,my=(o[1]+dp[1])/2;
-      const nx=-dy/dist,ny=dx/dist,cx=mx+nx*off,cy=my+ny*off;
-      const arc=`M${o[0]},${o[1]} Q${cx},${cy} ${dp[0]},${dp[1]}`;
+    const arrowLayer=svg.append('g').attr('id','arrowLayer');
+    const markerLayer=svg.append('g');
 
-      g.append('path').attr('class','hitzone').attr('data-k',k).attr('d',arc).on('click',()=>open_(k));
-      const p=g.append('path').attr('class','route').attr('data-k',k).attr('d',arc).attr('stroke',c).attr('stroke-width',3).attr('opacity',.65).attr('marker-end','url(#arr-'+k+')');
-      const len=p.node().getTotalLength();
-      p.attr('stroke-dasharray',len).attr('stroke-dashoffset',len).transition().delay(300+ki*120).duration(900).ease(d3.easeCubicOut).attr('stroke-dashoffset',0).on('end',function(){d3.select(this).attr('stroke-dasharray',null)});
-      g.append('circle').attr('class','dst').attr('data-k',k).attr('cx',dp[0]).attr('cy',dp[1]).attr('r',4).attr('fill',c).attr('opacity',.7);
-      g.append('circle').attr('class','glo').attr('data-k',k).attr('cx',o[0]).attr('cy',o[1]).attr('r',14).attr('fill',c).attr('opacity',.1);
-      g.append('circle').attr('class','src').attr('data-k',k).attr('cx',o[0]).attr('cy',o[1]).attr('r',7).attr('fill',c).attr('opacity',.85).on('click',()=>open_(k));
-      const[lx,ly,anch]=LPOS[k];
-      g.append('text').attr('class','tag').attr('data-k',k).attr('x',o[0]+lx).attr('y',o[1]+ly).attr('text-anchor',anch).attr('fill','#1a1a1a').text(d.name);
-      g.append('text').attr('class','tagsub').attr('data-k',k).attr('x',o[0]+lx).attr('y',o[1]+ly+11).attr('text-anchor',anch).attr('fill','#5c5c5c').text(d.sub);
+    KS.forEach(k=>{
+      const d=L[k],p=proj(d.origin);
+      const g=markerLayer.append('g').attr('class','league-marker').attr('data-k',k).on('click',()=>openLeague(k));
+      g.append('circle').attr('class','marker-ring').attr('cx',p[0]).attr('cy',p[1]).attr('r',22).attr('fill','none').attr('stroke',d.color).attr('stroke-width',2).attr('stroke-opacity',.25);
+      g.append('circle').attr('class','marker-bg').attr('cx',p[0]).attr('cy',p[1]).attr('r',18).attr('fill',d.color).attr('opacity',.9);
+      g.append('text').attr('class','marker-label').attr('x',p[0]).attr('y',p[1]+1).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size',d.label.length>3?'7px':'9px').text(d.label);
+    });
+
+    function openLeague(k){
+      const d=L[k];
+      svg.selectAll('.league-marker').classed('active',false);
+      svg.select(`.league-marker[data-k="${k}"]`).classed('active',true);
+      clearArrows();
+      const body=document.getElementById('shBody');
+      const articles=(feedData&&feedData.articles&&feedData.articles[k])||[];
+      let html=`<div class="sk" style="color:${d.color}">${d.kicker}</div>
+        <div class="st">${d.full}</div>
+        <div class="sr">International expansion tracker</div>
+        <div class="sw" style="background:${d.color}12;border-left:2px solid ${d.color}">
+          <span class="sw-l" style="color:${d.color}">So what for buyers</span>${d.sw}
+        </div>
+        <div class="feed-hdr">Latest coverage · tap a story to see its route</div>`;
+      if(!articles.length){
+        html+='<p class="feed-empty">No articles yet — feed updates daily.</p>';
+      } else {
+        articles.slice(0,12).forEach((a,i)=>{
+          html+=`<div class="story-card" data-idx="${i}" data-league="${k}" onclick="window._sel('${k}',${i})">
+            <div class="story-title">${a.title||'Untitled'}</div>
+            <div class="story-meta">${a.source||''} · ${(a.fetched_at||'').slice(0,10)}</div>
+            ${a.summary?`<div class="story-sum">${a.summary}</div>`:''}
+            <a class="story-link" href="${a.url||'#'}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Read →</a>
+          </div>`;
+        });
+      }
+      body.innerHTML=html;
+      document.getElementById('sheet').classList.add('open');
+      document.getElementById('ov').classList.add('open');
+      document.getElementById('hint').classList.add('gone');
+      curLeague=k;
+    }
+
+    window._sel=function(k,idx){
+      const articles=(feedData&&feedData.articles&&feedData.articles[k])||[];
+      const a=articles[idx]; if(!a)return;
+      document.querySelectorAll('.story-card').forEach(c=>c.classList.remove('active'));
+      const card=document.querySelector(`.story-card[data-idx="${idx}"][data-league="${k}"]`);
+      if(card)card.classList.add('active');
+      clearArrows();
+      const text=((a.title||'')+' '+(a.summary||'')).toLowerCase();
+      const hits=[];
+      for(const[name,coords]of Object.entries(DEST)){
+        if(text.includes(name)){
+          const op=proj(L[k].origin),dp=proj(coords);
+          if(Math.abs(dp[0]-op[0])>30||Math.abs(dp[1]-op[1])>30) hits.push({name,coords,px:dp});
+        }
+      }
+      const unique=[];
+      hits.forEach(h=>{if(!unique.some(u=>Math.abs(u.px[0]-h.px[0])<50&&Math.abs(u.px[1]-h.px[1])<50))unique.push(h)});
+      if(!unique.length)return;
+      const op=proj(L[k].origin),layer=svg.select('#arrowLayer');
+      unique.forEach((dest,i)=>{
+        const dx=dest.px[0]-op[0],dy=dest.px[1]-op[1],dist=Math.sqrt(dx*dx+dy*dy);
+        const off=Math.min(dist*.28,110),mx=(op[0]+dest.px[0])/2,my=(op[1]+dest.px[1])/2;
+        const nx=-dy/dist,ny=dx/dist;
+        const arc=`M${op[0]},${op[1]} Q${mx+nx*off},${my+ny*off} ${dest.px[0]},${dest.px[1]}`;
+        const path=layer.append('path').attr('class','story-arrow').attr('d',arc).attr('stroke',L[k].color).attr('marker-end','url(#arr-'+k+')');
+        const len=path.node().getTotalLength();
+        path.attr('stroke-dasharray',len).attr('stroke-dashoffset',len);
+        setTimeout(()=>{path.classed('vis',true).transition().duration(700).ease(d3.easeCubicOut).attr('stroke-dashoffset',0)},i*120);
+        layer.append('circle').attr('class','story-dest').attr('cx',dest.px[0]).attr('cy',dest.px[1]).attr('r',5).attr('fill',L[k].color).transition().delay(500+i*120).duration(300).attr('class','story-dest vis');
+        const lbl=dest.name.charAt(0).toUpperCase()+dest.name.slice(1);
+        layer.append('text').attr('class','story-dest-label').attr('x',dest.px[0]+9).attr('y',dest.px[1]+4).text(lbl).transition().delay(600+i*120).duration(300).attr('class','story-dest-label vis');
+      });
+    };
+
+    function clearArrows(){svg.select('#arrowLayer').selectAll('*').remove()}
+    function closeSheet(){
+      document.getElementById('sheet').classList.remove('open');
+      document.getElementById('ov').classList.remove('open');
+      svg.selectAll('.league-marker').classed('active',false);
+      clearArrows(); curLeague=null;
+    }
+    document.getElementById('ov').addEventListener('click',closeSheet);
+    document.getElementById('outer').addEventListener('click',e=>{if(!e.target.closest('.league-marker')&&!e.target.closest('.sheet'))closeSheet()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
+    let ty=0;
+    document.getElementById('shBar').addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});
+    document.getElementById('shBar').addEventListener('touchmove',e=>{if(e.touches[0].clientY-ty>50)closeSheet()},{passive:true});
+
+    const pb=document.getElementById('pills');
+    KS.forEach(k=>{
+      const b=document.createElement('button');b.className='pill on';b.dataset.k=k;
+      b.innerHTML=`<span class="dt" style="background:${L[k].color}"></span>${L[k].full}`;
+      b.onclick=()=>{if(active.has(k)){active.delete(k);b.classList.replace('on','off');svg.select(`.league-marker[data-k="${k}"]`).classed('dim',true);if(curLeague===k)closeSheet()}else{active.add(k);b.classList.replace('off','on');svg.select(`.league-marker[data-k="${k}"]`).classed('dim',false)}};
+      pb.appendChild(b);
     });
   });
-
-  // ── PILLS ──
-  const pb=document.getElementById('pills');
-  KS.forEach(k=>{const b=document.createElement('button');b.className='pill on';b.dataset.k=k;b.innerHTML=`<span class="dt" style="background:${D[k].color}"></span>${D[k].name}`;b.onclick=()=>togF(k);pb.appendChild(b)});
-  function togF(k){const b=pb.querySelector(`[data-k="${k}"]`);if(active.has(k)){active.delete(k);b.classList.replace('on','off');dim(k,true);if(cur===k)close_()}else{active.add(k);b.classList.replace('off','on');dim(k,false)}}
-  function dim(k,d){document.querySelectorAll(`[data-k="${k}"]`).forEach(e=>e.classList.toggle('dim',d))}
-
-  // ── BUILD FEED HTML ──
-  function feedHtml(k){
-    const articles=(feedData.articles&&feedData.articles[k])||[];
-    if(!articles.length) return `<div class="feed-hdr">Latest coverage</div><p class="feed-empty">No articles yet — feed updates daily.</p>`;
-    const show=articles.slice(0,3);
-    const rest=articles.slice(3,10);
-    let h=`<div class="feed-hdr">Latest coverage</div>`;
-    h+=show.map(a=>`<div class="feed-item"><a href="${a.url}" target="_blank" rel="noopener">${a.title}</a><div class="feed-meta">${a.source||''} · ${a.fetched_at?a.fetched_at.slice(0,10):''}</div>${a.summary?`<div class="feed-sum">${a.summary}</div>`:''}</div>`).join('');
-    if(rest.length){
-      h+=`<div class="feed-more" id="feedMore">`;
-      h+=rest.map(a=>`<div class="feed-item"><a href="${a.url}" target="_blank" rel="noopener">${a.title}</a><div class="feed-meta">${a.source||''} · ${a.fetched_at?a.fetched_at.slice(0,10):''}</div>${a.summary?`<div class="feed-sum">${a.summary}</div>`:''}</div>`).join('');
-      h+=`</div><button class="feed-toggle" onclick="document.getElementById('feedMore').classList.toggle('vis');this.textContent=this.textContent==='Show more'?'Show less':'Show more'">Show more</button>`;
-    }
-    return h;
-  }
-
-  // ── SHEET ──
-  function open_(k){
-    const d=D[k],body=document.getElementById('shBody');
-    body.innerHTML=`
-      <div class="sk" style="color:${d.color}">${d.kicker}</div>
-      <div class="st">${d.title}</div>
-      <div class="sr"><span class="rl" style="background:${d.color}"></span>${d.rl}</div>
-      <p class="sd">${d.desc}</p>
-      <div class="ss">${d.stats.map(([l,v])=>`<div class="ss-row"><span class="ss-l">${l}</span><span class="ss-v">${v}</span></div>`).join('')}</div>
-      <div class="sw" style="background:${d.color}12;border-left:2px solid ${d.color}">
-        <span class="sw-l" style="color:${d.color}">So what for buyers</span>${d.sw}
-      </div>
-      ${feedHtml(k)}`;
-    document.getElementById('sheet').classList.add('open');
-    document.getElementById('ov').classList.add('open');
-    document.getElementById('hint').classList.add('gone');
-    if(cur&&cur!==k)document.querySelectorAll(`.route[data-k="${cur}"]`).forEach(e=>e.removeAttribute('filter'));
-    document.querySelectorAll(`.route[data-k="${k}"]`).forEach(e=>e.setAttribute('filter','url(#glo)'));
-    cur=k;
-  }
-  function close_(){
-    document.getElementById('sheet').classList.remove('open');
-    document.getElementById('ov').classList.remove('open');
-    if(cur){document.querySelectorAll(`.route[data-k="${cur}"]`).forEach(e=>e.removeAttribute('filter'));cur=null}
-  }
-  document.getElementById('ov').addEventListener('click',close_);
-  document.getElementById('outer').addEventListener('click',e=>{if(!e.target.closest('.route')&&!e.target.closest('.hitzone')&&!e.target.closest('.src')&&!e.target.closest('.sheet'))close_()});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')close_()});
-  let ty=0;
-  document.getElementById('shBar').addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});
-  document.getElementById('shBar').addEventListener('touchmove',e=>{if(e.touches[0].clientY-ty>50)close_()},{passive:true});
 }
 
 function ls(u){return new Promise((r,j)=>{const s=document.createElement('script');s.src=u;s.onload=r;s.onerror=j;document.head.appendChild(s)})}
-ls('https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js')
-  .then(()=>ls('https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js'))
-  .then(boot)
-  .catch(()=>document.getElementById('hint').textContent='Failed to load map — try opening in a browser.');
+Promise.all([ls('https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js').then(()=>ls('https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js')),feedPromise]).then(boot).catch(e=>{console.error(e);document.getElementById('hint').textContent='Failed to load — try in a browser.'});
 </script>
 </body>
 </html>
