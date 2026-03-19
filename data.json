@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-19T13:43:16.434957Z",
+  "last_updated": "2026-03-19T13:57:57.821853Z",
   "articles": {
     "pl": [],
     "ipl": [],
@@ -80,6 +80,26 @@
         "score": 7,
         "fetched_at": "2026-03-19T12:57:57.054578Z",
         "league": "anime"
+      }
+    ],
+    "f1": [
+      {
+        "title": "Formula 1 Moves to Apple TV+ for US Broadcasting Rights Starting 2026",
+        "source": "9to5Mac",
+        "url": "https://9to5mac.com/2026/03/05/formula-1-on-apple-tv-how-to-watch-australian-f1-grand-prix/",
+        "summary": "F1 secures major US streaming deal with Apple TV+ for 2026 season, all races live and on-demand for subscribers",
+        "score": 9,
+        "fetched_at": "2026-03-19T13:57:57.821853Z",
+        "league": "f1"
+      },
+      {
+        "title": "BYD Could Become Formula 1's First Ever Chinese Team By 2027",
+        "source": "Yanko Design",
+        "url": "https://www.yankodesign.com/2026/03/11/byd-could-become-formula-1s-first-ever-chinese-team-by-2027/",
+        "summary": "Chinese EV giant BYD eyes F1 entry by 2027, potentially first Chinese team as sport expands into new markets",
+        "score": 8,
+        "fetched_at": "2026-03-19T13:57:57.821853Z",
+        "league": "f1"
       }
     ]
   }
