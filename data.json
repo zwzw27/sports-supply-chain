@@ -1,11 +1,48 @@
 {
-  "last_updated": null,
+  "last_updated": "2026-03-19T12:57:57.054578Z",
   "articles": {
     "pl": [],
     "ipl": [],
     "nfl": [],
     "nba": [],
     "laliga": [],
-    "anime": []
+    "anime": [
+      {
+        "title": "The Globalization of Baseball",
+        "source": "Everything-everywhere.com",
+        "url": "https://everything-everywhere.com/the-globalization-of-baseball/",
+        "summary": "Baseball's international expansion across continents with talent from US, Japan, Dominican Republic, Venezuela, Korea",
+        "score": 7,
+        "fetched_at": "2026-03-19T12:57:57.054578Z",
+        "league": "anime"
+      },
+      {
+        "title": "Dodgers Shohei Ohtani is driving MLB's boom in Japan",
+        "source": "New York Post",
+        "url": "https://nypost.com/2026/03/18/sports/dodgers-shohei-ohtani-is-driving-mlbs-boom-in-japan/",
+        "summary": "Ohtani's star power fuels unprecedented Japanese MLB interest, turning Dodgers into Japan's team",
+        "score": 9,
+        "fetched_at": "2026-03-19T12:57:57.054578Z",
+        "league": "anime"
+      },
+      {
+        "title": "Dodgers superstar shatters record for off the field earnings — and it's not even close",
+        "source": "New York Post",
+        "url": "https://nypost.com/2026/03/17/sports/shohei-ohtanis-off-field-earnings-shatters-previous-record/",
+        "summary": "Ohtani projected $127M endorsements in 2026, reshaping MLB's global reach and financial landscape",
+        "score": 8,
+        "fetched_at": "2026-03-19T12:57:57.054578Z",
+        "league": "anime"
+      },
+      {
+        "title": "World Cup Fan Base Power Rankings: How do USA, Brazil, England, Argentina Stack Up?",
+        "source": "Fox Sports",
+        "url": "https://www.foxsports.com/stories/soccer/2026-world-cup-fan-base-power-rankings-alexi-lalas-usmnt-argentina-brazil-england",
+        "summary": "Global fan base analysis for 2026 World Cup markets including USA, Brazil, England, Argentina",
+        "score": 7,
+        "fetched_at": "2026-03-19T12:57:57.054578Z",
+        "league": "anime"
+      }
+    ]
   }
 }
