@@ -1,9 +1,18 @@
 {
-  "last_updated": "2026-03-19T13:04:58.360248Z",
+  "last_updated": "2026-03-19T13:43:16.434957Z",
   "articles": {
     "pl": [],
     "ipl": [],
     "nfl": [
+      {
+        "title": "Ex-NFL star predicts streaming giants will team up for bundles as league rights become 'so damn expensive'",
+        "source": "Fox News",
+        "url": "https://www.foxnews.com/sports/ex-nfl-star-predicts-streaming-giants-team-up-bundles-league-rights-become-so-damn-expensive",
+        "summary": "NFL rights costs expected to exceed $10B annually, potentially forcing streaming platforms into bundling partnerships",
+        "score": 8,
+        "fetched_at": "2026-03-19T13:43:16.434957Z",
+        "league": "nfl"
+      },
       {
         "title": "NFL is selling Australia game as part of a mini-package",
         "source": "NBCSports.com",
@@ -14,9 +23,28 @@
         "league": "nfl"
       }
     ],
-    "nba": [],
+    "nba": [
+      {
+        "title": "How the NBA Keeps Younger Viewers Engaged",
+        "source": "Streamingmedia.com",
+        "url": "https://www.streamingmedia.com/Articles/ReadArticle.aspx?ArticleID=173848",
+        "summary": "NBA VP of Global Media Insights discusses growing attention from younger fans despite their appointment viewing aversion",
+        "score": 8,
+        "fetched_at": "2026-03-19T13:43:16.434957Z",
+        "league": "nba"
+      }
+    ],
     "laliga": [],
     "anime": [
+      {
+        "title": "2026 World Baseball Classic: Where to Watch Live Streams, TV Broadcasts and Free Options",
+        "source": "Ibtimes.com.au",
+        "url": "https://www.ibtimes.com.au/video-2026-world-baseball-classic-where-watch-live-streams-tv-broadcasts-free-options-1862877",
+        "summary": "Premier international baseball tournament streams globally March 5-17, featuring 20 national teams including Japan",
+        "score": 8,
+        "fetched_at": "2026-03-19T13:43:16.434957Z",
+        "league": "anime"
+      },
       {
         "title": "The Globalization of Baseball",
         "source": "Everything-everywhere.com",
