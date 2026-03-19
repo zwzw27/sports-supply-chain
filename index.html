@@ -72,18 +72,17 @@ h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28px;l
 .story-del:hover{color:var(--accent);background:rgba(0,0,0,.04)}
 .paste-box{margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
 .paste-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-d);margin-bottom:8px}
-.paste-row{display:flex;gap:6px;margin-bottom:6px}
-.paste-input{flex:1;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;background:var(--card);color:var(--text);outline:none}
+.paste-row{display:flex;gap:6px}
+.paste-input{flex:1;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--card);color:var(--text);outline:none}
 .paste-input:focus{border-color:#aaa}
 .paste-input::placeholder{color:var(--text-d)}
-.paste-small{display:flex;gap:6px;margin-bottom:8px}
-.paste-small input{flex:1;padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:11px;background:var(--card);color:var(--text);outline:none}
-.paste-small input:focus{border-color:#aaa}
-.paste-small input::placeholder{color:var(--text-d)}
-.paste-add{padding:8px 16px;border-radius:8px;background:var(--accent);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:opacity .2s;white-space:nowrap}
+.paste-add{padding:9px 18px;border-radius:8px;background:var(--accent);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .2s;white-space:nowrap}
 .paste-add:hover{opacity:.85}
-.paste-added{font-size:11px;color:var(--nfl);font-weight:600;display:none;margin-top:4px}
-.paste-added.vis{display:block}
+.paste-add:disabled{opacity:.5;cursor:wait}
+.paste-status{font-size:11px;margin-top:6px;min-height:16px}
+.paste-status.ok{color:var(--nfl)}
+.paste-status.err{color:var(--accent)}
+.paste-status.loading{color:var(--text-d)}
 .export-bar{margin-top:20px;padding-top:12px;border-top:1px dashed var(--border);display:flex;align-items:center;justify-content:space-between}
 .export-count{font-size:10px;color:var(--text-d)}
 .export-btn{font-size:10px;color:var(--accent);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;text-decoration:underline}
@@ -126,6 +125,35 @@ function addManualArticle(league,article){const d=getManual();if(!d[league])d[le
 function removeManualArticle(league,url){const d=getManual();if(!d[league])return;d[league]=d[league].filter(a=>a.url!==url);saveManual(d)}
 function getManualForLeague(k){return(getManual()[k]||[])}
 function getAllManual(){return getManual()}
+
+// Auto-fetch page metadata from URL
+async function fetchPageMeta(url){
+  try{
+    // Try allorigins proxy for CORS
+    const proxyUrl=`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+    const resp=await fetch(proxyUrl,{signal:AbortSignal.timeout(8000)});
+    if(!resp.ok)throw new Error('fetch failed');
+    const html=await resp.text();
+    const doc=new DOMParser().parseFromString(html,'text/html');
+    // Extract title: og:title > title tag
+    const ogTitle=doc.querySelector('meta[property="og:title"]');
+    const title=ogTitle?ogTitle.content:doc.querySelector('title')?.textContent||'';
+    // Extract source: og:site_name > domain
+    const ogSite=doc.querySelector('meta[property="og:site_name"]');
+    const source=ogSite?ogSite.content:new URL(url).hostname.replace('www.','');
+    // Extract description for summary
+    const ogDesc=doc.querySelector('meta[property="og:description"]');
+    const metaDesc=doc.querySelector('meta[name="description"]');
+    const desc=ogDesc?ogDesc.content:metaDesc?metaDesc.content:'';
+    // Trim summary to 120 chars
+    const summary=desc.length>120?desc.slice(0,117)+'...':desc;
+    return{title:title.trim(),source:source.trim(),summary:summary.trim()};
+  }catch(e){
+    // Fallback: just extract domain as source
+    try{const source=new URL(url).hostname.replace('www.','');return{title:'',source,summary:''}}
+    catch(e2){return{title:'',source:'',summary:''}}
+  }
+}
 
 let feedData=null;
 const feedPromise=fetch('data.json').then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(d=>{feedData=d}).catch(()=>{feedData={articles:{}}});
@@ -206,7 +234,6 @@ function boot(){
     }
 
     function openLeague(k){
-      const d=L[k];
       svg.selectAll('.league-marker').classed('active',false);
       svg.select(`.league-marker[data-k="${k}"]`).classed('active',true);
       clearArrows();renderPanel(k);
@@ -234,7 +261,7 @@ function boot(){
         <div class="feed-hdr">Latest coverage</div>`;
 
       if(!articles.length){
-        html+='<p class="feed-empty">No articles yet — add one below or wait for the daily feed.</p>';
+        html+='<p class="feed-empty">No articles yet — paste a URL below or wait for the daily feed.</p>';
       } else {
         articles.slice(0,15).forEach((a,i)=>{
           const isManual=a._manual;
@@ -248,12 +275,14 @@ function boot(){
         });
       }
 
+      // Paste box — just a URL input
       html+=`<div class="paste-box">
         <div class="paste-label">Add an article</div>
-        <div class="paste-row"><input class="paste-input" id="pasteUrl" type="url" placeholder="Paste URL here"></div>
-        <div class="paste-small"><input id="pasteTitle" placeholder="Title"><input id="pasteSource" placeholder="Source" style="max-width:120px"></div>
-        <div class="paste-row"><input class="paste-input" id="pasteSummary" placeholder="One-line summary (optional)" maxlength="120"><button class="paste-add" onclick="window._addArticle('${k}')">Add</button></div>
-        <div class="paste-added" id="pasteConfirm">Added! It now appears in the feed above.</div>
+        <div class="paste-row">
+          <input class="paste-input" id="pasteUrl" type="url" placeholder="Paste a URL and hit Add">
+          <button class="paste-add" id="pasteBtn" onclick="window._addArticle('${k}')">Add</button>
+        </div>
+        <div class="paste-status" id="pasteStatus"></div>
       </div>`;
 
       if(manualCount>0){
@@ -263,20 +292,55 @@ function boot(){
         </div>`;
       }
       body.innerHTML=html;
+
+      // Allow Enter key to submit
+      const urlInput=document.getElementById('pasteUrl');
+      if(urlInput)urlInput.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();window._addArticle(k)}});
     }
 
-    window._addArticle=function(k){
-      const url=document.getElementById('pasteUrl').value.trim();
-      if(!url){document.getElementById('pasteUrl').focus();return}
-      const title=document.getElementById('pasteTitle').value.trim()||'Untitled';
-      const source=document.getElementById('pasteSource').value.trim()||'Manual';
-      const summary=document.getElementById('pasteSummary').value.trim();
-      addManualArticle(k,{title,source,url,summary,score:10,fetched_at:new Date().toISOString(),league:k});
+    // Add article: fetch metadata automatically
+    window._addArticle=async function(k){
+      const urlInput=document.getElementById('pasteUrl');
+      const btn=document.getElementById('pasteBtn');
+      const status=document.getElementById('pasteStatus');
+      const url=urlInput.value.trim();
+      if(!url){urlInput.focus();return}
+
+      // Check duplicate
+      const existing=mergedArticles(k);
+      if(existing.some(a=>a.url===url)){
+        status.textContent='Already in the feed.';status.className='paste-status err';return;
+      }
+
+      // Show loading
+      btn.disabled=true;btn.textContent='Fetching...';
+      status.textContent='Grabbing title and source...';status.className='paste-status loading';
+
+      const meta=await fetchPageMeta(url);
+
+      const article={
+        title:meta.title||new URL(url).pathname.split('/').pop().replace(/-/g,' ')||'Untitled',
+        source:meta.source||'Manual',
+        url:url,
+        summary:meta.summary||'',
+        score:10,
+        fetched_at:new Date().toISOString(),
+        league:k
+      };
+
+      addManualArticle(k,article);
+
+      btn.disabled=false;btn.textContent='Add';
+      status.textContent='Added!';status.className='paste-status ok';
+
+      // Re-render panel
       renderPanel(k);
-      setTimeout(()=>{const c=document.getElementById('pasteConfirm');if(c)c.classList.add('vis')},100);
-      const body=document.getElementById('shBody');
-      const feedHdr=body.querySelector('.feed-hdr');
-      if(feedHdr)feedHdr.scrollIntoView({behavior:'smooth',block:'start'});
+
+      // Scroll to feed
+      setTimeout(()=>{
+        const feedHdr=document.getElementById('shBody').querySelector('.feed-hdr');
+        if(feedHdr)feedHdr.scrollIntoView({behavior:'smooth',block:'start'});
+      },150);
     };
 
     window._delManual=function(k,encodedUrl){removeManualArticle(k,decodeURIComponent(encodedUrl));renderPanel(k)};
