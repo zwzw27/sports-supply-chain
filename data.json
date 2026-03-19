@@ -1,8 +1,18 @@
 {
-  "last_updated": "2026-03-19T13:57:57.821853Z",
+  "last_updated": "2026-03-19T14:13:59.347435Z",
   "articles": {
     "pl": [],
-    "ipl": [],
+    "ipl": [
+      {
+        "title": "JioStar vs Absolute Legends: Delhi High Court intervenes in high-stakes T20 media rights battle",
+        "source": "The Indian Express",
+        "url": "https://indianexpress.com/article/legal-news/jiostar-absolute-legends-sports-delhi-high-court-t20-media-rights-dispute-mediation-10584806/",
+        "summary": "Delhi High Court mediates dispute between JioStar and Absolute Legends over Legends League Cricket media rights",
+        "score": 9,
+        "fetched_at": "2026-03-19T14:13:59.347435Z",
+        "league": "ipl"
+      }
+    ],
     "nfl": [
       {
         "title": "Ex-NFL star predicts streaming giants will team up for bundles as league rights become 'so damn expensive'",
@@ -37,6 +47,15 @@
     "laliga": [],
     "anime": [],
     "f1": [
+      {
+        "title": "Sephora Announces Partnership with F1 Academy",
+        "source": "Digiday",
+        "url": "http://digiday.com/marketing/sephora-announces-partnership-with-f1-academy/",
+        "summary": "Sephora becomes official beauty retail partner of F1 Academy with dedicated car branding, targeting new demographics",
+        "score": 9,
+        "fetched_at": "2026-03-19T14:13:59.347435Z",
+        "league": "f1"
+      },
       {
         "title": "Formula 1 Moves to Apple TV+ for US Broadcasting Rights Starting 2026",
         "source": "9to5Mac",
