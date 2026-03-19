@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>The Global Sports Media Ecosystem</title>
+<title>The Global Sports Supply Chain</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f6f4f0;--card:#edeae4;--land:#ddd9d0;--land-s:#ccc8be;--border:#d5d1c9;--text:#1a1a1a;--text-m:#5c5c5c;--text-d:#999590;--pl:#d9453c;--ipl:#c8900a;--nfl:#2a8a4b;--nba:#1a8f96;--laliga:#7b5cc2;--japac:#5a7a9a;--tennis:#d4890f;--f1:#e03030;--accent:#d9453c;--sheet-bg:#f6f4f0}
@@ -103,7 +103,7 @@ h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28px;l
   <header>
     <div class="kicker">Sports Rights &amp; Global Inventory</div>
     <h1>The Global Sports Supply Chain</h1>
-    <p class="sub">What to know about the world's hottest sports properties, and their media rights.</p>
+    <p class="sub">American leagues export scarcity. European leagues export scale. Geography is no longer a clean planning variable.</p>
   </header>
   <div class="pills-wrap"><div class="pills" id="pills"></div></div>
   <div class="map-outer" id="outer">
@@ -126,32 +126,67 @@ function removeManualArticle(league,url){const d=getManual();if(!d[league])retur
 function getManualForLeague(k){return(getManual()[k]||[])}
 function getAllManual(){return getManual()}
 
-// Auto-fetch page metadata from URL
+// Clean up a raw title string
+function cleanTitle(raw){
+  if(!raw)return'';
+  let t=raw.trim();
+  // Decode HTML entities
+  const ta=document.createElement('textarea');ta.innerHTML=t;t=ta.value;
+  // Strip common site name suffixes: " - Site Name", " | Site Name", " — Site"
+  t=t.replace(/\s*[\|\-\—\–]\s*[^|\-\—\–]{2,30}$/,'');
+  // Strip leading/trailing whitespace and quotes
+  t=t.replace(/^["'\s]+|["'\s]+$/g,'');
+  // Ensure first letter is capitalised
+  if(t.length>0)t=t.charAt(0).toUpperCase()+t.slice(1);
+  return t;
+}
+
+// Make a readable title from a URL slug as last resort
+function titleFromUrl(url){
+  try{
+    const path=new URL(url).pathname;
+    // Get last meaningful segment
+    const segments=path.split('/').filter(s=>s&&s.length>3&&!/^\d+$/.test(s));
+    const last=segments[segments.length-1]||'';
+    // Convert slug to title case
+    return last.replace(/[-_]/g,' ').replace(/\b\w/g,c=>c.toUpperCase()).replace(/\.\w+$/,'');
+  }catch(e){return''}
+}
+
 async function fetchPageMeta(url){
   try{
-    // Try allorigins proxy for CORS
     const proxyUrl=`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
     const resp=await fetch(proxyUrl,{signal:AbortSignal.timeout(8000)});
     if(!resp.ok)throw new Error('fetch failed');
     const html=await resp.text();
     const doc=new DOMParser().parseFromString(html,'text/html');
-    // Extract title: og:title > title tag
-    const ogTitle=doc.querySelector('meta[property="og:title"]');
-    const title=ogTitle?ogTitle.content:doc.querySelector('title')?.textContent||'';
-    // Extract source: og:site_name > domain
-    const ogSite=doc.querySelector('meta[property="og:site_name"]');
-    const source=ogSite?ogSite.content:new URL(url).hostname.replace('www.','');
-    // Extract description for summary
-    const ogDesc=doc.querySelector('meta[property="og:description"]');
-    const metaDesc=doc.querySelector('meta[name="description"]');
-    const desc=ogDesc?ogDesc.content:metaDesc?metaDesc.content:'';
-    // Trim summary to 120 chars
-    const summary=desc.length>120?desc.slice(0,117)+'...':desc;
-    return{title:title.trim(),source:source.trim(),summary:summary.trim()};
+
+    // Title: try og:title, then twitter:title, then <title>
+    const ogTitle=doc.querySelector('meta[property="og:title"]')?.content;
+    const twTitle=doc.querySelector('meta[name="twitter:title"]')?.content;
+    const rawTitle=ogTitle||twTitle||doc.querySelector('title')?.textContent||'';
+    const title=cleanTitle(rawTitle)||titleFromUrl(url);
+
+    // Source: og:site_name, then publisher, then domain
+    const ogSite=doc.querySelector('meta[property="og:site_name"]')?.content;
+    const publisher=doc.querySelector('meta[name="publisher"]')?.content;
+    const source=cleanTitle(ogSite||publisher)||new URL(url).hostname.replace('www.','').replace(/\.com$|\.org$|\.net$|\.co\.uk$/,'');
+
+    // Description for summary
+    const ogDesc=doc.querySelector('meta[property="og:description"]')?.content;
+    const metaDesc=doc.querySelector('meta[name="description"]')?.content;
+    const twDesc=doc.querySelector('meta[name="twitter:description"]')?.content;
+    const rawDesc=(ogDesc||twDesc||metaDesc||'').trim();
+    // Clean and truncate
+    let summary=rawDesc.replace(/\s+/g,' ');
+    if(summary.length>120)summary=summary.slice(0,117).replace(/\s\S*$/,'')+'...';
+
+    return{title,source:source.trim(),summary};
   }catch(e){
-    // Fallback: just extract domain as source
-    try{const source=new URL(url).hostname.replace('www.','');return{title:'',source,summary:''}}
-    catch(e2){return{title:'',source:'',summary:''}}
+    // Fallback
+    const source=(() => {try{return new URL(url).hostname.replace('www.','')}catch(e){return'Manual'}})();
+    const title=titleFromUrl(url);
+    return{title,source,summary:''};
   }
 }
 
@@ -275,7 +310,6 @@ function boot(){
         });
       }
 
-      // Paste box — just a URL input
       html+=`<div class="paste-box">
         <div class="paste-label">Add an article</div>
         <div class="paste-row">
@@ -292,58 +326,41 @@ function boot(){
         </div>`;
       }
       body.innerHTML=html;
-
-      // Allow Enter key to submit
       const urlInput=document.getElementById('pasteUrl');
       if(urlInput)urlInput.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();window._addArticle(k)}});
     }
 
-    // Add article: fetch metadata automatically
     window._addArticle=async function(k){
       const urlInput=document.getElementById('pasteUrl');
       const btn=document.getElementById('pasteBtn');
       const status=document.getElementById('pasteStatus');
       const url=urlInput.value.trim();
       if(!url){urlInput.focus();return}
-
-      // Check duplicate
       const existing=mergedArticles(k);
-      if(existing.some(a=>a.url===url)){
-        status.textContent='Already in the feed.';status.className='paste-status err';return;
-      }
-
-      // Show loading
+      if(existing.some(a=>a.url===url)){status.textContent='Already in the feed.';status.className='paste-status err';return}
       btn.disabled=true;btn.textContent='Fetching...';
       status.textContent='Grabbing title and source...';status.className='paste-status loading';
-
       const meta=await fetchPageMeta(url);
-
       const article={
-        title:meta.title||new URL(url).pathname.split('/').pop().replace(/-/g,' ')||'Untitled',
+        title:meta.title||titleFromUrl(url)||'Untitled',
         source:meta.source||'Manual',
-        url:url,
+        url,
         summary:meta.summary||'',
         score:10,
         fetched_at:new Date().toISOString(),
         league:k
       };
-
       addManualArticle(k,article);
-
       btn.disabled=false;btn.textContent='Add';
-      status.textContent='Added!';status.className='paste-status ok';
-
-      // Re-render panel
       renderPanel(k);
-
-      // Scroll to feed
       setTimeout(()=>{
-        const feedHdr=document.getElementById('shBody').querySelector('.feed-hdr');
-        if(feedHdr)feedHdr.scrollIntoView({behavior:'smooth',block:'start'});
-      },150);
+        const s=document.getElementById('pasteStatus');if(s){s.textContent='Added!';s.className='paste-status ok'}
+        const fh=document.getElementById('shBody').querySelector('.feed-hdr');
+        if(fh)fh.scrollIntoView({behavior:'smooth',block:'start'});
+      },100);
     };
 
-    window._delManual=function(k,encodedUrl){removeManualArticle(k,decodeURIComponent(encodedUrl));renderPanel(k)};
+    window._delManual=function(k,eu){removeManualArticle(k,decodeURIComponent(eu));renderPanel(k)};
 
     window._exportManual=function(){
       const manual=getAllManual();
