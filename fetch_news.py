@@ -106,6 +106,7 @@ def main():
         all_raw,seen=[],set()
         for q in queries:
             print(f"  {q}")
+            import time; time.sleep(1.5)
             for a in fetch_newsapi(q):
                 url=a.get("url","")
                 if url and url not in seen:seen.add(url);all_raw.append(a)
