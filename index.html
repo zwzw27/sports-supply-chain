@@ -149,7 +149,12 @@ function titleFromUrl(url){
     const segments=path.split('/').filter(s=>s&&s.length>3&&!/^\d+$/.test(s));
     const last=segments[segments.length-1]||'';
     // Convert slug to title case
-    return last.replace(/[-_]/g,' ').replace(/\b\w/g,c=>c.toUpperCase()).replace(/\.\w+$/,'');
+    let t=last.replace(/\.\w+$/,'').replace(/[-_]/g,' ').trim();
+    t=t.replace(/\b\w/g,c=>c.toUpperCase());
+    const lower=['a','an','the','and','but','or','for','nor','on','at','to','by','in','of','with','is','it','as','vs'];
+    t=t.split(' ').map((w,i)=>i>0&&lower.includes(w.toLowerCase())?w.toLowerCase():w).join(' ');
+    if(/^(how|why|what|where|when|who|can|could|will|should|is|are|do|does|did)\b/i.test(t)&&!/[?!.]$/.test(t))t+='?';
+    return t;
   }catch(e){return''}
 }
 
