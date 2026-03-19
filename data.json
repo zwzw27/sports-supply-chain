@@ -1,9 +1,19 @@
 {
-  "last_updated": "2026-03-19T12:57:57.054578Z",
+  "last_updated": "2026-03-19T13:04:58.360248Z",
   "articles": {
     "pl": [],
     "ipl": [],
-    "nfl": [],
+    "nfl": [
+      {
+        "title": "NFL is selling Australia game as part of a mini-package",
+        "source": "NBCSports.com",
+        "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/nfl-is-selling-australia-game-as-part-of-a-mini-package",
+        "summary": "NFL shifts international rights strategy, bundling Australia game in packages vs previous one-off sales approach",
+        "score": 8,
+        "fetched_at": "2026-03-19T13:04:58.360248Z",
+        "league": "nfl"
+      }
+    ],
     "nba": [],
     "laliga": [],
     "anime": [
