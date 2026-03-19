@@ -17,9 +17,9 @@ QUERIES={
     "nfl":["NFL Germany Europe expansion","NFL international games rights","NFL Game Pass Europe","NFL international broadcast deal"],
     "nba":["NBA international expansion","NBA Europe basketball league FIBA","NBA Africa China broadcast"],
     "laliga":["La Liga international rights","La Liga India expansion","Spanish football global broadcast"],
-    "anime":["sumo wrestling international broadcast","Japanese sports global streaming","anime sports international fans"],
-    "tennis":["ATP WTA international broadcast rights","tennis Grand Slam streaming deal","tennis Saudi Arabia expansion","ATP tour global broadcast"],
-    "f1":["Formula 1 new race international","F1 Las Vegas Miami Saudi broadcast","Formula 1 streaming rights global","F1 Liberty Media expansion"],
+    "anime":["sumo international broadcast streaming","Japanese sports culture global audience"],
+    "tennis":["ATP WTA international broadcast rights","tennis Grand Slam streaming deal","tennis Saudi Arabia expansion"],
+    "f1":["Formula 1 new race international","F1 Las Vegas Miami Saudi broadcast","Formula 1 streaming rights global"],
 }
 
 LEAGUE_CONTEXT={
@@ -28,9 +28,9 @@ LEAGUE_CONTEXT={
     "nfl":"the NFL's push into Europe and beyond — the DAZN deal, Game Pass, regular-season games in Munich/Frankfurt/London/other international cities, rights packaging",
     "nba":"the NBA's global expansion — new European league with FIBA, Amazon broadcast talks, Basketball Without Borders, China, international revenue",
     "laliga":"La Liga's international expansion — offices in India, broadcast deals in the US and Middle East, star-driven global strategy",
-    "anime":"Japanese sports going global — sumo, anime-adjacent sports content reaching international audiences through streaming and fandom. NOT American sports. NOT general anime/manga entertainment.",
+    "anime":"SPECIFICALLY: Japanese sports (sumo, anime-adjacent sports culture) reaching international audiences through streaming. REJECT: American baseball (MLB), American sports of any kind, general anime/manga that isn't sports-related, Japanese domestic sports news, Fox Sports content about American leagues, IBTimes general news",
     "tennis":"Tennis expanding into new markets — ATP/WTA events in Saudi Arabia, China, streaming rights fragmentation across platforms, Grand Slam broadcast deals",
-    "f1":"Formula 1's global expansion — new races in Las Vegas, Miami, Saudi Arabia, the Netflix/Drive to Survive effect on viewership, Liberty Media's entertainment-first strategy, streaming rights deals",
+    "f1":"Formula 1's global expansion — new races in Las Vegas, Miami, Saudi Arabia, the Netflix/Drive to Survive effect, Liberty Media's entertainment-first strategy, streaming rights",
 }
 
 DATA_FILE="data.json"
@@ -52,27 +52,32 @@ def filter_with_claude(league,articles):
 
 Curating a feed about: {context}
 
-STRICT FILTERING. REJECT:
-- Domestic league results, scores, player transfers, match previews, race results
+STRICT FILTERING — be aggressive about rejecting irrelevant content.
+
+REJECT:
+- Domestic results, scores, player transfers, match previews, race results
 - Domestic-only business (salary caps, coaching, relegation, team orders)
-- Tangential mentions without international expansion focus
-- Different sport/league than tracked
-- Clickbait, SEO spam, betting, fantasy sports content
+- Articles that only tangentially mention the sport without focusing on INTERNATIONAL expansion or rights
+- Articles about a DIFFERENT sport or league than what we're tracking
+- General news aggregator content from sites like IBTimes, Fox Sports (unless specifically about international expansion)
+- Clickbait, SEO spam, betting, fantasy sports, listicles
 - Removed/unavailable articles
 
-KEEP only articles about:
-- International broadcast/streaming rights deals
+KEEP ONLY articles that DIRECTLY address:
+- International broadcast or streaming rights deals
 - Leagues/tours playing events in new or expanding markets
-- Audience growth metrics in export markets
+- Audience growth data in export markets
 - Advertiser/sponsor activity tied to international expansion
 - Strategic moves to enter new geographies
 
-Score 1-10. Return ONLY score 8+. JSON array:
+Be VERY strict. When in doubt, reject. Score 1-10. Return ONLY score 9+.
+
+For keepers, return a JSON array:
 - "title": cleaned title
-- "source": publication
+- "source": publication name
 - "url": URL
 - "summary": max 120 chars, for a media buyer, sharp and specific
-- "score": 8-10
+- "score": 9-10
 
 Valid JSON only. No markdown/backticks/preamble. Nothing qualifies? Return []
 
