@@ -17,7 +17,7 @@ QUERIES={
     "nfl":["NFL Germany Europe expansion","NFL international games rights","NFL Game Pass Europe","NFL international broadcast deal"],
     "nba":["NBA international expansion","NBA Europe basketball league FIBA","NBA Africa China broadcast"],
     "laliga":["La Liga international rights","La Liga India expansion","Spanish football global broadcast"],
-    "japac":["sumo international broadcast streaming","Japanese sports culture global audience"],
+    "japac":["Ohtani global brand international","Asian sports streaming international","sumo wrestling international broadcast"],
     "tennis":["ATP WTA international broadcast rights","tennis Grand Slam streaming deal","tennis Saudi Arabia expansion"],
     "f1":["Formula 1 new race international","F1 Las Vegas Miami Saudi broadcast","Formula 1 streaming rights global"],
 }
@@ -28,7 +28,7 @@ LEAGUE_CONTEXT={
     "nfl":"the NFL's push into Europe and beyond — the DAZN deal, Game Pass, regular-season games in Munich/Frankfurt/London/other international cities, rights packaging",
     "nba":"the NBA's global expansion — new European league with FIBA, Amazon broadcast talks, Basketball Without Borders, China, international revenue",
     "laliga":"La Liga's international expansion — offices in India, broadcast deals in the US and Middle East, star-driven global strategy",
-    "anime":"SPECIFICALLY: Japanese sports (sumo, anime-adjacent sports culture) reaching international audiences through streaming. REJECT: American baseball (MLB), American sports of any kind, general anime/manga that isn't sports-related, Japanese domestic sports news, Fox Sports content about American leagues, IBTimes general news",
+    "japac":"Japan and APAC sports going global — Ohtani's cultural and commercial impact beyond MLB, Asian sports streaming growth, sumo international broadcast deals, the APAC region as both importer and exporter of sports content. NOT domestic MLB scores or results. NOT general anime/manga.",
     "tennis":"Tennis expanding into new markets — ATP/WTA events in Saudi Arabia, China, streaming rights fragmentation across platforms, Grand Slam broadcast deals",
     "f1":"Formula 1's global expansion — new races in Las Vegas, Miami, Saudi Arabia, the Netflix/Drive to Survive effect, Liberty Media's entertainment-first strategy, streaming rights",
 }
