@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-19T15:24:13.013382Z",
+  "last_updated": "2026-03-20T07:49:06.332150Z",
   "articles": {
     "pl": [],
     "ipl": [
@@ -44,8 +44,37 @@
         "league": "nba"
       }
     ],
-    "laliga": [],
-    "japac": [],
+    "laliga": [
+      {
+        "title": "Girona vs Athletic Club Live Stream: Where to Watch La Liga Match on March 14, 2026",
+        "source": "International Business Times",
+        "url": "https://www.ibtimes.com.au/video-girona-vs-athletic-club-live-stream-where-watch-la-liga-match-march-14-2026-1863270",
+        "summary": "La Liga match broadcast details for U.S. and South Korean markets, showing league's international streaming reach",
+        "score": 8,
+        "fetched_at": "2026-03-20T07:49:06.332150Z",
+        "league": "laliga"
+      }
+    ],
+    "japac": [
+      {
+        "title": "Shohei Ohtani Joins Grand Seiko as a Global Ambassador",
+        "source": "HODINKEE",
+        "url": "https://www.hodinkee.com/articles/shohei-ohtani-joins-grand-seiko-as-a-global-ambassador",
+        "summary": "Japanese baseball superstar becomes global ambassador for Grand Seiko as brand continues international expansion push.",
+        "score": 9,
+        "fetched_at": "2026-03-20T07:49:06.332150Z",
+        "league": "japac"
+      },
+      {
+        "title": "Dodgers Superstar Shatters Record for Off the Field Earnings — and It's Not Even Close",
+        "source": "New York Post",
+        "url": "https://nypost.com/2026/03/17/sports/shohei-ohtanis-off-field-earnings-shatters-previous-record/",
+        "summary": "Ohtani projected to earn $127M in endorsements, surpassing all athletes while reshaping MLB's global financial landscape.",
+        "score": 8,
+        "fetched_at": "2026-03-20T07:49:06.332150Z",
+        "league": "japac"
+      }
+    ],
     "f1": [
       {
         "title": "Sephora Announces Partnership with F1 Academy",
