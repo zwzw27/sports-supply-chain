@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-20T07:49:06.332150Z",
+  "last_updated": "2026-03-21T07:35:44.331428Z",
   "articles": {
     "pl": [],
     "ipl": [
@@ -14,6 +14,15 @@
       }
     ],
     "nfl": [
+      {
+        "title": "The NFL's European Final Four Is Closer Than Ever After a Potential Overseas Division",
+        "source": "Marca",
+        "url": "https://www.marca.com/en/nfl/2026/03/17/69b97acde2704e193f8b45c3.html",
+        "summary": "NFL considers potential overseas division as league explores European expansion beyond current international games",
+        "score": 8,
+        "fetched_at": "2026-03-21T07:35:44.331428Z",
+        "league": "nfl"
+      },
       {
         "title": "Ex-NFL star predicts streaming giants will team up for bundles as league rights become 'so damn expensive'",
         "source": "Fox News",
@@ -34,6 +43,15 @@
       }
     ],
     "nba": [
+      {
+        "title": "The NFL's European Final Four is Closer Than Ever After a Potential Overseas Division",
+        "source": "Marca",
+        "url": "https://www.marca.com/en/nfl/2026/03/17/69b97acde2704e193f8b45c3.html",
+        "summary": "NFL considers overseas division following NBA expansion model, signaling major international market push",
+        "score": 8,
+        "fetched_at": "2026-03-21T07:35:44.331428Z",
+        "league": "nba"
+      },
       {
         "title": "How the NBA Keeps Younger Viewers Engaged",
         "source": "Streamingmedia.com",
@@ -56,6 +74,15 @@
       }
     ],
     "japac": [
+      {
+        "title": "World Baseball Classic Television Audience Doubles for 2026 Tournament",
+        "source": "Japan Today",
+        "url": "https://japantoday.com/category/sports/world-baseball-classic-television-audience-doubles-for-2026-tournament",
+        "summary": "WBC championship drew 10.8M viewers on Fox/Fox Deportes, nearly double 2023's 5.4M, showing growing international appeal",
+        "score": 8,
+        "fetched_at": "2026-03-21T07:35:44.331428Z",
+        "league": "japac"
+      },
       {
         "title": "Shohei Ohtani Joins Grand Seiko as a Global Ambassador",
         "source": "HODINKEE",
