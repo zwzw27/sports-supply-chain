@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-23T08:03:55.465613Z",
+  "last_updated": "2026-03-24T07:56:05.908262Z",
   "articles": {
     "pl": [],
     "ipl": [
@@ -63,6 +63,15 @@
       }
     ],
     "laliga": [
+      {
+        "title": "As War Drives Viewers to Streaming, Pakistan's Begin Platform Expands Content Slate and Eyes South Asian Growth",
+        "source": "Variety",
+        "url": "https://variety.com/2026/tv/news/pakistan-begin-slate-expansion-war-1236690748/",
+        "summary": "Pakistan's Begin streaming platform targets South Asian expansion amid regional conflicts driving streaming adoption",
+        "score": 8,
+        "fetched_at": "2026-03-24T07:56:05.908262Z",
+        "league": "laliga"
+      },
       {
         "title": "Girona vs Athletic Club Live Stream: Where to Watch La Liga Match on March 14, 2026",
         "source": "International Business Times",
