@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-25T07:55:43.743587Z",
+  "last_updated": "2026-03-26T08:03:44.831285Z",
   "articles": {
     "pl": [],
     "ipl": [
@@ -121,6 +121,15 @@
       }
     ],
     "f1": [
+      {
+        "title": "Tubi Adds 2 Scripted Originals Aimed at Gen Z, Sets Apple Formula 1 Team-Up",
+        "source": "Deadline",
+        "url": "http://deadline.com/2026/03/tubi-scripted-originals-gen-z-apple-formula-1-1236762872/",
+        "summary": "Fox's Tubi partners with Apple for F1 altcasts, targeting Gen Z audiences in streaming expansion strategy",
+        "score": 8,
+        "fetched_at": "2026-03-26T08:03:44.831285Z",
+        "league": "f1"
+      },
       {
         "title": "Sephora Announces Partnership with F1 Academy",
         "source": "Digiday",
