@@ -1,8 +1,26 @@
 {
-  "last_updated": "2026-03-26T08:03:44.831285Z",
+  "last_updated": "2026-03-27T08:01:20.653409Z",
   "articles": {
     "pl": [],
     "ipl": [
+      {
+        "title": "US Investors Bet Big on Indian Cricket with Record Billion-Dollar IPL Deals",
+        "source": "Al Jazeera English",
+        "url": "https://www.aljazeera.com/sports/2026/3/25/us-investors-bet-big-on-indian-cricket-with-record-billion-dollar-ipl-deals",
+        "summary": "American capital floods into IPL with billion-dollar acquisitions of Royal Challengers Bengaluru and Rajasthan Royals",
+        "score": 8,
+        "fetched_at": "2026-03-27T08:01:20.653409Z",
+        "league": "ipl"
+      },
+      {
+        "title": "Mumbai Indians Deepen Brand Play with 30+ Partnerships, 20% Sponsorship Growth",
+        "source": "The Times of India",
+        "url": "https://economictimes.indiatimes.com/news/sports/ipl-2026-ambani-owned-mumbai-indians-deepen-brand-play-with-30-partnerships-20-growth-in-sponsorship-pool/articleshow/129793856.cms",
+        "summary": "Mumbai Indians adds Malaysia Airlines among 10 new partners, highlighting IPL's growing international brand appeal",
+        "score": 8,
+        "fetched_at": "2026-03-27T08:01:20.653409Z",
+        "league": "ipl"
+      },
       {
         "title": "IPG to Expand T20 Cricket Footprint Across Sri Lanka, Malaysia and Zimbabwe Following Merger",
         "source": "GlobeNewswire",
@@ -53,6 +71,15 @@
     ],
     "nba": [
       {
+        "title": "Silver Vows NBA Tanking Solution Before Draft, Seeks Euroleague Partnership",
+        "source": "Yahoo Entertainment",
+        "url": "https://sports.yahoo.com/articles/silver-vows-nba-tanking-solution-211557879.html",
+        "summary": "NBA commissioner exploring partnership with European Euroleague as part of broader global expansion strategy",
+        "score": 8,
+        "fetched_at": "2026-03-27T08:01:20.653409Z",
+        "league": "nba"
+      },
+      {
         "title": "The NFL's European Final Four is Closer Than Ever After a Potential Overseas Division",
         "source": "Marca",
         "url": "https://www.marca.com/en/nfl/2026/03/17/69b97acde2704e193f8b45c3.html",
@@ -92,6 +119,15 @@
       }
     ],
     "japac": [
+      {
+        "title": "WBC Is Thriving. Rob Manfred Says MLB Might Consider Moving It to Midseason",
+        "source": "Japan Today",
+        "url": "https://japantoday.com/category/sports/the-wbc-is-thriving.-rob-manfred-says-mlb-might-consider-moving-it-to-midseason",
+        "summary": "World Baseball Classic sets attendance and broadcast records, prompting MLB to consider midseason scheduling for 2029/2030.",
+        "score": 8,
+        "fetched_at": "2026-03-27T08:01:20.653409Z",
+        "league": "japac"
+      },
       {
         "title": "World Baseball Classic Television Audience Doubles for 2026 Tournament",
         "source": "Japan Today",
