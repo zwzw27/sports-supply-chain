@@ -1,7 +1,35 @@
 {
-  "last_updated": "2026-03-27T08:01:20.653409Z",
+  "last_updated": "2026-03-28T07:46:37.904115Z",
   "articles": {
-    "pl": [],
+    "pl": [
+      {
+        "title": "American Investors Bet Big on Indian Cricket with Two Separate Billion-Dollar Deals for IPL Teams",
+        "source": "Al Jazeera English",
+        "url": "https://www.aljazeera.com/sports/2026/3/25/us-investors-bet-big-on-indian-cricket-with-record-billion-dollar-ipl-deals",
+        "summary": "US investors make record billion-dollar acquisitions of Royal Challengers Bengaluru and Rajasthan Royals IPL teams",
+        "score": 8,
+        "fetched_at": "2026-03-28T07:46:37.904115Z",
+        "league": "pl"
+      },
+      {
+        "title": "IPG to Expand T20 Cricket Footprint Across Sri Lanka, Malaysia and Zimbabwe Following Merger",
+        "source": "GlobeNewswire",
+        "url": "https://www.globenewswire.com/news-release/2026/03/23/3260261/0/en/IPG-to-Expand-T20-Cricket-Footprint-Across-Sri-Lanka-Malaysia-and-Zimbabwe-Following-Merger-with-Flash-Sports-Media-Inc-following-Flash-s-merger-with-NASDAQ-listed-urban-gro-Inc.html",
+        "summary": "Commercial rights holder charts T20 cricket expansion into Bangladesh, UAE, Sri Lanka, Malaysia and Zimbabwe",
+        "score": 8,
+        "fetched_at": "2026-03-28T07:46:37.904115Z",
+        "league": "pl"
+      },
+      {
+        "title": "YouTube Star KSI to Give Little-Known Dagenham a Global Stage by Streaming Match on His Channel",
+        "source": "ABC News",
+        "url": "https://abcnews.com/Entertainment/wireStory/youtube-star-ksi-give-dagenham-global-stage-streaming-131402547",
+        "summary": "Social media star KSI becomes minority shareholder of sixth-tier English club, plans global streaming for Premier League push",
+        "score": 8,
+        "fetched_at": "2026-03-28T07:46:37.904115Z",
+        "league": "pl"
+      }
+    ],
     "ipl": [
       {
         "title": "US Investors Bet Big on Indian Cricket with Record Billion-Dollar IPL Deals",
