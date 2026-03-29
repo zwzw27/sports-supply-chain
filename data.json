@@ -1,7 +1,34 @@
 {
-  "last_updated": "2026-03-28T07:46:37.904115Z",
+  "last_updated": "2026-03-29T07:53:48.620847Z",
   "articles": {
     "pl": [
+      {
+        "title": "American Investors Bet Big on Indian Cricket With Two Separate Billion-Dollar Deals for IPL Teams",
+        "source": "Yahoo Entertainment",
+        "url": "https://sports.yahoo.com/articles/american-investors-bet-big-indian-180848166.html",
+        "summary": "US investors make billion-dollar IPL team acquisitions, marking major cross-border expansion into Asia's most-watched sports.",
+        "score": 9,
+        "fetched_at": "2026-03-29T07:53:48.620847Z",
+        "league": "pl"
+      },
+      {
+        "title": "For Women's Hockey Fans, the League's First U.S. Broadcast Is a Watershed Moment",
+        "source": "NBC News",
+        "url": "https://www.nbcnews.com/sports/hockey/womens-hockey-fans-leagues-first-us-broadcast-watershed-moment-rcna264790",
+        "summary": "PWHL's first national US broadcast marks expansion milestone after record Olympic growth in women's hockey viewership.",
+        "score": 8,
+        "fetched_at": "2026-03-29T07:53:48.620847Z",
+        "league": "pl"
+      },
+      {
+        "title": "Baller League Targets Soccer Re-invention After Miami Launch",
+        "source": "CNA",
+        "url": "https://www.channelnewsasia.com/sport/baller-league-targets-soccer-re-invention-after-miami-launch-6019426",
+        "summary": "Six-a-side Baller League USA debuts in Miami, aiming to redefine global soccer consumption with millions watching online.",
+        "score": 8,
+        "fetched_at": "2026-03-29T07:53:48.620847Z",
+        "league": "pl"
+      },
       {
         "title": "American Investors Bet Big on Indian Cricket with Two Separate Billion-Dollar Deals for IPL Teams",
         "source": "Al Jazeera English",
@@ -31,6 +58,33 @@
       }
     ],
     "ipl": [
+      {
+        "title": "Why Americans Are Pouring Money Into IPL",
+        "source": "The Indian Express",
+        "url": "https://indianexpress.com/article/sports/cricket/rcb-rr-sale-ipl-investement-ground-american-capital-football-10601354/",
+        "summary": "Analysis of US investment surge in IPL with 2,333% returns driving American capital into cricket's global expansion",
+        "score": 8,
+        "fetched_at": "2026-03-29T07:53:48.620847Z",
+        "league": "ipl"
+      },
+      {
+        "title": "Urban-Gro Positioned to Capture Growth as T20 Cricket Franchise Valuations Exceed $1.6 Billion and Global Media Expansion Accelerates",
+        "source": "GlobeNewswire",
+        "url": "https://www.globenewswire.com/news-release/2026/03/25/3262107/0/en/Urban-Gro-Positioned-to-Capture-Growth-as-T20-Cricket-Franchise-Valuations-Exceed-1-6-Billion-and-Global-Media-Expansion-Accelerates.html",
+        "summary": "Public company positions for T20 cricket growth as global media expansion accelerates with $1.6B+ franchise values",
+        "score": 8,
+        "fetched_at": "2026-03-29T07:53:48.620847Z",
+        "league": "ipl"
+      },
+      {
+        "title": "Kal Somani-Led Consortium Acquires Rajasthan Royals for Record $1.63 Billion in IPL History",
+        "source": "Ibtimes.com.au",
+        "url": "https://www.ibtimes.com.au/kal-somani-led-consortium-acquires-rajasthan-royals-record-163-billion-ipl-history-1864280",
+        "summary": "US-based consortium sets IPL record with $1.63B Rajasthan Royals acquisition, highlighting cricket's global appeal",
+        "score": 9,
+        "fetched_at": "2026-03-29T07:53:48.620847Z",
+        "league": "ipl"
+      },
       {
         "title": "US Investors Bet Big on Indian Cricket with Record Billion-Dollar IPL Deals",
         "source": "Al Jazeera English",
@@ -98,6 +152,24 @@
       }
     ],
     "nba": [
+      {
+        "title": "NBA Expansion in U.S., Europe Could Net Over $20 Billion for Owners",
+        "source": "Sportico.com",
+        "url": "https://www.sportico.com/leagues/basketball/2026/nba-expansion-seattle-las-vegas-europe-fee-1234888262/",
+        "summary": "NBA explores European expansion alongside U.S. markets, with potential $20B+ revenue for ownership groups",
+        "score": 8,
+        "fetched_at": "2026-03-29T07:53:48.620847Z",
+        "league": "nba"
+      },
+      {
+        "title": "Record 15 Marketing and Merchandising Partners to Support 2026 Basketball Africa League Season",
+        "source": "Africa.com",
+        "url": "https://africa.com/record-15-marketing-and-merchandising-partners-to-support-2026-basketball-africa-league-season/",
+        "summary": "Basketball Africa League adds 5 new sponsors, expands reach to 200+ countries in sixth season launch",
+        "score": 9,
+        "fetched_at": "2026-03-29T07:53:48.620847Z",
+        "league": "nba"
+      },
       {
         "title": "Silver Vows NBA Tanking Solution Before Draft, Seeks Euroleague Partnership",
         "source": "Yahoo Entertainment",
@@ -185,6 +257,15 @@
       }
     ],
     "f1": [
+      {
+        "title": "How To Watch The 2026 Formula 1 Japanese Grand Prix This Weekend",
+        "source": "Autoguide.com",
+        "url": "https://www.autoguide.com/auto/motorsports/formula-1/how-to-watch-the-2026-formula-1-japanese-grand-prix-this-weekend-44631376?utm_medium=auto&utm_source=rss&utm_campaign=all_full",
+        "summary": "Apple TV becomes F1's primary US broadcast partner for 2026, streaming all sessions live with regional coverage shifts.",
+        "score": 8,
+        "fetched_at": "2026-03-29T07:53:48.620847Z",
+        "league": "f1"
+      },
       {
         "title": "Tubi Adds 2 Scripted Originals Aimed at Gen Z, Sets Apple Formula 1 Team-Up",
         "source": "Deadline",
