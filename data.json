@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-03-29T07:53:48.620847Z",
+  "last_updated": "2026-03-30T08:22:39.083625Z",
   "articles": {
     "pl": [
+      {
+        "title": "Cricket Legend Ashwin Set to Join U.S. League MLC",
+        "source": "ESPN",
+        "url": "https://www.espn.com/espn/story/_/id/48328671/cricket-legend-ravichandran-ashwin-set-join-us-league-mlc",
+        "summary": "First former Indian national team player joins Major League Cricket in U.S., signing with San Francisco Unicorns",
+        "score": 8,
+        "fetched_at": "2026-03-30T08:22:39.083625Z",
+        "league": "pl"
+      },
       {
         "title": "American Investors Bet Big on Indian Cricket With Two Separate Billion-Dollar Deals for IPL Teams",
         "source": "Yahoo Entertainment",
@@ -58,6 +67,15 @@
       }
     ],
     "ipl": [
+      {
+        "title": "Cricket Legend Ashwin Set to Join U.S. League MLC",
+        "source": "ESPN",
+        "url": "https://www.espn.com/espn/story/_/id/48328671/cricket-legend-ravichandran-ashwin-set-join-us-league-mlc",
+        "summary": "First former Indian national team player joins Major League Cricket, bridging IPL talent to US market expansion",
+        "score": 8,
+        "fetched_at": "2026-03-30T08:22:39.083625Z",
+        "league": "ipl"
+      },
       {
         "title": "Why Americans Are Pouring Money Into IPL",
         "source": "The Indian Express",
@@ -219,6 +237,15 @@
       }
     ],
     "japac": [
+      {
+        "title": "Cricket Legend Ashwin Set to Join U.S. League MLC",
+        "source": "ESPN",
+        "url": "https://www.espn.com/espn/story/_/id/48328671/cricket-legend-ravichandran-ashwin-set-join-us-league-mlc",
+        "summary": "India cricket legend Ravichandran Ashwin becomes first former national team player to join U.S. Major League Cricket",
+        "score": 9,
+        "fetched_at": "2026-03-30T08:22:39.083625Z",
+        "league": "japac"
+      },
       {
         "title": "WBC Is Thriving. Rob Manfred Says MLB Might Consider Moving It to Midseason",
         "source": "Japan Today",
