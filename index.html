@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>The Global Sports Supply Chain · The Current</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,6 @@
   --muted:#6c6c72;
   --blue:#1a44cf;
   --navy:#0a1c5c;
-  --yellow:#f2c200;
   --tint-blue:#d9e7f6;
   --tint-peach:#fbe8da;
   --tint-cream:#f3efe7;
@@ -25,113 +24,101 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+body.locked{overflow:hidden}
 a{color:inherit}
 
 /* === HEADER === */
 .site-head{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.93);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-.head-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:13px 20px;gap:12px}
-.head-left{display:flex;gap:16px;align-items:center}
+.head-inner{max-width:760px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:12px 18px;gap:10px}
+.head-left{display:flex;gap:15px;align-items:center}
 .icon-btn{background:none;border:none;cursor:pointer;color:var(--ink);display:flex;padding:2px;opacity:.85}
-.icon-btn:hover{opacity:1}
-.icon-btn svg{width:21px;height:21px}
+.icon-btn svg{width:20px;height:20px}
 .brand{justify-self:center;text-align:center;line-height:.82;text-decoration:none}
-.brand-the{display:block;font-family:'Newsreader',serif;font-style:italic;font-weight:400;font-size:15px;color:var(--ink);margin-bottom:-1px}
-.brand-name{font-family:'Newsreader',serif;font-weight:500;font-size:30px;letter-spacing:.005em;color:var(--ink)}
-.subscribe{justify-self:end;font-size:12px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;text-decoration:none;color:var(--ink);white-space:nowrap}
-.subscribe:hover{color:var(--blue)}
+.brand-the{display:block;font-family:'Newsreader',serif;font-style:italic;font-weight:400;font-size:14px;color:var(--ink);margin-bottom:-1px}
+.brand-name{font-family:'Newsreader',serif;font-weight:500;font-size:27px;letter-spacing:.005em;color:var(--ink)}
+.subscribe{justify-self:end;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--ink);white-space:nowrap}
 
 /* === PAGE === */
-.page{max-width:1080px;margin:0 auto;padding:26px 20px 64px}
-.masthead{text-align:center;padding:16px 0 28px;border-bottom:1px solid var(--border);margin-bottom:32px}
-.masthead .kicker{justify-content:center;margin-bottom:14px}
-.masthead h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(34px,6vw,58px);line-height:1.04;letter-spacing:-.015em;max-width:15ch;margin:0 auto}
-.masthead .sub{font-family:'Newsreader',serif;font-size:clamp(16px,2.2vw,19px);font-style:italic;color:var(--muted);line-height:1.55;max-width:56ch;margin:16px auto 0}
+.page{max-width:760px;margin:0 auto;padding:22px 20px 48px}
+.masthead{text-align:center;padding:6px 0 22px;border-bottom:1px solid var(--border);margin-bottom:20px}
+.masthead .kicker{justify-content:center;margin-bottom:12px}
+.masthead h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(30px,8vw,46px);line-height:1.05;letter-spacing:-.015em;max-width:15ch;margin:0 auto}
+.masthead .sub{font-family:'Newsreader',serif;font-size:clamp(15px,4vw,18px);font-style:italic;color:var(--muted);line-height:1.5;max-width:46ch;margin:13px auto 0}
 
-/* === SHARED BITS === */
-.kicker{color:var(--blue);font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+/* === SHARED === */
+.kicker{color:var(--blue);font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;display:flex;align-items:center;gap:7px}
 .kicker .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.byline{font-size:13px;color:var(--muted)}
-.dek{font-family:'Newsreader',serif;font-size:18px;line-height:1.55;color:#2c2e44}
+.byline{font-size:12.5px;color:var(--muted)}
+.dek{font-family:'Newsreader',serif;font-size:17px;line-height:1.5;color:#2c2e44}
 .fresh-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:3px 9px;border-radius:3px;margin-bottom:10px}
 
-/* navy + yellow brand visual (echoes The Current illustrations) */
-.viz,.viz-hero{background-color:var(--navy);background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:18px 18px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:4px}
-.viz-mark{font-family:'Inter',sans-serif;font-weight:700;color:var(--yellow);letter-spacing:.05em;text-transform:uppercase}
+.sowhat{background:rgba(26,68,207,.07);border-left:3px solid var(--blue);padding:12px 14px;border-radius:0 6px 6px 0;font-size:13.5px;line-height:1.5;color:#2c2e44;margin:15px 0}
+.sowhat b{display:block;font-family:'Inter',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
 
-/* === FEED === */
-.feed{display:flex;flex-direction:column}
+.stats{margin:14px 0 0}
+.stat{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid rgba(20,22,58,.1)}
+.stat-l{font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.stat-v{font-size:13.5px;font-weight:600}
 
-/* featured (freshest) story */
-.story.featured{background:var(--tint-blue);border-radius:6px;padding:34px 26px 32px;text-align:center;margin-bottom:34px}
-.story.featured .kicker{justify-content:center}
-.story.featured h2{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-.012em;margin:14px auto 12px;max-width:16ch}
-.story.featured .byline{margin-bottom:22px}
-.viz-hero{aspect-ratio:16/9;max-width:680px;margin:0 auto}
-.viz-hero .viz-mark{font-size:clamp(40px,8vw,64px)}
-.featured-body{max-width:680px;margin:24px auto 0;text-align:left}
-.story.featured .dek{font-size:19px}
-
-/* regular story cards */
-.story{padding:26px 24px;border-radius:6px;margin-bottom:18px}
-.story-row{display:flex;gap:20px;align-items:flex-start}
-.story-main{flex:1;min-width:0}
-.story h2{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(24px,3.4vw,34px);line-height:1.12;letter-spacing:-.006em;margin:11px 0 9px}
-.viz{width:120px;height:120px;flex-shrink:0}
-.viz .viz-mark{font-size:20px}
-
-/* so-what callout */
-.sowhat{background:rgba(26,68,207,.07);border-left:3px solid var(--blue);padding:13px 16px;border-radius:0 6px 6px 0;font-size:14px;line-height:1.55;color:#2c2e44;margin:16px 0}
-.sowhat b{display:block;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
-
-/* stats */
-.stats{margin:16px 0 0}
-.stat{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid rgba(20,22,58,.1)}
-.stat-l{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.stat-v{font-size:14px;font-weight:600}
-
-/* coverage */
-.coverage{margin-top:22px;border-top:1px solid rgba(20,22,58,.14);padding-top:18px}
-.coverage-hdr{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.art{padding:13px 0;border-top:1px solid rgba(20,22,58,.08)}
+/* article rows */
+.art{padding:12px 0;border-top:1px solid rgba(20,22,58,.08)}
 .art:first-of-type{border-top:none}
-.art-t{font-family:'Newsreader',serif;font-size:17px;line-height:1.32;font-weight:500;color:var(--ink)}
-.art-m{font-size:12px;color:var(--muted);margin-top:3px}
-.art-link{display:inline-block;margin-top:7px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);text-decoration:none}
-.art-link:hover{text-decoration:underline}
+.art-t{font-family:'Newsreader',serif;font-size:16px;line-height:1.3;font-weight:500;color:var(--ink)}
+.art-m{font-size:11.5px;color:var(--muted);margin-top:3px}
+.art-link{display:inline-block;margin-top:6px;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);text-decoration:none}
 .art-del{float:right;background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;line-height:1;padding:3px 6px;border-radius:4px}
-.art-del:hover{color:var(--err);background:rgba(20,22,58,.05)}
-.empty{font-family:'Newsreader',serif;font-style:italic;color:var(--muted);font-size:15px;padding:6px 0}
+.empty{font-family:'Newsreader',serif;font-style:italic;color:var(--muted);font-size:14.5px;padding:6px 0}
+
+/* === CAROUSEL === */
+.carousel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding:0 2px}
+.tracker{font-size:13px;color:var(--muted)}
+.tracker strong{color:var(--ink);font-weight:600}
+.swipe-hint{font-size:12px;color:var(--muted)}
+.track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -20px;padding:4px 20px 10px;scroll-padding:0 20px}
+.track::-webkit-scrollbar{display:none}
+.card{scroll-snap-align:center;flex:0 0 auto;width:calc(100vw - 56px);max-width:440px;border-radius:10px;padding:24px 22px}
+.card h2{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(26px,7vw,34px);line-height:1.1;letter-spacing:-.008em;margin:11px 0 9px}
+.coverage-hdr{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:22px 0 4px;padding-top:16px;border-top:1px solid rgba(20,22,58,.14)}
+.see-all{margin-top:14px;width:100%;padding:11px;border:1px solid rgba(20,22,58,.18);background:rgba(255,255,255,.45);border-radius:8px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--ink);cursor:pointer;text-align:center}
+.see-all:hover{background:#fff;border-color:var(--blue);color:var(--blue)}
+
+.dots{display:flex;justify-content:center;gap:6px;margin-top:12px;flex-wrap:wrap}
+.dots .dot{width:7px;height:7px;border-radius:50%;background:var(--ink);opacity:.16;transition:all .25s}
+.dots .dot.on{opacity:1;width:22px;border-radius:4px;background:var(--blue)}
+
+/* === MODAL / POP-UP === */
+.modal-ov{position:fixed;inset:0;background:rgba(10,28,92,.32);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .25s;z-index:100;display:flex;align-items:flex-end;justify-content:center}
+.modal-ov.open{opacity:1;pointer-events:auto}
+.modal{background:#fff;width:100%;max-width:520px;max-height:88vh;border-radius:18px 18px 0 0;overflow-y:auto;-webkit-overflow-scrolling:touch;transform:translateY(100%);transition:transform .32s cubic-bezier(.16,1,.3,1);padding:14px 20px 30px;position:relative}
+.modal-ov.open .modal{transform:translateY(0)}
+.modal-nub{width:38px;height:4px;background:var(--ink);opacity:.18;border-radius:2px;margin:2px auto 14px}
+.modal-x{position:absolute;top:12px;right:14px;background:none;border:none;font-size:18px;color:var(--muted);cursor:pointer;line-height:1;padding:4px 6px}
+.modal-title{font-family:'Newsreader',serif;font-weight:500;font-size:26px;line-height:1.12;margin:8px 0 4px}
 
 /* add article */
-.add-box{margin-top:18px;padding-top:16px;border-top:1px dashed var(--border)}
-.add-label{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.add-box{margin-top:20px;padding-top:16px;border-top:1px dashed var(--border)}
+.add-label{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 .add-row{display:flex;gap:8px}
-.add-input{flex:1;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-family:'Inter',sans-serif;font-size:14px;background:rgba(255,255,255,.7);color:var(--ink);outline:none}
-.add-input:focus{border-color:var(--blue);background:#fff}
-.add-input::placeholder{color:var(--muted)}
-.add-btn{padding:10px 18px;border:none;border-radius:6px;background:var(--blue);color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap;transition:opacity .2s}
-.add-btn:hover{opacity:.88}
-.add-btn:disabled{opacity:.5;cursor:wait}
+.add-input{flex:1;min-width:0;padding:11px 12px;border:1px solid var(--border);border-radius:8px;font-family:'Inter',sans-serif;font-size:15px;background:#fff;color:var(--ink);outline:none}
+.add-input:focus{border-color:var(--blue)}
+.add-btn{padding:11px 18px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap}
+.add-btn:disabled{opacity:.5}
 .add-status{font-size:12px;margin-top:8px;min-height:15px}
-.add-status.ok{color:var(--ok)}
-.add-status.err{color:var(--err)}
-.add-status.loading{color:var(--muted)}
+.add-status.ok{color:var(--ok)} .add-status.err{color:var(--err)} .add-status.loading{color:var(--muted)}
 .export-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(20,22,58,.1)}
 .export-count{font-size:12px;color:var(--muted)}
-.export-btn{font-size:12px;font-weight:600;color:var(--blue);background:none;border:none;cursor:pointer;text-decoration:underline;white-space:nowrap}
+.export-btn{font-size:12px;font-weight:600;color:var(--blue);background:none;border:none;cursor:pointer;text-decoration:underline}
 
 /* footer */
-.foot{margin-top:46px;padding-top:24px;border-top:2px solid var(--ink);display:flex;gap:34px;justify-content:space-between;flex-wrap:wrap}
-.foot .thesis{font-family:'Newsreader',serif;font-size:17px;line-height:1.6;max-width:62ch;color:#2c2e44}
+.foot{margin-top:30px;padding-top:20px;border-top:2px solid var(--ink)}
+.foot .thesis{font-family:'Newsreader',serif;font-size:15.5px;line-height:1.55;color:#2c2e44}
 .foot .thesis b{font-weight:600;color:var(--ink)}
-.foot .by{font-size:12px;color:var(--muted);white-space:nowrap}
+.foot .by{font-size:12px;color:var(--muted);margin-top:10px}
 
-@media(max-width:600px){
-  .story{padding:22px 18px}
-  .story.featured{padding:28px 18px}
-  .viz{width:88px;height:88px}
-  .viz .viz-mark{font-size:15px}
-  .brand-name{font-size:26px}
+@media(min-width:560px){
+  .modal-ov{align-items:center}
+  .modal{border-radius:14px;transform:translateY(24px)}
+  .modal-nub{display:none}
 }
 </style>
 </head>
@@ -151,19 +138,27 @@ a{color:inherit}
   <div class="masthead">
     <div class="kicker">Sports Rights &amp; Global Inventory</div>
     <h1>The Global Sports Supply Chain</h1>
-    <p class="sub">American leagues export scarcity. European leagues export scale. Geography is no longer a clean planning variable.</p>
+    <p class="sub">American leagues export scarcity. European leagues export scale.</p>
   </div>
 
-  <div class="feed" id="feed"></div>
+  <div class="carousel-head">
+    <span class="tracker" id="tracker"><strong>1</strong> / 8</span>
+    <span class="swipe-hint">Swipe to explore →</span>
+  </div>
+  <div class="track" id="track"></div>
+  <div class="dots" id="dots"></div>
 
   <div class="foot">
-    <div class="thesis"><b>The thesis:</b> American domestic rights fees are plateauing. Europe and Asia are where the incremental money is. Sports inventory is going global — fragmenting audiences, complicating planning, and creating opportunity.</div>
+    <div class="thesis"><b>The thesis:</b> American domestic rights fees are plateauing. Europe and Asia are where the incremental money is. Sports inventory is going global.</div>
     <div class="by">The Current · Ahead of FIFA World Cup 2026</div>
   </div>
 </div>
 
+<!-- POP-UP: full coverage + add article -->
+<div class="modal-ov" id="modalOv"><div class="modal" id="modal"><div class="modal-nub"></div><button class="modal-x" id="modalX" aria-label="Close">✕</button><div id="modalBody"></div></div></div>
+
 <script>
-// ── LOCAL STORAGE (manually added articles) ──
+// ── LOCAL STORAGE ──
 const LS_KEY='ssc_manual_articles';
 function getManual(){try{return JSON.parse(localStorage.getItem(LS_KEY)||'{}')}catch(e){return{}}}
 function saveManual(d){localStorage.setItem(LS_KEY,JSON.stringify(d))}
@@ -172,11 +167,10 @@ function removeManualArticle(league,url){const d=getManual();if(!d[league])retur
 function getManualForLeague(k){return(getManual()[k]||[])}
 function getAllManual(){return getManual()}
 
-// ── HTML escaping ──
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function escAttr(s){return esc(s).replace(/"/g,'&quot;')}
 
-// ── URL → metadata (for manual paste) ──
+// ── URL → metadata (manual paste) ──
 function cleanTitle(raw){if(!raw)return'';let t=raw.trim();const ta=document.createElement('textarea');ta.innerHTML=t;t=ta.value;t=t.replace(/\s*[\|\-\—\–]\s*[^|\-\—\–]{2,30}$/,'');t=t.replace(/^["'\s]+|["'\s]+$/g,'');if(t.length>0)t=t.charAt(0).toUpperCase()+t.slice(1);return t}
 function titleFromUrl(url){try{const path=new URL(url).pathname;const segments=path.split('/').filter(s=>s&&s.length>3&&!/^\d+$/.test(s));const last=segments[segments.length-1]||'';let t=last.replace(/\.\w+$/,'').replace(/[-_]/g,' ').trim();t=t.replace(/\b\w/g,c=>c.toUpperCase());const lower=['a','an','the','and','but','or','for','nor','on','at','to','by','in','of','with','is','it','as','vs'];t=t.split(' ').map((w,i)=>i>0&&lower.includes(w.toLowerCase())?w.toLowerCase():w).join(' ');if(/^(how|why|what|where|when|who|can|could|will|should|is|are|do|does|did)\b/i.test(t)&&!/[?!.]$/.test(t))t+='?';return t}catch(e){return''}}
 async function fetchPageMeta(url){try{const r=await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,{signal:AbortSignal.timeout(8000)});if(!r.ok)throw 0;const h=await r.text();const d=new DOMParser().parseFromString(h,'text/html');const t=cleanTitle(d.querySelector('meta[property="og:title"]')?.content||d.querySelector('meta[name="twitter:title"]')?.content||d.querySelector('title')?.textContent||'')||titleFromUrl(url);const s=cleanTitle(d.querySelector('meta[property="og:site_name"]')?.content||d.querySelector('meta[name="publisher"]')?.content||'')||new URL(url).hostname.replace('www.','').replace(/\.com$|\.org$|\.net$|\.co\.uk$/,'');let sm=(d.querySelector('meta[property="og:description"]')?.content||d.querySelector('meta[name="description"]')?.content||'').trim().replace(/\s+/g,' ');if(sm.length>120)sm=sm.slice(0,117).replace(/\s\S*$/,'')+'...';return{title:t,source:s.trim(),summary:sm}}catch(e){const s=(()=>{try{return new URL(url).hostname.replace('www.','')}catch(e){return'Manual'}})();return{title:titleFromUrl(url),source:s,summary:''}}}
@@ -187,17 +181,18 @@ const feedPromise=fetch('data.json').then(r=>{if(!r.ok)throw 0;return r.json()})
 
 // ── LEAGUE DATA ──
 const L={
-  pl:{full:'Premier League',color:'#d9453c',marker:'PL',kicker:'Established export',desc:"NBC's $2.7bn deal proved the US model. Peacock locks in streaming revenue. Pre-season tours are brand infrastructure.",stats:[['US rights value','$2.7bn (2022–28)'],['US viewership','+28% since 2019'],['Strategy','Streaming lock-in']],sw:"PL inventory in the US is priced like domestic premium. But the audience skews younger and more affluent than NFL."},
-  laliga:{full:'La Liga',color:'#7b5cc2',marker:'LaLiga',kicker:'Star-driven export',desc:"Star power drives the global play. India is the growth bet. The US is contested. Middle East sovereign wealth buying clubs and rights.",stats:[['Broadcast reach','182 countries'],['India office','Opened 2024'],['Strategy','Star power + offices']],sw:"Cheaper than PL in most export markets, but audience is less predictable without marquee names."},
-  nfl:{full:'NFL',color:'#2a8a4b',marker:'NFL',kicker:'Scarcity pricing',desc:"Killed the DAZN deal to shop rights separately. Munich, Frankfurt, London, Australia anchor international packages.",stats:[['Game Pass growth','+24% YoY'],['DAZN deal','Terminated early'],['Strategy','Scarcity export']],sw:"Betting it can command US-style pricing abroad by keeping supply tight."},
-  nba:{full:'NBA',color:'#1a8f96',marker:'NBA',kicker:'Volume expansion',desc:"Widest export operation in sports. European league with FIBA launching 2027. Amazon in broadcast talks.",stats:[["Int'l revenue",'~30% of total'],['European league','2027'],['Strategy','Volume play']],sw:"Creating inventory where none existed. European basketball competes with domestic football for premium budgets."},
-  ipl:{full:'IPL Cricket',color:'#c8900a',marker:'IPL',kicker:'Diaspora + digital',desc:"T20 format built for global export — three hours, guaranteed result. Middle East is the beachhead. US cricket gets Olympics boost.",stats:[['Global rights','$6.2bn (2023–28)'],['Format','~3 hours'],['Strategy','Diaspora-first']],sw:"Reaches high-income diaspora audiences. CPMs lower than PL or NFL — for now."},
-  japac:{full:'Japan / APAC Sports',color:'#5a7a9a',marker:'APAC',kicker:'Cultural export',desc:"From Ohtani's global brand to sumo streaming — Asian sports reach international audiences through cultural crossover and streaming platforms.",stats:[['Ohtani deal','$700m / 10yr'],['APAC streaming','Growing 30%+ YoY'],['Strategy','Cultural crossover']],sw:"Asian sports don't follow Western rights models. They spread via fandom, streaming bundles, and star power."},
-  tennis:{full:'Tennis (ATP/WTA)',color:'#d4890f',marker:'Tennis',kicker:'Global circuit',desc:"Grand Slams span four continents. Saudi Arabia and China expansion underway. Streaming rights fragmenting across platforms.",stats:[['Grand Slams','4 continents'],['Saudi push','New ATP events'],['Strategy','Circuit expansion']],sw:"Rights fragmenting — buyers need to track which platform holds what, where."},
-  f1:{full:'Formula 1',color:'#e03030',marker:'F1',kicker:'Entertainment export',desc:"Netflix transformed F1 from European motorsport to global entertainment. Vegas, Miami, Saudi races built for commercial value.",stats:[['US viewership','+60% since 2018'],['New races','Vegas, Miami, Saudi'],['Strategy','Entertainment-first']],sw:"F1 proved content can create demand for live rights. Vegas priced at US sports levels."},
+  pl:{full:'Premier League',color:'#d9453c',kicker:'Established export',desc:"NBC's $2.7bn deal proved the US model. Peacock locks in streaming revenue. Pre-season tours are brand infrastructure.",stats:[['US rights value','$2.7bn (2022–28)'],['US viewership','+28% since 2019'],['Strategy','Streaming lock-in']],sw:"PL inventory in the US is priced like domestic premium. But the audience skews younger and more affluent than NFL."},
+  laliga:{full:'La Liga',color:'#7b5cc2',kicker:'Star-driven export',desc:"Star power drives the global play. India is the growth bet. The US is contested. Middle East sovereign wealth buying clubs and rights.",stats:[['Broadcast reach','182 countries'],['India office','Opened 2024'],['Strategy','Star power + offices']],sw:"Cheaper than PL in most export markets, but audience is less predictable without marquee names."},
+  nfl:{full:'NFL',color:'#2a8a4b',kicker:'Scarcity pricing',desc:"Killed the DAZN deal to shop rights separately. Munich, Frankfurt, London, Australia anchor international packages.",stats:[['Game Pass growth','+24% YoY'],['DAZN deal','Terminated early'],['Strategy','Scarcity export']],sw:"Betting it can command US-style pricing abroad by keeping supply tight."},
+  nba:{full:'NBA',color:'#1a8f96',kicker:'Volume expansion',desc:"Widest export operation in sports. European league with FIBA launching 2027. Amazon in broadcast talks.",stats:[["Int'l revenue",'~30% of total'],['European league','2027'],['Strategy','Volume play']],sw:"Creating inventory where none existed. European basketball competes with domestic football for premium budgets."},
+  ipl:{full:'IPL Cricket',color:'#c8900a',kicker:'Diaspora + digital',desc:"T20 format built for global export — three hours, guaranteed result. Middle East is the beachhead. US cricket gets Olympics boost.",stats:[['Global rights','$6.2bn (2023–28)'],['Format','~3 hours'],['Strategy','Diaspora-first']],sw:"Reaches high-income diaspora audiences. CPMs lower than PL or NFL — for now."},
+  japac:{full:'Japan / APAC Sports',color:'#5a7a9a',kicker:'Cultural export',desc:"From Ohtani's global brand to sumo streaming — Asian sports reach international audiences through cultural crossover and streaming platforms.",stats:[['Ohtani deal','$700m / 10yr'],['APAC streaming','Growing 30%+ YoY'],['Strategy','Cultural crossover']],sw:"Asian sports don't follow Western rights models. They spread via fandom, streaming bundles, and star power."},
+  tennis:{full:'Tennis (ATP/WTA)',color:'#d4890f',kicker:'Global circuit',desc:"Grand Slams span four continents. Saudi Arabia and China expansion underway. Streaming rights fragmenting across platforms.",stats:[['Grand Slams','4 continents'],['Saudi push','New ATP events'],['Strategy','Circuit expansion']],sw:"Rights fragmenting — buyers need to track which platform holds what, where."},
+  f1:{full:'Formula 1',color:'#e03030',kicker:'Entertainment export',desc:"Netflix transformed F1 from European motorsport to global entertainment. Vegas, Miami, Saudi races built for commercial value.",stats:[['US viewership','+60% since 2018'],['New races','Vegas, Miami, Saudi'],['Strategy','Entertainment-first']],sw:"F1 proved content can create demand for live rights. Vegas priced at US sports levels."},
 };
 const KS=Object.keys(L);
 const TINTS=['var(--tint-blue)','var(--tint-peach)','var(--tint-cream)','var(--tint-mint)'];
+let order=[];
 
 function mergedArticles(k){
   const api=(feedData&&feedData.articles&&feedData.articles[k])||[];
@@ -208,75 +203,82 @@ function mergedArticles(k){
 }
 function latestArticleDate(k){const arts=mergedArticles(k);if(!arts.length)return 0;return Math.max(...arts.map(a=>new Date(a.fetched_at||0).getTime()))}
 function isFresh(k){const d=latestArticleDate(k);if(!d)return false;return(Date.now()-d)<48*60*60*1000}
-
-// ── RENDER HELPERS ──
-function vizBlock(d,hero){return`<div class="${hero?'viz-hero':'viz'}"><div class="viz-mark">${esc(d.marker)}</div></div>`}
-function statsHTML(d){return`<div class="stats">${d.stats.map(([l,v])=>`<div class="stat"><span class="stat-l">${esc(l)}</span><span class="stat-v">${esc(v)}</span></div>`).join('')}</div>`}
-function sowhatHTML(d){return`<div class="sowhat"><b>So what for buyers</b>${esc(d.sw)}</div>`}
 function dateLabel(k){const t=latestArticleDate(k);return t?new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'Live tracker'}
 
-function coverageHTML(k){
+// ── RENDER HELPERS ──
+function dot(d){return`<span class="dot" style="background:${d.color}"></span>`}
+function statsHTML(d){return`<div class="stats">${d.stats.map(([l,v])=>`<div class="stat"><span class="stat-l">${esc(l)}</span><span class="stat-v">${esc(v)}</span></div>`).join('')}</div>`}
+function sowhatHTML(d){return`<div class="sowhat"><b>So what for buyers</b>${esc(d.sw)}</div>`}
+function artRow(a,k,withDel){
+  return`<div class="art">${withDel&&a._manual?`<button class="art-del" title="Remove" onclick="delManual('${k}','${encodeURIComponent(a.url)}')">✕</button>`:''}<div class="art-t">${esc(a.title||'Untitled')}</div><div class="art-m">${esc(a.source||'')}${a._manual?' · Added':''} · ${esc((a.fetched_at||'').slice(0,10))}</div><a class="art-link" href="${escAttr(a.url||'#')}" target="_blank" rel="noopener">Read →</a></div>`;
+}
+
+// up-to-3 list shown on the card
+function coverageInner(k){
   const arts=mergedArticles(k);
-  let h=`<div class="coverage"><div class="coverage-hdr">Latest coverage</div>`;
-  if(!arts.length){h+=`<p class="empty">No coverage yet — paste a URL below, or wait for the daily feed.</p>`}
-  else{
-    arts.slice(0,8).forEach(a=>{
-      h+=`<div class="art">${a._manual?`<button class="art-del" title="Remove" onclick="delManual('${k}','${encodeURIComponent(a.url)}')">✕</button>`:''}<div class="art-t">${esc(a.title||'Untitled')}</div><div class="art-m">${esc(a.source||'')}${a._manual?' · Added manually':''} · ${esc((a.fetched_at||'').slice(0,10))}</div><a class="art-link" href="${escAttr(a.url||'#')}" target="_blank" rel="noopener">Read →</a></div>`;
-    });
-    if(arts.length>8)h+=`<div class="art-m" style="margin-top:10px">+${arts.length-8} more</div>`;
-  }
-  h+=addBoxHTML(k);
-  h+=`</div>`;
+  let h=`<div class="coverage-hdr">Latest coverage</div>`;
+  if(!arts.length){h+=`<p class="empty">No coverage yet.</p>`}
+  else arts.slice(0,3).forEach(a=>{h+=artRow(a,k,false)});
+  const label=arts.length>3?`See all ${arts.length} articles`:'Add or manage articles';
+  h+=`<button class="see-all" onclick="openModal('${k}')">${label} →</button>`;
   return h;
 }
-function addBoxHTML(k){
-  const total=Object.values(getAllManual()).flat().length;
-  return`<div class="add-box"><div class="add-label">Add an article</div><div class="add-row"><input class="add-input" id="add-${k}" type="url" placeholder="Paste a URL and hit Add"><button class="add-btn" id="addbtn-${k}" onclick="addArticle('${k}')">Add</button></div><div class="add-status" id="addstatus-${k}"></div>${total>0?`<div class="export-bar"><span class="export-count">${total} manually added article${total>1?'s':''}</span><button class="export-btn" onclick="exportManual()">Export full data.json</button></div>`:''}</div>`;
-}
-function freshBadge(k){return isFresh(k)?`<span class="fresh-badge">New coverage</span>`:''}
 
 function cardHTML(k,i){
   const d=L[k];
-  const dot=`<span class="dot" style="background:${d.color}"></span>`;
-  if(i===0){
-    return`<article class="story featured" id="card-${k}">
-      ${freshBadge(k)}
-      <div class="kicker">${dot}${esc(d.kicker)}</div>
-      <h2>${esc(d.full)}</h2>
-      <div class="byline">International expansion tracker · ${dateLabel(k)}</div>
-      ${vizBlock(d,true)}
-      <div class="featured-body">
-        <p class="dek">${esc(d.desc)}</p>
-        ${sowhatHTML(d)}
-        ${statsHTML(d)}
-        ${coverageHTML(k)}
-      </div>
-    </article>`;
-  }
-  const tint=TINTS[i%TINTS.length];
-  return`<article class="story" id="card-${k}" style="background:${tint}">
-    <div class="story-row">
-      <div class="story-main">
-        ${freshBadge(k)}
-        <div class="kicker">${dot}${esc(d.kicker)}</div>
-        <h2>${esc(d.full)}</h2>
-        <div class="byline">International expansion tracker · ${dateLabel(k)}</div>
-      </div>
-      ${vizBlock(d,false)}
-    </div>
-    <p class="dek" style="margin-top:14px">${esc(d.desc)}</p>
+  return`<article class="card" id="card-${k}" style="background:${TINTS[i%TINTS.length]}">
+    ${isFresh(k)?`<span class="fresh-badge">New coverage</span>`:''}
+    <div class="kicker">${dot(d)}${esc(d.kicker)}</div>
+    <h2>${esc(d.full)}</h2>
+    <div class="byline">International expansion tracker · ${dateLabel(k)}</div>
+    <p class="dek">${esc(d.desc)}</p>
     ${sowhatHTML(d)}
     ${statsHTML(d)}
-    ${coverageHTML(k)}
+    <div class="coverage" id="cov-${k}">${coverageInner(k)}</div>
   </article>`;
 }
 
-function buildFeed(){
-  const feed=document.getElementById('feed');
-  const sorted=[...KS].sort((a,b)=>latestArticleDate(b)-latestArticleDate(a));
-  feed.innerHTML=sorted.map((k,i)=>cardHTML(k,i)).join('');
-  sorted.forEach(k=>{const inp=document.getElementById('add-'+k);if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addArticle(k)}})});
+function buildCarousel(){
+  const track=document.getElementById('track'),dots=document.getElementById('dots');
+  order=[...KS].sort((a,b)=>latestArticleDate(b)-latestArticleDate(a));
+  track.innerHTML=order.map((k,i)=>cardHTML(k,i)).join('');
+  dots.innerHTML=order.map((_,i)=>`<span class="dot${i===0?' on':''}"></span>`).join('');
+  const total=order.length;
+  const update=()=>{
+    const cw=track.querySelector('.card')?.offsetWidth||300;
+    let idx=Math.round(track.scrollLeft/(cw+14));
+    idx=Math.max(0,Math.min(total-1,idx));
+    document.getElementById('tracker').innerHTML=`<strong>${idx+1}</strong> / ${total}`;
+    dots.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===idx));
+  };
+  track.addEventListener('scroll',update,{passive:true});
+  update();
 }
+
+function updateCard(k){const el=document.getElementById('cov-'+k);if(el)el.innerHTML=coverageInner(k)}
+
+// ── POP-UP ──
+let modalK=null;
+function modalHTML(k){
+  const d=L[k],arts=mergedArticles(k);
+  const total=Object.values(getAllManual()).flat().length;
+  let h=`<div class="kicker">${dot(d)}${esc(d.kicker)}</div><div class="modal-title">${esc(d.full)}</div><div class="byline">${arts.length} article${arts.length===1?'':'s'} · ${dateLabel(k)}</div><div style="margin-top:16px">`;
+  if(!arts.length)h+=`<p class="empty">No coverage yet — paste a URL below.</p>`;
+  else arts.forEach(a=>{h+=artRow(a,k,true)});
+  h+=`</div><div class="add-box"><div class="add-label">Add an article</div><div class="add-row"><input class="add-input" id="add-${k}" type="url" placeholder="Paste a URL"><button class="add-btn" id="addbtn-${k}" onclick="addArticle('${k}')">Add</button></div><div class="add-status" id="addstatus-${k}"></div>`;
+  if(total>0)h+=`<div class="export-bar"><span class="export-count">${total} added article${total>1?'s':''}</span><button class="export-btn" onclick="exportManual()">Export full data.json</button></div>`;
+  h+=`</div>`;
+  return h;
+}
+function renderModalBody(k){
+  const b=document.getElementById('modalBody');b.innerHTML=modalHTML(k);
+  const inp=document.getElementById('add-'+k);if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addArticle(k)}});
+}
+function openModal(k){modalK=k;renderModalBody(k);document.getElementById('modalOv').classList.add('open');document.body.classList.add('locked')}
+function closeModal(){document.getElementById('modalOv').classList.remove('open');document.body.classList.remove('locked');modalK=null}
+document.getElementById('modalOv').addEventListener('click',e=>{if(e.target.id==='modalOv')closeModal()});
+document.getElementById('modalX').addEventListener('click',closeModal);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modalK)closeModal()});
 
 // ── ACTIONS ──
 async function addArticle(k){
@@ -284,16 +286,15 @@ async function addArticle(k){
   const url=(inp.value||'').trim();
   if(!url){inp.focus();return}
   if(mergedArticles(k).some(a=>a.url===url)){st.textContent='Already in the feed.';st.className='add-status err';return}
-  btn.disabled=true;btn.textContent='Fetching…';st.textContent='Grabbing title and source…';st.className='add-status loading';
+  btn.disabled=true;btn.textContent='…';st.textContent='Grabbing title and source…';st.className='add-status loading';
   const meta=await fetchPageMeta(url);
   addManualArticle(k,{title:meta.title||titleFromUrl(url)||'Untitled',source:meta.source||'Manual',url,summary:meta.summary||'',score:10,fetched_at:new Date().toISOString(),league:k});
-  buildFeed();
+  renderModalBody(k);updateCard(k);
   const st2=document.getElementById('addstatus-'+k);if(st2){st2.textContent='Added!';st2.className='add-status ok'}
-  const card=document.getElementById('card-'+k);if(card)card.scrollIntoView({behavior:'smooth',block:'start'});
 }
-function delManual(k,eu){removeManualArticle(k,decodeURIComponent(eu));buildFeed()}
+function delManual(k,eu){removeManualArticle(k,decodeURIComponent(eu));renderModalBody(k);updateCard(k)}
 function exportManual(){
-  const manual=getAllManual();const base=feedData||{articles:{}};
+  const manual=getAllManual(),base=feedData||{articles:{}};
   const merged={last_updated:new Date().toISOString(),articles:{}};
   const allKeys=new Set([...Object.keys(base.articles||{}),...Object.keys(manual)]);
   allKeys.forEach(k=>{
@@ -308,7 +309,7 @@ function exportManual(){
 }
 
 // ── BOOT ──
-feedPromise.then(buildFeed);
+feedPromise.then(buildCarousel);
 </script>
 </body>
 </html>
