@@ -2,184 +2,168 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>The Global Sports Supply Chain</title>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Global Sports Supply Chain · The Current</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f4f0;--card:#edeae4;--land:#ddd9d0;--land-s:#ccc8be;--border:#d5d1c9;--text:#1a1a1a;--text-m:#5c5c5c;--text-d:#999590;--pl:#d9453c;--ipl:#c8900a;--nfl:#2a8a4b;--nba:#1a8f96;--laliga:#7b5cc2;--japac:#5a7a9a;--tennis:#d4890f;--f1:#e03030;--accent:#d9453c;--sheet-bg:#f6f4f0;--fresh:#f0faf3}
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
-.page{max-width:1440px;margin:0 auto;padding:16px 16px 24px}
-header{margin-bottom:12px}
-.kicker{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
-h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28px;line-height:1.0;letter-spacing:-.02em}
-.sub{font-size:13px;color:var(--text-m);line-height:1.5;margin-top:6px;max-width:600px}
-
-/* View toggle */
-.view-toggle{display:flex;gap:0;margin:14px 0 12px;border:1px solid var(--border);border-radius:8px;overflow:hidden;width:fit-content}
-.vtbtn{padding:7px 16px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;border:none;cursor:pointer;background:transparent;color:var(--text-d);transition:all .2s}
-.vtbtn.on{background:var(--text);color:var(--bg)}
-
-/* === MAP VIEW === */
-.map-view{display:block}
-.map-view.hidden{display:none}
-.pills-wrap{margin:0 -16px 10px;padding:0 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.pills-wrap::-webkit-scrollbar{display:none}
-.pills{display:flex;gap:7px;width:max-content}
-.pill{display:flex;align-items:center;gap:6px;padding:7px 13px;border:1px solid var(--border);border-radius:100px;background:transparent;color:var(--text-m);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .25s;user-select:none;touch-action:manipulation}
-.pill .dt{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.pill.on{color:var(--text);border-color:#aaa69e;background:rgba(0,0,0,.03)}
-.pill.off{opacity:.3}
-.map-outer{position:relative;border-radius:12px;border:1px solid var(--border);overflow:hidden;background:var(--card);aspect-ratio:16/9}
-#mapsvg{display:block;width:100%;height:100%}
-.land{fill:var(--land);stroke:var(--land-s);stroke-width:.4}
-.grat{fill:none;stroke:var(--border);stroke-width:.2;opacity:.25}
-.league-marker{cursor:pointer;transition:opacity .3s}
-.league-marker:hover .marker-ring{stroke-opacity:.55}
-.league-marker.dim{opacity:.1;pointer-events:none}
-.league-marker.active .marker-ring{stroke-width:3;stroke-opacity:.7}
-.marker-ring{transition:stroke-opacity .2s,stroke-width .2s}
-.marker-label{font-family:'DM Sans',sans-serif;font-weight:700;letter-spacing:.03em;text-transform:uppercase;pointer-events:none;fill:#fff}
-.story-arrow{fill:none;stroke-linecap:round;stroke-width:2.5;opacity:0;transition:opacity .5s}
-.story-arrow.vis{opacity:.55}
-.story-dest{opacity:0;transition:opacity .4s}
-.story-dest.vis{opacity:.8}
-.story-dest-label{font-family:'DM Sans',sans-serif;font-size:9px;font-weight:600;fill:var(--text-m);opacity:0;transition:opacity .4s;pointer-events:none}
-.story-dest-label.vis{opacity:1}
-.hint{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:10px;color:var(--text-d);pointer-events:none;opacity:.7;transition:opacity .5s}
-.hint.gone{opacity:0}
-.group-label{font-family:'DM Sans',sans-serif;font-size:7.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;fill:var(--text-d);pointer-events:none;opacity:.6}
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.2);z-index:90;opacity:0;pointer-events:none;transition:opacity .3s}
-.ov.open{opacity:1;pointer-events:all}
-.sheet{position:fixed;bottom:0;left:0;right:0;max-height:85vh;max-height:85dvh;background:var(--sheet-bg);border-top:1px solid var(--border);border-radius:18px 18px 0 0;z-index:100;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(0,0,0,.08)}
-.sheet.open{transform:translateY(0)}
-.sh-bar{display:flex;justify-content:center;padding:10px 0 4px;flex-shrink:0;cursor:grab}
-.sh-nub{width:36px;height:4px;background:var(--text-d);border-radius:2px;opacity:.35}
-.sh-body{padding:2px 20px 32px;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1}
-.sk{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
-.st{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:26px;line-height:1.1;letter-spacing:-.01em;margin-bottom:5px}
-.sr{font-size:11px;color:var(--text-d);margin-bottom:14px}
-.sd{font-size:13.5px;line-height:1.65;color:var(--text-m);margin-bottom:16px}
-.ss{margin-bottom:16px}
-.ss-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-top:1px solid var(--border)}
-.ss-l{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-d)}
-.ss-v{font-size:13px;font-weight:600;color:var(--text)}
-.sw{padding:14px;border-radius:0 10px 10px 0;font-size:12.5px;line-height:1.6;color:var(--text-m);margin-bottom:20px}
-.sw-l{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:5px}
-.feed-hdr{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-d);margin-bottom:10px;padding-top:14px;border-top:1px solid var(--border)}
-.feed-empty{font-size:12px;color:var(--text-d);font-style:italic}
-.story-card{padding:10px 12px;border:1px solid transparent;cursor:pointer;transition:all .2s;margin:0 -4px 6px;border-radius:8px}
-.story-card:hover{background:rgba(0,0,0,.025);border-color:var(--border)}
-.story-card.active{background:rgba(0,0,0,.04);border-color:var(--border)}
-.story-card.manual{border-left:2px solid var(--accent)}
-.story-title{font-size:13px;font-weight:600;line-height:1.35;color:var(--text)}
-.story-meta{font-size:10px;color:var(--text-d);margin-top:3px}
-.story-sum{font-size:12px;color:var(--text-m);margin-top:4px;line-height:1.45}
-.story-link{font-size:11px;color:var(--accent);text-decoration:none;font-weight:600;margin-top:4px;display:inline-block}
-.story-link:hover{text-decoration:underline}
-.story-del{font-size:10px;color:var(--text-d);background:none;border:none;cursor:pointer;float:right;padding:2px 4px;border-radius:4px}
-.story-del:hover{color:var(--accent);background:rgba(0,0,0,.04)}
-.paste-box{margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
-.paste-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-d);margin-bottom:8px}
-.paste-row{display:flex;gap:6px}
-.paste-input{flex:1;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--card);color:var(--text);outline:none}
-.paste-input:focus{border-color:#aaa}
-.paste-input::placeholder{color:var(--text-d)}
-.paste-add{padding:9px 18px;border-radius:8px;background:var(--accent);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .2s;white-space:nowrap}
-.paste-add:hover{opacity:.85}
-.paste-add:disabled{opacity:.5;cursor:wait}
-.paste-status{font-size:11px;margin-top:6px;min-height:16px}
-.paste-status.ok{color:var(--nfl)}
-.paste-status.err{color:var(--accent)}
-.paste-status.loading{color:var(--text-d)}
-.export-bar{margin-top:20px;padding-top:12px;border-top:1px dashed var(--border);display:flex;align-items:center;justify-content:space-between}
-.export-count{font-size:10px;color:var(--text-d)}
-.export-btn{font-size:10px;color:var(--accent);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;text-decoration:underline}
-
-/* === CAROUSEL VIEW === */
-.carousel-view{display:none}
-.carousel-view.visible{display:block}
-.carousel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.carousel-tracker{font-size:12px;color:var(--text-d);font-weight:500}
-.carousel-tracker strong{color:var(--text);font-weight:600}
-.carousel-wrap{position:relative}
-.carousel-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.carousel-track::-webkit-scrollbar{display:none}
-.ccard{min-width:calc(100vw - 52px);max-width:380px;scroll-snap-align:center;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:18px;flex-shrink:0;transition:border-color .3s,box-shadow .3s}
-.ccard.fresh{border-color:var(--nfl);box-shadow:inset 3px 0 0 var(--nfl)}
-.ccard-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.ccard-badge{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
-.ccard-name{font-size:16px;font-weight:500;color:var(--text)}
-.ccard-kicker{font-size:11px;font-weight:500}
-.ccard-desc{font-size:13px;line-height:1.55;color:var(--text-m);margin-bottom:14px}
-.ccard-stat{display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid var(--border)}
-.ccard-stat-l{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-d)}
-.ccard-stat-v{font-size:13px;font-weight:500;color:var(--text)}
-.ccard-article{margin-top:12px;padding:11px 12px;background:var(--card);border-radius:8px}
-.ccard-article-t{font-size:12px;font-weight:600;line-height:1.35;color:var(--text);margin-bottom:3px}
-.ccard-article-m{font-size:11px;color:var(--text-d)}
-.ccard-fresh-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#2a8a4b;background:#e6f5ec;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.ccard-link{font-size:12px;font-weight:600;margin-top:12px;display:inline-block;cursor:pointer;text-decoration:none}
-.carousel-dots{display:flex;justify-content:center;gap:5px;margin-top:4px}
-.carousel-dots .dot{width:8px;height:3px;border-radius:2px;background:var(--text-d);opacity:.2;transition:all .25s}
-.carousel-dots .dot.on{width:20px;opacity:.5;background:var(--text)}
-
-.foot{margin-top:16px;font-size:12.5px;line-height:1.6;color:var(--text-m)}
-.foot strong{color:var(--text);font-weight:600}
-.by{margin-top:8px;font-size:10px;color:var(--text-d)}
-@media(min-width:768px){
-  .page{padding:36px 36px 28px}h1{font-size:clamp(38px,4.5vw,58px)}.sub{font-size:15px;margin-top:8px}.pills-wrap{margin:0 0 14px;padding:0}
-  .ov{display:none!important}
-  .sheet{position:absolute;bottom:auto;left:auto;top:16px;right:16px;width:390px;max-height:calc(100% - 32px);border-radius:12px;border:1px solid var(--border);background:rgba(246,244,240,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transform:translateX(20px);opacity:0;pointer-events:none;transition:all .4s cubic-bezier(.16,1,.3,1);box-shadow:0 4px 24px rgba(0,0,0,.06)}
-  .sheet.open{transform:translateX(0);opacity:1;pointer-events:all}.sh-bar{display:none}.sh-body{padding:22px 22px 26px}
-  .ccard{min-width:340px;max-width:380px}
+:root{
+  --bg:#ffffff;
+  --ink:#14163a;
+  --muted:#6c6c72;
+  --blue:#1a44cf;
+  --navy:#0a1c5c;
+  --yellow:#f2c200;
+  --tint-blue:#d9e7f6;
+  --tint-peach:#fbe8da;
+  --tint-cream:#f3efe7;
+  --tint-mint:#e2eee4;
+  --border:#e7e4dd;
+  --ok:#2a8a4b;
+  --err:#d9453c;
 }
-@media(min-width:1024px){.page{padding:44px 44px 32px}.foot-wrap{display:flex;justify-content:space-between;align-items:flex-start;gap:40px}.foot{max-width:700px}.by{margin-top:0;text-align:right;white-space:nowrap;flex-shrink:0}}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+
+/* === HEADER === */
+.site-head{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.93);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.head-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:13px 20px;gap:12px}
+.head-left{display:flex;gap:16px;align-items:center}
+.icon-btn{background:none;border:none;cursor:pointer;color:var(--ink);display:flex;padding:2px;opacity:.85}
+.icon-btn:hover{opacity:1}
+.icon-btn svg{width:21px;height:21px}
+.brand{justify-self:center;text-align:center;line-height:.82;text-decoration:none}
+.brand-the{display:block;font-family:'Newsreader',serif;font-style:italic;font-weight:400;font-size:15px;color:var(--ink);margin-bottom:-1px}
+.brand-name{font-family:'Newsreader',serif;font-weight:500;font-size:30px;letter-spacing:.005em;color:var(--ink)}
+.subscribe{justify-self:end;font-size:12px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;text-decoration:none;color:var(--ink);white-space:nowrap}
+.subscribe:hover{color:var(--blue)}
+
+/* === PAGE === */
+.page{max-width:1080px;margin:0 auto;padding:26px 20px 64px}
+.masthead{text-align:center;padding:16px 0 28px;border-bottom:1px solid var(--border);margin-bottom:32px}
+.masthead .kicker{justify-content:center;margin-bottom:14px}
+.masthead h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(34px,6vw,58px);line-height:1.04;letter-spacing:-.015em;max-width:15ch;margin:0 auto}
+.masthead .sub{font-family:'Newsreader',serif;font-size:clamp(16px,2.2vw,19px);font-style:italic;color:var(--muted);line-height:1.55;max-width:56ch;margin:16px auto 0}
+
+/* === SHARED BITS === */
+.kicker{color:var(--blue);font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.kicker .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.byline{font-size:13px;color:var(--muted)}
+.dek{font-family:'Newsreader',serif;font-size:18px;line-height:1.55;color:#2c2e44}
+.fresh-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:3px 9px;border-radius:3px;margin-bottom:10px}
+
+/* navy + yellow brand visual (echoes The Current illustrations) */
+.viz,.viz-hero{background-color:var(--navy);background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:18px 18px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:4px}
+.viz-mark{font-family:'Inter',sans-serif;font-weight:700;color:var(--yellow);letter-spacing:.05em;text-transform:uppercase}
+
+/* === FEED === */
+.feed{display:flex;flex-direction:column}
+
+/* featured (freshest) story */
+.story.featured{background:var(--tint-blue);border-radius:6px;padding:34px 26px 32px;text-align:center;margin-bottom:34px}
+.story.featured .kicker{justify-content:center}
+.story.featured h2{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-.012em;margin:14px auto 12px;max-width:16ch}
+.story.featured .byline{margin-bottom:22px}
+.viz-hero{aspect-ratio:16/9;max-width:680px;margin:0 auto}
+.viz-hero .viz-mark{font-size:clamp(40px,8vw,64px)}
+.featured-body{max-width:680px;margin:24px auto 0;text-align:left}
+.story.featured .dek{font-size:19px}
+
+/* regular story cards */
+.story{padding:26px 24px;border-radius:6px;margin-bottom:18px}
+.story-row{display:flex;gap:20px;align-items:flex-start}
+.story-main{flex:1;min-width:0}
+.story h2{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(24px,3.4vw,34px);line-height:1.12;letter-spacing:-.006em;margin:11px 0 9px}
+.viz{width:120px;height:120px;flex-shrink:0}
+.viz .viz-mark{font-size:20px}
+
+/* so-what callout */
+.sowhat{background:rgba(26,68,207,.07);border-left:3px solid var(--blue);padding:13px 16px;border-radius:0 6px 6px 0;font-size:14px;line-height:1.55;color:#2c2e44;margin:16px 0}
+.sowhat b{display:block;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+
+/* stats */
+.stats{margin:16px 0 0}
+.stat{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid rgba(20,22,58,.1)}
+.stat-l{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.stat-v{font-size:14px;font-weight:600}
+
+/* coverage */
+.coverage{margin-top:22px;border-top:1px solid rgba(20,22,58,.14);padding-top:18px}
+.coverage-hdr{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.art{padding:13px 0;border-top:1px solid rgba(20,22,58,.08)}
+.art:first-of-type{border-top:none}
+.art-t{font-family:'Newsreader',serif;font-size:17px;line-height:1.32;font-weight:500;color:var(--ink)}
+.art-m{font-size:12px;color:var(--muted);margin-top:3px}
+.art-link{display:inline-block;margin-top:7px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);text-decoration:none}
+.art-link:hover{text-decoration:underline}
+.art-del{float:right;background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;line-height:1;padding:3px 6px;border-radius:4px}
+.art-del:hover{color:var(--err);background:rgba(20,22,58,.05)}
+.empty{font-family:'Newsreader',serif;font-style:italic;color:var(--muted);font-size:15px;padding:6px 0}
+
+/* add article */
+.add-box{margin-top:18px;padding-top:16px;border-top:1px dashed var(--border)}
+.add-label{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.add-row{display:flex;gap:8px}
+.add-input{flex:1;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-family:'Inter',sans-serif;font-size:14px;background:rgba(255,255,255,.7);color:var(--ink);outline:none}
+.add-input:focus{border-color:var(--blue);background:#fff}
+.add-input::placeholder{color:var(--muted)}
+.add-btn{padding:10px 18px;border:none;border-radius:6px;background:var(--blue);color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap;transition:opacity .2s}
+.add-btn:hover{opacity:.88}
+.add-btn:disabled{opacity:.5;cursor:wait}
+.add-status{font-size:12px;margin-top:8px;min-height:15px}
+.add-status.ok{color:var(--ok)}
+.add-status.err{color:var(--err)}
+.add-status.loading{color:var(--muted)}
+.export-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(20,22,58,.1)}
+.export-count{font-size:12px;color:var(--muted)}
+.export-btn{font-size:12px;font-weight:600;color:var(--blue);background:none;border:none;cursor:pointer;text-decoration:underline;white-space:nowrap}
+
+/* footer */
+.foot{margin-top:46px;padding-top:24px;border-top:2px solid var(--ink);display:flex;gap:34px;justify-content:space-between;flex-wrap:wrap}
+.foot .thesis{font-family:'Newsreader',serif;font-size:17px;line-height:1.6;max-width:62ch;color:#2c2e44}
+.foot .thesis b{font-weight:600;color:var(--ink)}
+.foot .by{font-size:12px;color:var(--muted);white-space:nowrap}
+
+@media(max-width:600px){
+  .story{padding:22px 18px}
+  .story.featured{padding:28px 18px}
+  .viz{width:88px;height:88px}
+  .viz .viz-mark{font-size:15px}
+  .brand-name{font-size:26px}
+}
 </style>
 </head>
 <body>
+<header class="site-head">
+  <div class="head-inner">
+    <div class="head-left">
+      <button class="icon-btn" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <button class="icon-btn" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+    </div>
+    <a class="brand" href="#"><span class="brand-the">the</span><span class="brand-name">Current</span></a>
+    <a class="subscribe" href="#">Subscribe</a>
+  </div>
+</header>
+
 <div class="page">
-  <header>
+  <div class="masthead">
     <div class="kicker">Sports Rights &amp; Global Inventory</div>
     <h1>The Global Sports Supply Chain</h1>
     <p class="sub">American leagues export scarcity. European leagues export scale. Geography is no longer a clean planning variable.</p>
-  </header>
-
-  <div class="view-toggle">
-    <button class="vtbtn on" id="vMap" onclick="setView('map')">Map</button>
-    <button class="vtbtn" id="vCard" onclick="setView('carousel')">Cards</button>
   </div>
 
-  <!-- MAP VIEW -->
-  <div class="map-view" id="mapView">
-    <div class="pills-wrap"><div class="pills" id="pills"></div></div>
-    <div class="map-outer" id="outer">
-      <svg id="mapsvg"></svg>
-      <div class="sheet" id="sheet"><div class="sh-bar" id="shBar"><div class="sh-nub"></div></div><div class="sh-body" id="shBody"></div></div>
-      <div class="hint" id="hint">Tap a league to explore →</div>
-    </div>
-    <div class="ov" id="ov"></div>
-  </div>
+  <div class="feed" id="feed"></div>
 
-  <!-- CAROUSEL VIEW -->
-  <div class="carousel-view" id="carouselView">
-    <div class="carousel-header">
-      <span class="carousel-tracker" id="cTracker"><strong>1</strong> / 8</span>
-      <span style="font-size:11px;color:var(--text-d)">Swipe to explore</span>
-    </div>
-    <div class="carousel-wrap">
-      <div class="carousel-track" id="cTrack"></div>
-    </div>
-    <div class="carousel-dots" id="cDots"></div>
-  </div>
-
-  <div class="foot-wrap">
-    <div class="foot"><strong>The thesis:</strong> American domestic rights fees are plateauing. Europe and Asia are where the incremental money is. Sports inventory is going global — fragments audiences, complicates planning, creates opportunity.</div>
+  <div class="foot">
+    <div class="thesis"><b>The thesis:</b> American domestic rights fees are plateauing. Europe and Asia are where the incremental money is. Sports inventory is going global — fragmenting audiences, complicating planning, and creating opportunity.</div>
     <div class="by">The Current · Ahead of FIFA World Cup 2026</div>
   </div>
 </div>
+
 <script>
-// ── LOCAL STORAGE ──
+// ── LOCAL STORAGE (manually added articles) ──
 const LS_KEY='ssc_manual_articles';
 function getManual(){try{return JSON.parse(localStorage.getItem(LS_KEY)||'{}')}catch(e){return{}}}
 function saveManual(d){localStorage.setItem(LS_KEY,JSON.stringify(d))}
@@ -188,34 +172,32 @@ function removeManualArticle(league,url){const d=getManual();if(!d[league])retur
 function getManualForLeague(k){return(getManual()[k]||[])}
 function getAllManual(){return getManual()}
 
+// ── HTML escaping ──
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function escAttr(s){return esc(s).replace(/"/g,'&quot;')}
+
+// ── URL → metadata (for manual paste) ──
 function cleanTitle(raw){if(!raw)return'';let t=raw.trim();const ta=document.createElement('textarea');ta.innerHTML=t;t=ta.value;t=t.replace(/\s*[\|\-\—\–]\s*[^|\-\—\–]{2,30}$/,'');t=t.replace(/^["'\s]+|["'\s]+$/g,'');if(t.length>0)t=t.charAt(0).toUpperCase()+t.slice(1);return t}
 function titleFromUrl(url){try{const path=new URL(url).pathname;const segments=path.split('/').filter(s=>s&&s.length>3&&!/^\d+$/.test(s));const last=segments[segments.length-1]||'';let t=last.replace(/\.\w+$/,'').replace(/[-_]/g,' ').trim();t=t.replace(/\b\w/g,c=>c.toUpperCase());const lower=['a','an','the','and','but','or','for','nor','on','at','to','by','in','of','with','is','it','as','vs'];t=t.split(' ').map((w,i)=>i>0&&lower.includes(w.toLowerCase())?w.toLowerCase():w).join(' ');if(/^(how|why|what|where|when|who|can|could|will|should|is|are|do|does|did)\b/i.test(t)&&!/[?!.]$/.test(t))t+='?';return t}catch(e){return''}}
 async function fetchPageMeta(url){try{const r=await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,{signal:AbortSignal.timeout(8000)});if(!r.ok)throw 0;const h=await r.text();const d=new DOMParser().parseFromString(h,'text/html');const t=cleanTitle(d.querySelector('meta[property="og:title"]')?.content||d.querySelector('meta[name="twitter:title"]')?.content||d.querySelector('title')?.textContent||'')||titleFromUrl(url);const s=cleanTitle(d.querySelector('meta[property="og:site_name"]')?.content||d.querySelector('meta[name="publisher"]')?.content||'')||new URL(url).hostname.replace('www.','').replace(/\.com$|\.org$|\.net$|\.co\.uk$/,'');let sm=(d.querySelector('meta[property="og:description"]')?.content||d.querySelector('meta[name="description"]')?.content||'').trim().replace(/\s+/g,' ');if(sm.length>120)sm=sm.slice(0,117).replace(/\s\S*$/,'')+'...';return{title:t,source:s.trim(),summary:sm}}catch(e){const s=(()=>{try{return new URL(url).hostname.replace('www.','')}catch(e){return'Manual'}})();return{title:titleFromUrl(url),source:s,summary:''}}}
 
+// ── FEED DATA ──
 let feedData=null;
 const feedPromise=fetch('data.json').then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{feedData=d}).catch(()=>{feedData={articles:{}}});
 
-// ── VIEW TOGGLE ──
-function setView(v){
-  document.getElementById('mapView').classList.toggle('hidden',v!=='map');
-  document.getElementById('carouselView').classList.toggle('visible',v==='carousel');
-  document.getElementById('vMap').classList.toggle('on',v==='map');
-  document.getElementById('vCard').classList.toggle('on',v==='carousel');
-  if(v==='carousel')buildCarousel();
-}
-
 // ── LEAGUE DATA ──
 const L={
-  pl:{full:'Premier League',color:'#d9453c',marker:'PL',kicker:'Established export',desc:"NBC's $2.7bn deal proved the US model. Peacock locks in streaming revenue. Pre-season tours are brand infrastructure.",stats:[['US rights value','$2.7bn (2022–28)'],['US viewership','+ 28% since 2019'],['Strategy','Streaming lock-in']],sw:"PL inventory in the US is priced like domestic premium. But the audience skews younger and more affluent than NFL."},
+  pl:{full:'Premier League',color:'#d9453c',marker:'PL',kicker:'Established export',desc:"NBC's $2.7bn deal proved the US model. Peacock locks in streaming revenue. Pre-season tours are brand infrastructure.",stats:[['US rights value','$2.7bn (2022–28)'],['US viewership','+28% since 2019'],['Strategy','Streaming lock-in']],sw:"PL inventory in the US is priced like domestic premium. But the audience skews younger and more affluent than NFL."},
   laliga:{full:'La Liga',color:'#7b5cc2',marker:'LaLiga',kicker:'Star-driven export',desc:"Star power drives the global play. India is the growth bet. The US is contested. Middle East sovereign wealth buying clubs and rights.",stats:[['Broadcast reach','182 countries'],['India office','Opened 2024'],['Strategy','Star power + offices']],sw:"Cheaper than PL in most export markets, but audience is less predictable without marquee names."},
   nfl:{full:'NFL',color:'#2a8a4b',marker:'NFL',kicker:'Scarcity pricing',desc:"Killed the DAZN deal to shop rights separately. Munich, Frankfurt, London, Australia anchor international packages.",stats:[['Game Pass growth','+24% YoY'],['DAZN deal','Terminated early'],['Strategy','Scarcity export']],sw:"Betting it can command US-style pricing abroad by keeping supply tight."},
   nba:{full:'NBA',color:'#1a8f96',marker:'NBA',kicker:'Volume expansion',desc:"Widest export operation in sports. European league with FIBA launching 2027. Amazon in broadcast talks.",stats:[["Int'l revenue",'~30% of total'],['European league','2027'],['Strategy','Volume play']],sw:"Creating inventory where none existed. European basketball competes with domestic football for premium budgets."},
   ipl:{full:'IPL Cricket',color:'#c8900a',marker:'IPL',kicker:'Diaspora + digital',desc:"T20 format built for global export — three hours, guaranteed result. Middle East is the beachhead. US cricket gets Olympics boost.",stats:[['Global rights','$6.2bn (2023–28)'],['Format','~3 hours'],['Strategy','Diaspora-first']],sw:"Reaches high-income diaspora audiences. CPMs lower than PL or NFL — for now."},
   japac:{full:'Japan / APAC Sports',color:'#5a7a9a',marker:'APAC',kicker:'Cultural export',desc:"From Ohtani's global brand to sumo streaming — Asian sports reach international audiences through cultural crossover and streaming platforms.",stats:[['Ohtani deal','$700m / 10yr'],['APAC streaming','Growing 30%+ YoY'],['Strategy','Cultural crossover']],sw:"Asian sports don't follow Western rights models. They spread via fandom, streaming bundles, and star power."},
   tennis:{full:'Tennis (ATP/WTA)',color:'#d4890f',marker:'Tennis',kicker:'Global circuit',desc:"Grand Slams span four continents. Saudi Arabia and China expansion underway. Streaming rights fragmenting across platforms.",stats:[['Grand Slams','4 continents'],['Saudi push','New ATP events'],['Strategy','Circuit expansion']],sw:"Rights fragmenting — buyers need to track which platform holds what, where."},
-  f1:{full:'Formula 1',color:'#e03030',marker:'F1',kicker:'Entertainment export',desc:"Netflix transformed F1 from European motorsport to global entertainment. Vegas, Miami, Saudi races built for commercial value.",stats:[['US viewership','+ 60% since 2018'],['New races','Vegas, Miami, Saudi'],['Strategy','Entertainment-first']],sw:"F1 proved content can create demand for live rights. Vegas priced at US sports levels."},
+  f1:{full:'Formula 1',color:'#e03030',marker:'F1',kicker:'Entertainment export',desc:"Netflix transformed F1 from European motorsport to global entertainment. Vegas, Miami, Saudi races built for commercial value.",stats:[['US viewership','+60% since 2018'],['New races','Vegas, Miami, Saudi'],['Strategy','Entertainment-first']],sw:"F1 proved content can create demand for live rights. Vegas priced at US sports levels."},
 };
 const KS=Object.keys(L);
+const TINTS=['var(--tint-blue)','var(--tint-peach)','var(--tint-cream)','var(--tint-mint)'];
 
 function mergedArticles(k){
   const api=(feedData&&feedData.articles&&feedData.articles[k])||[];
@@ -224,127 +206,109 @@ function mergedArticles(k){
   [...manual,...api].forEach(a=>{if(a.url&&!seen.has(a.url)){seen.add(a.url);merged.push(a)}});
   return merged;
 }
+function latestArticleDate(k){const arts=mergedArticles(k);if(!arts.length)return 0;return Math.max(...arts.map(a=>new Date(a.fetched_at||0).getTime()))}
+function isFresh(k){const d=latestArticleDate(k);if(!d)return false;return(Date.now()-d)<48*60*60*1000}
 
-function latestArticleDate(k){
+// ── RENDER HELPERS ──
+function vizBlock(d,hero){return`<div class="${hero?'viz-hero':'viz'}"><div class="viz-mark">${esc(d.marker)}</div></div>`}
+function statsHTML(d){return`<div class="stats">${d.stats.map(([l,v])=>`<div class="stat"><span class="stat-l">${esc(l)}</span><span class="stat-v">${esc(v)}</span></div>`).join('')}</div>`}
+function sowhatHTML(d){return`<div class="sowhat"><b>So what for buyers</b>${esc(d.sw)}</div>`}
+function dateLabel(k){const t=latestArticleDate(k);return t?new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'Live tracker'}
+
+function coverageHTML(k){
   const arts=mergedArticles(k);
-  if(!arts.length)return 0;
-  return Math.max(...arts.map(a=>new Date(a.fetched_at||0).getTime()));
+  let h=`<div class="coverage"><div class="coverage-hdr">Latest coverage</div>`;
+  if(!arts.length){h+=`<p class="empty">No coverage yet — paste a URL below, or wait for the daily feed.</p>`}
+  else{
+    arts.slice(0,8).forEach(a=>{
+      h+=`<div class="art">${a._manual?`<button class="art-del" title="Remove" onclick="delManual('${k}','${encodeURIComponent(a.url)}')">✕</button>`:''}<div class="art-t">${esc(a.title||'Untitled')}</div><div class="art-m">${esc(a.source||'')}${a._manual?' · Added manually':''} · ${esc((a.fetched_at||'').slice(0,10))}</div><a class="art-link" href="${escAttr(a.url||'#')}" target="_blank" rel="noopener">Read →</a></div>`;
+    });
+    if(arts.length>8)h+=`<div class="art-m" style="margin-top:10px">+${arts.length-8} more</div>`;
+  }
+  h+=addBoxHTML(k);
+  h+=`</div>`;
+  return h;
 }
-
-function isFresh(k){
-  const d=latestArticleDate(k);
-  if(!d)return false;
-  return(Date.now()-d)<48*60*60*1000;
+function addBoxHTML(k){
+  const total=Object.values(getAllManual()).flat().length;
+  return`<div class="add-box"><div class="add-label">Add an article</div><div class="add-row"><input class="add-input" id="add-${k}" type="url" placeholder="Paste a URL and hit Add"><button class="add-btn" id="addbtn-${k}" onclick="addArticle('${k}')">Add</button></div><div class="add-status" id="addstatus-${k}"></div>${total>0?`<div class="export-bar"><span class="export-count">${total} manually added article${total>1?'s':''}</span><button class="export-btn" onclick="exportManual()">Export full data.json</button></div>`:''}</div>`;
 }
+function freshBadge(k){return isFresh(k)?`<span class="fresh-badge">New coverage</span>`:''}
 
-// ── CAROUSEL ──
-function buildCarousel(){
-  const track=document.getElementById('cTrack');
-  const dots=document.getElementById('cDots');
-  track.innerHTML='';dots.innerHTML='';
-
-  // Sort: leagues with most recent articles first
-  const sorted=[...KS].sort((a,b)=>latestArticleDate(b)-latestArticleDate(a));
-  const total=sorted.length;
-
-  sorted.forEach((k,i)=>{
-    const d=L[k];
-    const arts=mergedArticles(k);
-    const fresh=isFresh(k);
-
-    let html=`<div class="ccard${fresh?' fresh':''}" data-idx="${i}">`;
-    if(fresh)html+=`<div class="ccard-fresh-badge">New coverage</div>`;
-    html+=`<div class="ccard-head">
-      <div class="ccard-badge" style="background:${d.color}">${d.marker}</div>
-      <div><div class="ccard-name">${d.full}</div><div class="ccard-kicker" style="color:${d.color}">${d.kicker}</div></div>
+function cardHTML(k,i){
+  const d=L[k];
+  const dot=`<span class="dot" style="background:${d.color}"></span>`;
+  if(i===0){
+    return`<article class="story featured" id="card-${k}">
+      ${freshBadge(k)}
+      <div class="kicker">${dot}${esc(d.kicker)}</div>
+      <h2>${esc(d.full)}</h2>
+      <div class="byline">International expansion tracker · ${dateLabel(k)}</div>
+      ${vizBlock(d,true)}
+      <div class="featured-body">
+        <p class="dek">${esc(d.desc)}</p>
+        ${sowhatHTML(d)}
+        ${statsHTML(d)}
+        ${coverageHTML(k)}
+      </div>
+    </article>`;
+  }
+  const tint=TINTS[i%TINTS.length];
+  return`<article class="story" id="card-${k}" style="background:${tint}">
+    <div class="story-row">
+      <div class="story-main">
+        ${freshBadge(k)}
+        <div class="kicker">${dot}${esc(d.kicker)}</div>
+        <h2>${esc(d.full)}</h2>
+        <div class="byline">International expansion tracker · ${dateLabel(k)}</div>
+      </div>
+      ${vizBlock(d,false)}
     </div>
-    <div class="ccard-desc">${d.desc}</div>`;
-    d.stats.forEach(([l,v])=>{html+=`<div class="ccard-stat"><span class="ccard-stat-l">${l}</span><span class="ccard-stat-v">${v}</span></div>`});
-
-    if(arts.length){
-      arts.slice(0,2).forEach(a=>{
-        html+=`<div class="ccard-article"><div class="ccard-article-t">${a.title||'Untitled'}</div><div class="ccard-article-m">${a.source||''} · ${(a.fetched_at||'').slice(0,10)}</div></div>`;
-      });
-      if(arts.length>2)html+=`<div style="font-size:11px;color:var(--text-d);margin-top:6px;">+${arts.length-2} more article${arts.length-2>1?'s':''}</div>`;
-    }
-
-    html+=`<a class="ccard-link" style="color:${d.color}" onclick="setView('map');setTimeout(()=>window._openFromCarousel&&window._openFromCarousel('${k}'),300)">See full analysis ↗</a>`;
-    html+=`</div>`;
-    track.innerHTML+=html;
-
-    const dot=document.createElement('div');
-    dot.className='dot'+(i===0?' on':'');
-    dots.appendChild(dot);
-  });
-
-  // Update tracker and dots on scroll
-  const updateTracker=()=>{
-    const scrollLeft=track.scrollLeft;
-    const cardWidth=track.querySelector('.ccard')?.offsetWidth||300;
-    const gap=14;
-    let idx=Math.round(scrollLeft/(cardWidth+gap))%total;
-    if(idx<0)idx=0;
-    document.getElementById('cTracker').innerHTML=`<strong>${idx+1}</strong> / ${total}`;
-    dots.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===idx));
-  };
-  track.addEventListener('scroll',updateTracker,{passive:true});
-  updateTracker();
+    <p class="dek" style="margin-top:14px">${esc(d.desc)}</p>
+    ${sowhatHTML(d)}
+    ${statsHTML(d)}
+    ${coverageHTML(k)}
+  </article>`;
 }
 
-// ── MAIN BOOT ──
-function boot(){
-  const DEST={'usa':[-95,38],'us':[-95,38],'united states':[-95,38],'america':[-95,38],'american':[-95,38],'uk':[-1,53],'united kingdom':[-1,53],'england':[-1,53],'britain':[-1,53],'british':[-1,53],'london':[-0.1,51.5],'germany':[10,51],'munich':[11.5,48],'frankfurt':[8.7,50],'german':[10,51],'europe':[10,48],'european':[10,48],'france':[2,47],'spain':[-3.7,40],'italy':[12,42],'china':[105,35],'chinese':[105,35],'beijing':[116,40],'shanghai':[121,31],'india':[78,22],'indian':[78,22],'delhi':[77,28],'mumbai':[72,19],'africa':[20,0],'african':[20,0],'nigeria':[8,10],'south africa':[25,-30],'kenya':[37,-1],'middle east':[50,24],'dubai':[55,25],'saudi arabia':[45,25],'saudi':[45,25],'japan':[139,36],'japanese':[139,36],'australia':[135,-25],'australian':[135,-25],'new zealand':[174,-41],'brazil':[-50,-15],'mexico':[-99,19],'canada':[-100,55],'south korea':[127,37],'korea':[127,37],'las vegas':[-115,36],'miami':[-80,26]};
-  const GEO={pl:[-1.5,52.5],laliga:[-3.7,40.4],nfl:[-90,40],nba:[-90,40],ipl:[78,22],japac:[139,36],tennis:[18,-45],f1:[18,-45]};
-  const active=new Set(KS);let curLeague=null;
-  const W=1200,H=620;
-  const svg=d3.select('#mapsvg').attr('viewBox',`0 0 ${W} ${H}`).attr('preserveAspectRatio','xMidYMid meet');
-  const defs=svg.append('defs');
-  defs.append('pattern').attr('id','grid').attr('width',30).attr('height',30).attr('patternUnits','userSpaceOnUse').append('path').attr('d','M 30 0 L 0 0 0 30').attr('fill','none').attr('stroke','#d0cdc5').attr('stroke-width','.2');
-  KS.forEach(k=>{defs.append('marker').attr('id','arr-'+k).attr('markerWidth',10).attr('markerHeight',7).attr('refX',9).attr('refY',3.5).attr('orient','auto').attr('markerUnits','strokeWidth').append('path').attr('d','M0,0 L10,3.5 L0,7 L2,3.5 Z').attr('fill',L[k].color)});
-  svg.append('rect').attr('width',W).attr('height',H).attr('fill','url(#grid)').attr('opacity','.2');
-  const proj=d3.geoNaturalEarth1().rotate([-20,0]).scale(260).translate([W/2,H/2+70]);
-  const pathGen=d3.geoPath(proj);
-  const sp=24;
-  function mP(k){const b=proj(GEO[k]);if(k==='nfl')return[b[0]-sp,b[1]];if(k==='nba')return[b[0]+sp,b[1]];if(k==='tennis')return[b[0]-sp,b[1]];if(k==='f1')return[b[0]+sp,b[1]];return b}
-  const MP={};KS.forEach(k=>{MP[k]=mP(k)});
-
-  d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world=>{
-    const countries=topojson.feature(world,world.objects.countries);
-    svg.append('path').datum(d3.geoGraticule10()).attr('class','grat').attr('d',pathGen);
-    svg.selectAll('.land').data(countries.features).enter().append('path').attr('class','land').attr('d',pathGen);
-    const arrowLayer=svg.append('g').attr('id','arrowLayer');
-    const markerLayer=svg.append('g');
-    const usB=proj(GEO.nfl);markerLayer.append('text').attr('class','group-label').attr('x',usB[0]).attr('y',usB[1]-30).attr('text-anchor','middle').text('United States');
-    const gB=proj(GEO.tennis);markerLayer.append('text').attr('class','group-label').attr('x',gB[0]).attr('y',gB[1]-30).attr('text-anchor','middle').text('Global circuits');
-    KS.forEach(k=>{const d=L[k],p=MP[k];const g=markerLayer.append('g').attr('class','league-marker').attr('data-k',k).on('click',()=>openLeague(k));g.append('circle').attr('class','marker-ring').attr('cx',p[0]).attr('cy',p[1]).attr('r',22).attr('fill','none').attr('stroke',d.color).attr('stroke-width',2).attr('stroke-opacity',.25);g.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',18).attr('fill',d.color).attr('opacity',.9);g.append('text').attr('class','marker-label').attr('x',p[0]).attr('y',p[1]+1).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size',d.marker.length>5?'5.5px':d.marker.length>3?'7px':'9px').text(d.marker)});
-
-    function drawArrows(k,a){clearArrows();if(!a)return;const text=((a.title||'')+' '+(a.summary||'')).toLowerCase();const hits=[];for(const[name,coords]of Object.entries(DEST)){if(text.includes(name)){const op=MP[k],dp=proj(coords);if(Math.abs(dp[0]-op[0])>30||Math.abs(dp[1]-op[1])>30)hits.push({name,px:dp})}}const unique=[];hits.forEach(h=>{if(!unique.some(u=>Math.abs(u.px[0]-h.px[0])<50&&Math.abs(u.px[1]-h.px[1])<50))unique.push(h)});if(!unique.length)return;const op=MP[k],layer=svg.select('#arrowLayer');unique.forEach((dest,i)=>{const dx=dest.px[0]-op[0],dy=dest.px[1]-op[1],dist=Math.sqrt(dx*dx+dy*dy),off=Math.min(dist*.28,110),mx=(op[0]+dest.px[0])/2,my=(op[1]+dest.px[1])/2,nx=-dy/dist,ny=dx/dist;const arc=`M${op[0]},${op[1]} Q${mx+nx*off},${my+ny*off} ${dest.px[0]},${dest.px[1]}`;const path=layer.append('path').attr('class','story-arrow').attr('d',arc).attr('stroke',L[k].color).attr('marker-end','url(#arr-'+k+')');const len=path.node().getTotalLength();path.attr('stroke-dasharray',len).attr('stroke-dashoffset',len);setTimeout(()=>{path.classed('vis',true).transition().duration(700).ease(d3.easeCubicOut).attr('stroke-dashoffset',0)},i*120);layer.append('circle').attr('class','story-dest').attr('cx',dest.px[0]).attr('cy',dest.px[1]).attr('r',5).attr('fill',L[k].color).transition().delay(500+i*120).duration(300).attr('class','story-dest vis');const lbl=dest.name.charAt(0).toUpperCase()+dest.name.slice(1);layer.append('text').attr('class','story-dest-label').attr('x',dest.px[0]+9).attr('y',dest.px[1]+4).text(lbl).transition().delay(600+i*120).duration(300).attr('class','story-dest-label vis')})}
-
-    function openLeague(k){svg.selectAll('.league-marker').classed('active',false);svg.select(`.league-marker[data-k="${k}"]`).classed('active',true);clearArrows();renderPanel(k);document.getElementById('sheet').classList.add('open');document.getElementById('ov').classList.add('open');document.getElementById('hint').classList.add('gone');curLeague=k;const articles=mergedArticles(k);if(articles.length)drawArrows(k,articles[0])}
-
-    window._openFromCarousel=openLeague;
-
-    function renderPanel(k){const d=L[k],body=document.getElementById('shBody');const articles=mergedArticles(k);const manualCount=Object.values(getAllManual()).flat().length;let html=`<div class="sk" style="color:${d.color}">${d.kicker}</div><div class="st">${d.full}</div><div class="sr">International expansion tracker</div><p class="sd">${d.desc}</p><div class="ss">${d.stats.map(([l,v])=>`<div class="ss-row"><span class="ss-l">${l}</span><span class="ss-v">${v}</span></div>`).join('')}</div><div class="sw" style="background:${d.color}12;border-left:2px solid ${d.color}"><span class="sw-l" style="color:${d.color}">So what for buyers</span>${d.sw}</div><div class="feed-hdr">Latest coverage</div>`;if(!articles.length){html+='<p class="feed-empty">No articles yet — paste a URL below or wait for the daily feed.</p>'}else{articles.slice(0,15).forEach((a,i)=>{const isManual=a._manual;html+=`<div class="story-card${i===0?' active':''}${isManual?' manual':''}" data-idx="${i}" data-league="${k}" onclick="window._sel('${k}',${i})">${isManual?`<button class="story-del" onclick="event.stopPropagation();window._delManual('${k}','${encodeURIComponent(a.url)}')">✕</button>`:''}<div class="story-title">${a.title||'Untitled'}</div><div class="story-meta">${a.source||''}${isManual?' · Added manually':''} · ${(a.fetched_at||'').slice(0,10)}</div>${a.summary?`<div class="story-sum">${a.summary}</div>`:''}<a class="story-link" href="${a.url||'#'}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Read →</a></div>`})}
-    html+=`<div class="paste-box"><div class="paste-label">Add an article</div><div class="paste-row"><input class="paste-input" id="pasteUrl" type="url" placeholder="Paste a URL and hit Add"><button class="paste-add" id="pasteBtn" onclick="window._addArticle('${k}')">Add</button></div><div class="paste-status" id="pasteStatus"></div></div>`;
-    if(manualCount>0){html+=`<div class="export-bar"><span class="export-count">${manualCount} manually added article${manualCount>1?'s':''}</span><button class="export-btn" onclick="window._exportManual()">Export full data.json</button></div>`}
-    body.innerHTML=html;const urlInput=document.getElementById('pasteUrl');if(urlInput)urlInput.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();window._addArticle(k)}})}
-
-    window._addArticle=async function(k){const urlInput=document.getElementById('pasteUrl');const btn=document.getElementById('pasteBtn');const status=document.getElementById('pasteStatus');const url=urlInput.value.trim();if(!url){urlInput.focus();return}const existing=mergedArticles(k);if(existing.some(a=>a.url===url)){status.textContent='Already in the feed.';status.className='paste-status err';return}btn.disabled=true;btn.textContent='Fetching...';status.textContent='Grabbing title and source...';status.className='paste-status loading';const meta=await fetchPageMeta(url);addManualArticle(k,{title:meta.title||titleFromUrl(url)||'Untitled',source:meta.source||'Manual',url,summary:meta.summary||'',score:10,fetched_at:new Date().toISOString(),league:k});btn.disabled=false;btn.textContent='Add';renderPanel(k);setTimeout(()=>{const s=document.getElementById('pasteStatus');if(s){s.textContent='Added!';s.className='paste-status ok'}const fh=document.getElementById('shBody').querySelector('.feed-hdr');if(fh)fh.scrollIntoView({behavior:'smooth',block:'start'})},100)};
-    window._delManual=function(k,eu){removeManualArticle(k,decodeURIComponent(eu));renderPanel(k)};
-    window._exportManual=function(){const manual=getAllManual();const base=feedData||{articles:{}};const merged={last_updated:new Date().toISOString(),articles:{}};const allKeys=new Set([...Object.keys(base.articles||{}),...Object.keys(manual)]);allKeys.forEach(k=>{const apiArts=(base.articles&&base.articles[k])||[];const manArts=(manual[k]||[]).map(a=>{const c={...a};delete c._manual;return c});const seen=new Set();const combined=[];[...manArts,...apiArts].forEach(a=>{if(a.url&&!seen.has(a.url)){seen.add(a.url);combined.push(a)}});merged.articles[k]=combined});const json=JSON.stringify(merged,null,2);navigator.clipboard.writeText(json).then(()=>{alert('Copied the complete data.json! Go to GitHub, open data.json, select all, paste, and commit.')}).catch(()=>{prompt('Copy this and replace all of data.json on GitHub:',json)})};
-    window._sel=function(k,idx){const articles=mergedArticles(k);const a=articles[idx];if(!a)return;document.querySelectorAll('.story-card').forEach(c=>c.classList.remove('active'));const card=document.querySelector(`.story-card[data-idx="${idx}"][data-league="${k}"]`);if(card)card.classList.add('active');drawArrows(k,a)};
-    function clearArrows(){svg.select('#arrowLayer').selectAll('*').remove()}
-    function closeSheet(){document.getElementById('sheet').classList.remove('open');document.getElementById('ov').classList.remove('open');svg.selectAll('.league-marker').classed('active',false);clearArrows();curLeague=null}
-    document.getElementById('ov').addEventListener('click',closeSheet);
-    document.getElementById('outer').addEventListener('click',e=>{if(!e.target.closest('.league-marker')&&!e.target.closest('.sheet'))closeSheet()});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
-    let ty=0;document.getElementById('shBar').addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});document.getElementById('shBar').addEventListener('touchmove',e=>{if(e.touches[0].clientY-ty>50)closeSheet()},{passive:true});
-    const pb=document.getElementById('pills');KS.forEach(k=>{const b=document.createElement('button');b.className='pill on';b.dataset.k=k;b.innerHTML=`<span class="dt" style="background:${L[k].color}"></span>${L[k].full}`;b.onclick=()=>{if(active.has(k)){active.delete(k);b.classList.replace('on','off');svg.select(`.league-marker[data-k="${k}"]`).classed('dim',true);if(curLeague===k)closeSheet()}else{active.add(k);b.classList.replace('off','on');svg.select(`.league-marker[data-k="${k}"]`).classed('dim',false)}};pb.appendChild(b)});
-  });
+function buildFeed(){
+  const feed=document.getElementById('feed');
+  const sorted=[...KS].sort((a,b)=>latestArticleDate(b)-latestArticleDate(a));
+  feed.innerHTML=sorted.map((k,i)=>cardHTML(k,i)).join('');
+  sorted.forEach(k=>{const inp=document.getElementById('add-'+k);if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addArticle(k)}})});
 }
 
-function ls(u){return new Promise((r,j)=>{const s=document.createElement('script');s.src=u;s.onload=r;s.onerror=j;document.head.appendChild(s)})}
-Promise.all([ls('https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js').then(()=>ls('https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js')),feedPromise]).then(boot).catch(e=>{console.error(e);document.getElementById('hint').textContent='Failed to load — try in a browser.'});
+// ── ACTIONS ──
+async function addArticle(k){
+  const inp=document.getElementById('add-'+k),btn=document.getElementById('addbtn-'+k),st=document.getElementById('addstatus-'+k);
+  const url=(inp.value||'').trim();
+  if(!url){inp.focus();return}
+  if(mergedArticles(k).some(a=>a.url===url)){st.textContent='Already in the feed.';st.className='add-status err';return}
+  btn.disabled=true;btn.textContent='Fetching…';st.textContent='Grabbing title and source…';st.className='add-status loading';
+  const meta=await fetchPageMeta(url);
+  addManualArticle(k,{title:meta.title||titleFromUrl(url)||'Untitled',source:meta.source||'Manual',url,summary:meta.summary||'',score:10,fetched_at:new Date().toISOString(),league:k});
+  buildFeed();
+  const st2=document.getElementById('addstatus-'+k);if(st2){st2.textContent='Added!';st2.className='add-status ok'}
+  const card=document.getElementById('card-'+k);if(card)card.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function delManual(k,eu){removeManualArticle(k,decodeURIComponent(eu));buildFeed()}
+function exportManual(){
+  const manual=getAllManual();const base=feedData||{articles:{}};
+  const merged={last_updated:new Date().toISOString(),articles:{}};
+  const allKeys=new Set([...Object.keys(base.articles||{}),...Object.keys(manual)]);
+  allKeys.forEach(k=>{
+    const apiArts=(base.articles&&base.articles[k])||[];
+    const manArts=(manual[k]||[]).map(a=>{const c={...a};delete c._manual;return c});
+    const seen=new Set();const combined=[];
+    [...manArts,...apiArts].forEach(a=>{if(a.url&&!seen.has(a.url)){seen.add(a.url);combined.push(a)}});
+    merged.articles[k]=combined;
+  });
+  const json=JSON.stringify(merged,null,2);
+  navigator.clipboard.writeText(json).then(()=>{alert('Copied the complete data.json! Go to GitHub, open data.json, select all, paste, and commit.')}).catch(()=>{prompt('Copy this and replace all of data.json on GitHub:',json)});
+}
+
+// ── BOOT ──
+feedPromise.then(buildFeed);
 </script>
 </body>
 </html>
