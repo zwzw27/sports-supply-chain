@@ -27,7 +27,6 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
-body.locked{overflow:hidden}
 a{color:inherit}
 
 /* === HEADER === */
@@ -61,13 +60,6 @@ a{color:inherit}
 .stat-l{display:block;font-size:8.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);line-height:1.2;margin-bottom:3px}
 .stat-v{display:block;font-size:11.5px;font-weight:600;line-height:1.25}
 
-/* article rows */
-.art{padding:12px 0;border-top:1px solid rgba(20,22,58,.08)}
-.art:first-of-type{border-top:none}
-.art-t{font-family:'Newsreader',serif;font-size:16px;line-height:1.3;font-weight:500;color:var(--ink)}
-.art-m{font-size:11.5px;color:var(--muted);margin-top:3px}
-.art-link{display:inline-block;margin-top:6px;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);text-decoration:none}
-.art-del{float:right;background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;line-height:1;padding:3px 6px;border-radius:4px}
 .empty{font-family:'Newsreader',serif;font-style:italic;color:var(--muted);font-size:14.5px;padding:6px 0}
 
 /* === CAROUSEL === */
@@ -84,7 +76,7 @@ a{color:inherit}
 .fresh-dot{display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 7px;border-radius:3px}
 .card h2{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(25px,6.8vw,32px);line-height:1.04;letter-spacing:-.012em;margin:0}
 .coverage{margin-top:14px;padding-top:12px;border-top:1px solid rgba(20,22,58,.14)}
-.cov-hdr{display:block;font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);background:none;border:none;padding:0;margin:0 0 2px;cursor:pointer}
+.cov-hdr{display:block;font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 2px}
 .cart{display:block;padding:8px 0;border-top:1px solid rgba(20,22,58,.08);text-decoration:none}
 .cart:first-of-type{border-top:none}
 .cart-t{font-family:'Newsreader',serif;font-size:14px;line-height:1.28;font-weight:500;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -94,42 +86,11 @@ a{color:inherit}
 .dots .dot{width:8px;height:8px;border-radius:50%;background:var(--ink);opacity:.16;transition:all .25s;cursor:pointer;padding:0;border:none}
 .dots .dot.on{opacity:1;width:22px;border-radius:4px;background:var(--blue)}
 
-/* === MODAL / POP-UP === */
-.modal-ov{position:fixed;inset:0;background:rgba(10,28,92,.32);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .25s;z-index:100;display:flex;align-items:flex-end;justify-content:center}
-.modal-ov.open{opacity:1;pointer-events:auto}
-.modal{background:#fff;width:100%;max-width:520px;max-height:88vh;border-radius:18px 18px 0 0;overflow-y:auto;-webkit-overflow-scrolling:touch;transform:translateY(100%);transition:transform .32s cubic-bezier(.16,1,.3,1);padding:14px 20px 30px;position:relative}
-.modal-ov.open .modal{transform:translateY(0)}
-.modal-nub{width:38px;height:4px;background:var(--ink);opacity:.18;border-radius:2px;margin:2px auto 14px}
-.modal-x{position:absolute;top:12px;right:14px;background:none;border:none;font-size:18px;color:var(--muted);cursor:pointer;line-height:1;padding:4px 6px}
-.modal-title{font-family:'Newsreader',serif;font-weight:500;font-size:26px;line-height:1.12;margin:8px 0 4px}
-.m-dek{font-family:'Newsreader',serif;font-size:15px;line-height:1.5;color:#2c2e44;margin:14px 0 0}
-.m-cov-hdr{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:20px 0 6px;padding-top:14px;border-top:1px solid rgba(20,22,58,.12)}
-
-/* add article */
-.add-box{margin-top:20px;padding-top:16px;border-top:1px dashed var(--border)}
-.add-label{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.add-row{display:flex;gap:8px}
-.add-input{flex:1;min-width:0;padding:11px 12px;border:1px solid var(--border);border-radius:8px;font-family:'Inter',sans-serif;font-size:15px;background:#fff;color:var(--ink);outline:none}
-.add-input:focus{border-color:var(--blue)}
-.add-btn{padding:11px 18px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap}
-.add-btn:disabled{opacity:.5}
-.add-status{font-size:12px;margin-top:8px;min-height:15px}
-.add-status.ok{color:var(--ok)} .add-status.err{color:var(--err)} .add-status.loading{color:var(--muted)}
-.export-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(20,22,58,.1)}
-.export-count{font-size:12px;color:var(--muted)}
-.export-btn{font-size:12px;font-weight:600;color:var(--blue);background:none;border:none;cursor:pointer;text-decoration:underline}
-
 /* footer */
 .foot{margin-top:30px;padding-top:20px;border-top:2px solid var(--ink)}
 .foot .thesis{font-family:'Newsreader',serif;font-size:15.5px;line-height:1.55;color:#2c2e44}
 .foot .thesis b{font-weight:600;color:var(--ink)}
 .foot .by{font-size:12px;color:var(--muted);margin-top:10px}
-
-@media(min-width:560px){
-  .modal-ov{align-items:center}
-  .modal{border-radius:14px;transform:translateY(24px)}
-  .modal-nub{display:none}
-}
 </style>
 </head>
 <body>
@@ -164,26 +125,10 @@ a{color:inherit}
   </div>
 </div>
 
-<!-- POP-UP: full coverage + add article -->
-<div class="modal-ov" id="modalOv"><div class="modal" id="modal"><div class="modal-nub"></div><button class="modal-x" id="modalX" aria-label="Close">✕</button><div id="modalBody"></div></div></div>
-
 <script>
 // ── LOCAL STORAGE ──
-const LS_KEY='ssc_manual_articles';
-function getManual(){try{return JSON.parse(localStorage.getItem(LS_KEY)||'{}')}catch(e){return{}}}
-function saveManual(d){localStorage.setItem(LS_KEY,JSON.stringify(d))}
-function addManualArticle(league,article){const d=getManual();if(!d[league])d[league]=[];d[league].unshift(article);saveManual(d)}
-function removeManualArticle(league,url){const d=getManual();if(!d[league])return;d[league]=d[league].filter(a=>a.url!==url);saveManual(d)}
-function getManualForLeague(k){return(getManual()[k]||[])}
-function getAllManual(){return getManual()}
-
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function escAttr(s){return esc(s).replace(/"/g,'&quot;')}
-
-// ── URL → metadata (manual paste) ──
-function cleanTitle(raw){if(!raw)return'';let t=raw.trim();const ta=document.createElement('textarea');ta.innerHTML=t;t=ta.value;t=t.replace(/\s*[\|\-\—\–]\s*[^|\-\—\–]{2,30}$/,'');t=t.replace(/^["'\s]+|["'\s]+$/g,'');if(t.length>0)t=t.charAt(0).toUpperCase()+t.slice(1);return t}
-function titleFromUrl(url){try{const path=new URL(url).pathname;const segments=path.split('/').filter(s=>s&&s.length>3&&!/^\d+$/.test(s));const last=segments[segments.length-1]||'';let t=last.replace(/\.\w+$/,'').replace(/[-_]/g,' ').trim();t=t.replace(/\b\w/g,c=>c.toUpperCase());const lower=['a','an','the','and','but','or','for','nor','on','at','to','by','in','of','with','is','it','as','vs'];t=t.split(' ').map((w,i)=>i>0&&lower.includes(w.toLowerCase())?w.toLowerCase():w).join(' ');if(/^(how|why|what|where|when|who|can|could|will|should|is|are|do|does|did)\b/i.test(t)&&!/[?!.]$/.test(t))t+='?';return t}catch(e){return''}}
-async function fetchPageMeta(url){try{const r=await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,{signal:AbortSignal.timeout(8000)});if(!r.ok)throw 0;const h=await r.text();const d=new DOMParser().parseFromString(h,'text/html');const t=cleanTitle(d.querySelector('meta[property="og:title"]')?.content||d.querySelector('meta[name="twitter:title"]')?.content||d.querySelector('title')?.textContent||'')||titleFromUrl(url);const s=cleanTitle(d.querySelector('meta[property="og:site_name"]')?.content||d.querySelector('meta[name="publisher"]')?.content||'')||new URL(url).hostname.replace('www.','').replace(/\.com$|\.org$|\.net$|\.co\.uk$/,'');let sm=(d.querySelector('meta[property="og:description"]')?.content||d.querySelector('meta[name="description"]')?.content||'').trim().replace(/\s+/g,' ');if(sm.length>120)sm=sm.slice(0,117).replace(/\s\S*$/,'')+'...';return{title:t,source:s.trim(),summary:sm}}catch(e){const s=(()=>{try{return new URL(url).hostname.replace('www.','')}catch(e){return'Manual'}})();return{title:titleFromUrl(url),source:s,summary:''}}}
 
 // ── FEED DATA ──
 let feedData=null;
@@ -206,9 +151,8 @@ let order=[];
 
 function mergedArticles(k){
   const api=(feedData&&feedData.articles&&feedData.articles[k])||[];
-  const manual=getManualForLeague(k).map(a=>({...a,_manual:true}));
   const seen=new Set();const merged=[];
-  [...manual,...api].forEach(a=>{if(a.url&&!seen.has(a.url)){seen.add(a.url);merged.push(a)}});
+  api.forEach(a=>{if(a.url&&!seen.has(a.url)){seen.add(a.url);merged.push(a)}});
   return merged;
 }
 function latestArticleDate(k){const arts=mergedArticles(k);if(!arts.length)return 0;return Math.max(...arts.map(a=>new Date(a.fetched_at||0).getTime()))}
@@ -219,16 +163,13 @@ function dateLabel(k){const t=latestArticleDate(k);return t?new Date(t).toLocale
 function dot(d){return`<span class="dot" style="background:${d.color}"></span>`}
 function statsHTML(d){return`<div class="stats">${d.stats.map(([l,v])=>`<div class="stat"><span class="stat-l">${esc(l)}</span><span class="stat-v">${esc(v)}</span></div>`).join('')}</div>`}
 function sowhatHTML(d){return`<div class="sowhat"><b>So what for buyers</b>${esc(d.sw)}</div>`}
-function artRow(a,k,withDel){
-  return`<div class="art">${withDel&&a._manual?`<button class="art-del" title="Remove" onclick="delManual('${k}','${encodeURIComponent(a.url)}')">✕</button>`:''}<div class="art-t">${esc(a.title||'Untitled')}</div><div class="art-m">${esc(a.source||'')}${a._manual?' · Added':''} · ${esc((a.fetched_at||'').slice(0,10))}</div><a class="art-link" href="${escAttr(a.url||'#')}" target="_blank" rel="noopener">Read →</a></div>`;
-}
 
-// up to 3 article links on the card (header taps through to the full pop-up)
+// up to 3 article links on the card
 function coverageInner(k){
   const arts=mergedArticles(k);
-  let h=`<button class="cov-hdr" onclick="openModal('${k}')">Latest coverage</button>`;
+  let h=`<div class="cov-hdr">Latest coverage</div>`;
   if(!arts.length){h+=`<p class="empty">No coverage yet.</p>`}
-  else arts.slice(0,3).forEach(a=>{h+=`<a class="cart" href="${escAttr(a.url||'#')}" target="_blank" rel="noopener"><div class="cart-t">${esc(a.title||'Untitled')}</div><div class="cart-m">${esc(a.source||'')}${a._manual?' · Added':''} · ${esc((a.fetched_at||'').slice(0,10))}</div></a>`});
+  else arts.slice(0,3).forEach(a=>{h+=`<a class="cart" href="${escAttr(a.url||'#')}" target="_blank" rel="noopener"><div class="cart-t">${esc(a.title||'Untitled')}</div><div class="cart-m">${esc(a.source||'')} · ${esc((a.fetched_at||'').slice(0,10))}</div></a>`});
   return h;
 }
 
@@ -264,61 +205,6 @@ function buildCarousel(){
   document.getElementById('navPrev').addEventListener('click',()=>goToCard(curIdx()-1));
   document.getElementById('navNext').addEventListener('click',()=>goToCard(curIdx()+1));
   update();
-}
-
-function updateCard(k){const el=document.getElementById('cov-'+k);if(el)el.innerHTML=footerInner(k)}
-
-// ── POP-UP ──
-let modalK=null;
-function modalHTML(k){
-  const d=L[k],arts=mergedArticles(k);
-  const total=Object.values(getAllManual()).flat().length;
-  let h=`<div class="kicker">${dot(d)}${esc(d.kicker)}</div><div class="modal-title">${esc(d.full)}</div><div class="byline">${arts.length} article${arts.length===1?'':'s'} · ${dateLabel(k)}</div>`;
-  h+=`<p class="m-dek">${esc(d.desc)}</p>${sowhatHTML(d)}${statsHTML(d)}`;
-  h+=`<div class="m-cov-hdr">Coverage</div><div>`;
-  if(!arts.length)h+=`<p class="empty">No coverage yet — paste a URL below.</p>`;
-  else arts.forEach(a=>{h+=artRow(a,k,true)});
-  h+=`</div><div class="add-box"><div class="add-label">Add an article</div><div class="add-row"><input class="add-input" id="add-${k}" type="url" placeholder="Paste a URL"><button class="add-btn" id="addbtn-${k}" onclick="addArticle('${k}')">Add</button></div><div class="add-status" id="addstatus-${k}"></div>`;
-  if(total>0)h+=`<div class="export-bar"><span class="export-count">${total} added article${total>1?'s':''}</span><button class="export-btn" onclick="exportManual()">Export full data.json</button></div>`;
-  h+=`</div>`;
-  return h;
-}
-function renderModalBody(k){
-  const b=document.getElementById('modalBody');b.innerHTML=modalHTML(k);
-  const inp=document.getElementById('add-'+k);if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addArticle(k)}});
-}
-function openModal(k){modalK=k;renderModalBody(k);document.getElementById('modalOv').classList.add('open');document.body.classList.add('locked')}
-function closeModal(){document.getElementById('modalOv').classList.remove('open');document.body.classList.remove('locked');modalK=null}
-document.getElementById('modalOv').addEventListener('click',e=>{if(e.target.id==='modalOv')closeModal()});
-document.getElementById('modalX').addEventListener('click',closeModal);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modalK)closeModal()});
-
-// ── ACTIONS ──
-async function addArticle(k){
-  const inp=document.getElementById('add-'+k),btn=document.getElementById('addbtn-'+k),st=document.getElementById('addstatus-'+k);
-  const url=(inp.value||'').trim();
-  if(!url){inp.focus();return}
-  if(mergedArticles(k).some(a=>a.url===url)){st.textContent='Already in the feed.';st.className='add-status err';return}
-  btn.disabled=true;btn.textContent='…';st.textContent='Grabbing title and source…';st.className='add-status loading';
-  const meta=await fetchPageMeta(url);
-  addManualArticle(k,{title:meta.title||titleFromUrl(url)||'Untitled',source:meta.source||'Manual',url,summary:meta.summary||'',score:10,fetched_at:new Date().toISOString(),league:k});
-  renderModalBody(k);updateCard(k);
-  const st2=document.getElementById('addstatus-'+k);if(st2){st2.textContent='Added!';st2.className='add-status ok'}
-}
-function delManual(k,eu){removeManualArticle(k,decodeURIComponent(eu));renderModalBody(k);updateCard(k)}
-function exportManual(){
-  const manual=getAllManual(),base=feedData||{articles:{}};
-  const merged={last_updated:new Date().toISOString(),articles:{}};
-  const allKeys=new Set([...Object.keys(base.articles||{}),...Object.keys(manual)]);
-  allKeys.forEach(k=>{
-    const apiArts=(base.articles&&base.articles[k])||[];
-    const manArts=(manual[k]||[]).map(a=>{const c={...a};delete c._manual;return c});
-    const seen=new Set();const combined=[];
-    [...manArts,...apiArts].forEach(a=>{if(a.url&&!seen.has(a.url)){seen.add(a.url);combined.push(a)}});
-    merged.articles[k]=combined;
-  });
-  const json=JSON.stringify(merged,null,2);
-  navigator.clipboard.writeText(json).then(()=>{alert('Copied the complete data.json! Go to GitHub, open data.json, select all, paste, and commit.')}).catch(()=>{prompt('Copy this and replace all of data.json on GitHub:',json)});
 }
 
 // ── BOOT ──
