@@ -23,7 +23,7 @@
   --err:#d9453c;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
 body.locked{overflow:hidden}
 a{color:inherit}
 
@@ -49,14 +49,14 @@ a{color:inherit}
 .kicker{color:var(--blue);font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;display:flex;align-items:center;gap:7px}
 .kicker .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .byline{font-size:12.5px;color:var(--muted)}
-.dek{font-family:'Newsreader',serif;font-size:17px;line-height:1.5;color:#2c2e44}
+.dek{font-family:'Newsreader',serif;font-size:15.5px;line-height:1.45;color:#2c2e44}
 .fresh-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:3px 9px;border-radius:3px;margin-bottom:10px}
 
-.sowhat{background:rgba(26,68,207,.07);border-left:3px solid var(--blue);padding:12px 14px;border-radius:0 6px 6px 0;font-size:13.5px;line-height:1.5;color:#2c2e44;margin:15px 0}
+.sowhat{background:rgba(26,68,207,.07);border-left:3px solid var(--blue);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;line-height:1.45;color:#2c2e44;margin:12px 0}
 .sowhat b{display:block;font-family:'Inter',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
 
-.stats{margin:14px 0 0}
-.stat{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid rgba(20,22,58,.1)}
+.stats{margin:10px 0 0}
+.stat{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-top:1px solid rgba(20,22,58,.1)}
 .stat-l{font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
 .stat-v{font-size:13.5px;font-weight:600}
 
@@ -66,24 +66,31 @@ a{color:inherit}
 .art-t{font-family:'Newsreader',serif;font-size:16px;line-height:1.3;font-weight:500;color:var(--ink)}
 .art-m{font-size:11.5px;color:var(--muted);margin-top:3px}
 .art-link{display:inline-block;margin-top:6px;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);text-decoration:none}
+/* compact tappable rows on the card */
+.cart{display:block;padding:9px 0;border-top:1px solid rgba(20,22,58,.08);text-decoration:none}
+.cart:first-of-type{border-top:none}
+.cart-t{font-family:'Newsreader',serif;font-size:14.5px;line-height:1.28;font-weight:500;color:var(--ink)}
+.cart-m{font-size:11px;color:var(--muted);margin-top:2px}
 .art-del{float:right;background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;line-height:1;padding:3px 6px;border-radius:4px}
 .empty{font-family:'Newsreader',serif;font-style:italic;color:var(--muted);font-size:14.5px;padding:6px 0}
 
 /* === CAROUSEL === */
-.carousel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding:0 2px}
+.carousel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding:0 2px;gap:12px}
 .tracker{font-size:13px;color:var(--muted)}
 .tracker strong{color:var(--ink);font-weight:600}
-.swipe-hint{font-size:12px;color:var(--muted)}
+.nav{display:flex;gap:8px}
+.nav button{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:#fff;color:var(--ink);font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.nav button:active{background:var(--blue);color:#fff;border-color:var(--blue)}
 .track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -20px;padding:4px 20px 10px;scroll-padding:0 20px}
 .track::-webkit-scrollbar{display:none}
-.card{scroll-snap-align:center;flex:0 0 auto;width:calc(100vw - 56px);max-width:440px;border-radius:10px;padding:24px 22px}
-.card h2{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(26px,7vw,34px);line-height:1.1;letter-spacing:-.008em;margin:11px 0 9px}
-.coverage-hdr{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:22px 0 4px;padding-top:16px;border-top:1px solid rgba(20,22,58,.14)}
+.card{scroll-snap-align:center;flex:0 0 auto;width:calc(100vw - 56px);max-width:440px;border-radius:10px;padding:20px 20px}
+.card h2{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(23px,6.4vw,30px);line-height:1.08;letter-spacing:-.008em;margin:9px 0 7px}
+.coverage-hdr{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:16px 0 2px;padding-top:13px;border-top:1px solid rgba(20,22,58,.14)}
 .see-all{margin-top:14px;width:100%;padding:11px;border:1px solid rgba(20,22,58,.18);background:rgba(255,255,255,.45);border-radius:8px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--ink);cursor:pointer;text-align:center}
 .see-all:hover{background:#fff;border-color:var(--blue);color:var(--blue)}
 
 .dots{display:flex;justify-content:center;gap:6px;margin-top:12px;flex-wrap:wrap}
-.dots .dot{width:7px;height:7px;border-radius:50%;background:var(--ink);opacity:.16;transition:all .25s}
+.dots .dot{width:8px;height:8px;border-radius:50%;background:var(--ink);opacity:.16;transition:all .25s;cursor:pointer;padding:0;border:none}
 .dots .dot.on{opacity:1;width:22px;border-radius:4px;background:var(--blue)}
 
 /* === MODAL / POP-UP === */
@@ -143,7 +150,7 @@ a{color:inherit}
 
   <div class="carousel-head">
     <span class="tracker" id="tracker"><strong>1</strong> / 8</span>
-    <span class="swipe-hint">Swipe to explore →</span>
+    <div class="nav"><button id="navPrev" aria-label="Previous">‹</button><button id="navNext" aria-label="Next">›</button></div>
   </div>
   <div class="track" id="track"></div>
   <div class="dots" id="dots"></div>
@@ -213,12 +220,16 @@ function artRow(a,k,withDel){
   return`<div class="art">${withDel&&a._manual?`<button class="art-del" title="Remove" onclick="delManual('${k}','${encodeURIComponent(a.url)}')">✕</button>`:''}<div class="art-t">${esc(a.title||'Untitled')}</div><div class="art-m">${esc(a.source||'')}${a._manual?' · Added':''} · ${esc((a.fetched_at||'').slice(0,10))}</div><a class="art-link" href="${escAttr(a.url||'#')}" target="_blank" rel="noopener">Read →</a></div>`;
 }
 
+// compact tappable row shown on the card
+function cardRow(a){
+  return`<a class="cart" href="${escAttr(a.url||'#')}" target="_blank" rel="noopener"><div class="cart-t">${esc(a.title||'Untitled')}</div><div class="cart-m">${esc(a.source||'')}${a._manual?' · Added':''} · ${esc((a.fetched_at||'').slice(0,10))}</div></a>`;
+}
 // up-to-3 list shown on the card
 function coverageInner(k){
   const arts=mergedArticles(k);
   let h=`<div class="coverage-hdr">Latest coverage</div>`;
   if(!arts.length){h+=`<p class="empty">No coverage yet.</p>`}
-  else arts.slice(0,3).forEach(a=>{h+=artRow(a,k,false)});
+  else arts.slice(0,3).forEach(a=>{h+=cardRow(a)});
   const label=arts.length>3?`See all ${arts.length} articles`:'Add or manage articles';
   h+=`<button class="see-all" onclick="openModal('${k}')">${label} →</button>`;
   return h;
@@ -238,20 +249,26 @@ function cardHTML(k,i){
   </article>`;
 }
 
+let trackEl=null;
+function step(){const c=trackEl&&trackEl.querySelector('.card');return c?c.offsetWidth+14:314}
+function curIdx(){return trackEl?Math.max(0,Math.min(order.length-1,Math.round(trackEl.scrollLeft/step()))):0}
+function goToCard(i){if(!trackEl)return;const n=Math.max(0,Math.min(order.length-1,i));trackEl.scrollTo({left:n*step(),behavior:'smooth'})}
+
 function buildCarousel(){
   const track=document.getElementById('track'),dots=document.getElementById('dots');
+  trackEl=track;
   order=[...KS].sort((a,b)=>latestArticleDate(b)-latestArticleDate(a));
   track.innerHTML=order.map((k,i)=>cardHTML(k,i)).join('');
-  dots.innerHTML=order.map((_,i)=>`<span class="dot${i===0?' on':''}"></span>`).join('');
+  dots.innerHTML=order.map((_,i)=>`<button class="dot${i===0?' on':''}" aria-label="Go to card ${i+1}" onclick="goToCard(${i})"></button>`).join('');
   const total=order.length;
   const update=()=>{
-    const cw=track.querySelector('.card')?.offsetWidth||300;
-    let idx=Math.round(track.scrollLeft/(cw+14));
-    idx=Math.max(0,Math.min(total-1,idx));
+    const idx=curIdx();
     document.getElementById('tracker').innerHTML=`<strong>${idx+1}</strong> / ${total}`;
     dots.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===idx));
   };
   track.addEventListener('scroll',update,{passive:true});
+  document.getElementById('navPrev').addEventListener('click',()=>goToCard(curIdx()-1));
+  document.getElementById('navNext').addEventListener('click',()=>goToCard(curIdx()+1));
   update();
 }
 
