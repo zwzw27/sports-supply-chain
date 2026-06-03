@@ -1,6 +1,9 @@
 name: Fetch Sports News
 
 on:
+  schedule:
+    # Daily at 12:00 UTC
+    - cron: '0 12 * * *'
   workflow_dispatch:
 
 permissions:
@@ -18,7 +21,6 @@ jobs:
 
       - name: Fetch and filter news
         env:
-          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python fetch_news.py
 

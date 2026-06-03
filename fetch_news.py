@@ -1,64 +1,30 @@
 """
 fetch_news.py — daily via GitHub Action
-Queries NewsAPI -> filters through Claude -> appends to data.json
+Queries GDELT (free, no API key) -> filters through Claude -> appends to data.json
 """
 import json
 import os
 import sys
 import time
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 from urllib.request import Request, urlopen
 from urllib.parse import urlencode
 from urllib.error import HTTPError
 
-NEWSAPI_KEY = os.environ.get("NEWSAPI_KEY", "")
 ANTHROPIC_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
+# One GDELT query per league. GDELT ANDs space-separated terms and supports
+# "quoted phrases" and (a OR b) groups. Each query anchors on the league, then
+# requires at least one international-expansion / rights term.
 QUERIES = {
-    "pl": [
-        "Premier League streaming rights",
-        "Premier League USA viewers",
-        "Premier League international broadcast",
-    ],
-    "ipl": [
-        "IPL broadcast rights international",
-        "IPL cricket global expansion",
-        "cricket T20 media rights",
-    ],
-    "nfl": [
-        "NFL Germany Europe expansion",
-        "NFL international games rights",
-        "NFL Game Pass Europe",
-        "NFL international broadcast deal",
-    ],
-    "nba": [
-        "NBA international expansion",
-        "NBA Europe basketball league FIBA",
-        "NBA Africa China broadcast",
-    ],
-    "laliga": [
-        "La Liga international rights",
-        "La Liga India expansion",
-        "Spanish football global broadcast",
-    ],
-    "japac": [
-        "Ohtani global brand ambassador",
-        "World Baseball Classic broadcast rights",
-        "Asian sports streaming growth",
-        "Ohtani sponsorship deal international",
-        "Japanese baseball global audience",
-        "sumo international streaming",
-    ],
-    "tennis": [
-        "ATP WTA international broadcast rights",
-        "tennis Grand Slam streaming deal",
-        "tennis Saudi Arabia expansion",
-    ],
-    "f1": [
-        "Formula 1 new race international",
-        "F1 Las Vegas Miami Saudi broadcast",
-        "Formula 1 streaming rights global",
-    ],
+    "pl": '"Premier League" (streaming OR broadcast OR "media rights" OR international OR "United States" OR overseas OR audience)',
+    "ipl": '(cricket OR "Indian Premier League") (broadcast OR streaming OR "media rights" OR international OR global OR T20)',
+    "nfl": '"NFL" (international OR Germany OR Europe OR London OR "Game Pass" OR broadcast OR overseas OR expansion)',
+    "nba": '"NBA" (international OR Europe OR FIBA OR China OR Africa OR broadcast OR expansion OR global)',
+    "laliga": '("La Liga" OR LaLiga) (international OR India OR broadcast OR "media rights" OR global OR expansion)',
+    "japac": '(Ohtani OR sumo OR "World Baseball Classic") (global OR international OR streaming OR brand OR sponsorship OR rights)',
+    "tennis": '(ATP OR WTA OR tennis) ("Saudi Arabia" OR China OR "broadcast rights" OR streaming OR "Grand Slam" OR international)',
+    "f1": '("Formula 1" OR "Formula One") (Vegas OR Miami OR Saudi OR streaming OR "broadcast rights" OR global OR international)',
 }
 
 LEAGUE_CONTEXT = {
@@ -75,27 +41,52 @@ LEAGUE_CONTEXT = {
 DATA_FILE = "data.json"
 
 
-def fetch_newsapi(query, days_back=14):
-    """Fetch articles from NewsAPI with rate limiting."""
-    now = datetime.now(timezone.utc)
-    from_date = (now - timedelta(days=days_back)).strftime("%Y-%m-%d")
+def fetch_gdelt(query, days_back=14, maxrecords=25):
+    """Fetch articles from the GDELT 2.0 DOC API (free, no key required)."""
     params = urlencode({
-        "q": query,
-        "from": from_date,
-        "sortBy": "relevancy",
-        "language": "en",
-        "pageSize": 10,
-        "apiKey": NEWSAPI_KEY,
+        "query": query,
+        "mode": "ArtList",
+        "maxrecords": maxrecords,
+        "timespan": f"{days_back}d",
+        "sort": "DateDesc",
+        "format": "json",
     })
-    url = f"https://newsapi.org/v2/everything?{params}"
-    req = Request(url, headers={"User-Agent": "SportsSupplyChain/1.0"})
+    url = f"https://api.gdeltproject.org/api/v2/doc/doc?{params}"
+    req = Request(url, headers={"User-Agent": "SportsSupplyChain/1.0 (+github-actions)"})
     try:
-        with urlopen(req, timeout=15) as resp:
-            data = json.loads(resp.read().decode())
-            return data.get("articles", [])
+        with urlopen(req, timeout=30) as resp:
+            raw = resp.read().decode("utf-8", "replace").strip()
     except HTTPError as e:
-        print(f"    NewsAPI error ({e.code}): {query}", file=sys.stderr)
+        print(f"    GDELT error ({e.code}): {query[:60]}", file=sys.stderr)
         return []
+    except Exception as e:
+        print(f"    GDELT error: {e}", file=sys.stderr)
+        return []
+
+    # GDELT returns a plain-text message (not JSON) when a query is malformed.
+    if not raw or raw[0] not in "{[":
+        print(f"    GDELT non-JSON response: {raw[:120]}", file=sys.stderr)
+        return []
+
+    try:
+        articles = json.loads(raw).get("articles", []) or []
+    except json.JSONDecodeError:
+        print(f"    GDELT JSON decode failed: {raw[:120]}", file=sys.stderr)
+        return []
+
+    out = []
+    for a in articles:
+        # GDELT has no per-article snippet; keep English-language results only.
+        if (a.get("language") or "English") != "English":
+            continue
+        out.append({
+            "title": a.get("title", ""),
+            "url": a.get("url", ""),
+            "source": {"name": a.get("domain", "")},
+            "description": "",
+            "seendate": a.get("seendate", ""),
+        })
+    return out
 
 
 def filter_with_claude(league, articles):
@@ -105,7 +96,7 @@ def filter_with_claude(league, articles):
 
     context = LEAGUE_CONTEXT.get(league, "")
     block = "\n\n".join([
-        f"[{i+1}] {a.get('title','')}\nSource: {a.get('source',{}).get('name','')}\nURL: {a.get('url','')}\nSnippet: {a.get('description','N/A')}"
+        f"[{i+1}] {a.get('title','')}\nSource: {a.get('source',{}).get('name','')}\nURL: {a.get('url','')}\nSnippet: {a.get('description') or 'N/A'}"
         for i, a in enumerate(articles)
     ])
 
@@ -146,7 +137,7 @@ Articles:
 {block}"""
 
     body = json.dumps({
-        "model": "claude-sonnet-4-20250514",
+        "model": "claude-sonnet-4-6",
         "max_tokens": 1500,
         "messages": [{"role": "user", "content": prompt}],
     }).encode()
@@ -178,9 +169,6 @@ Articles:
 
 
 def main():
-    if not NEWSAPI_KEY:
-        print("ERROR: NEWSAPI_KEY not set", file=sys.stderr)
-        sys.exit(1)
     if not ANTHROPIC_KEY:
         print("ERROR: ANTHROPIC_API_KEY not set", file=sys.stderr)
         sys.exit(1)
@@ -196,24 +184,23 @@ def main():
 
     total = 0
 
-    for league, queries in QUERIES.items():
+    for league, query in QUERIES.items():
         print(f"\n{'=' * 50}")
         print(f"{league.upper()}")
+        print(f"  Query: {query}")
+
+        # RATE LIMIT: GDELT asks for no more than one request every few seconds.
+        time.sleep(5)
+        results = fetch_gdelt(query)
+        print(f"    -> {len(results)} results")
 
         all_raw = []
         seen = set()
-
-        for q in queries:
-            print(f"  Query: {q}")
-            # RATE LIMIT: wait 2 seconds between NewsAPI requests
-            time.sleep(2)
-            results = fetch_newsapi(q)
-            print(f"    -> {len(results)} results")
-            for a in results:
-                url = a.get("url", "")
-                if url and url not in seen:
-                    seen.add(url)
-                    all_raw.append(a)
+        for a in results:
+            url = a.get("url", "")
+            if url and url not in seen:
+                seen.add(url)
+                all_raw.append(a)
 
         print(f"  Total unique: {len(all_raw)}")
 
