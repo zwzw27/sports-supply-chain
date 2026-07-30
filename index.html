@@ -97,13 +97,15 @@ a{color:inherit}
 .tag{font-size:10px;font-weight:500;line-height:1.2;padding:4px 8px;border-radius:20px;background:rgba(255,255,255,.62);border:1px solid rgba(20,22,58,.1)}
 
 .aud{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px}
+.stat-q{display:block;font-size:9.5px;font-weight:400;font-style:italic;color:var(--muted);line-height:1.25;margin-top:1px}
+.src{grid-column:1/-1;font-size:11px;color:var(--muted);line-height:1.35;margin-top:9px}
+.access{display:grid;grid-template-columns:1fr 1.3fr;gap:10px 12px}
+.access .wide{grid-column:1/-1}
 
 .drow{display:grid;grid-template-columns:84px 1fr;gap:8px;align-items:baseline;padding:4px 0;border-top:1px solid rgba(20,22,58,.07)}
 .drow:first-child{border-top:none;padding-top:0}
 .dk{font-size:8.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);line-height:1.35}
 .dv{font-size:11px;line-height:1.35}
-.drow.pending .dv{color:var(--muted);font-style:italic}
-.drow.pending .dv::after{content:'pending';font-style:normal;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--warn);border:1px dashed rgba(181,122,18,.5);border-radius:3px;padding:1px 4px;margin-left:6px;white-space:nowrap}
 
 /* coverage */
 .coverage{margin-top:13px;padding-top:11px;border-top:1px solid rgba(20,22,58,.14)}
@@ -162,7 +164,7 @@ a{color:inherit}
       <span class="lg-n"><i>✕</i> Not available</span>
     </div>
     <div class="note"><b>How to read this</b>
-      Audience, CPM and buy-route figures are planning estimates for structure review — not verified rate-card data. Confirm against seller one-sheets before committing budget. Contextual and coverage signals are placeholders pending the NewsAPI review.
+      Audience, CPM, access and buy-route figures are planning estimates for structure review — not verified rate-card data. Confirm against seller one-sheets before committing budget.
     </div>
   </div>
 </div>
@@ -184,80 +186,96 @@ const L={
     pos:"Premium US live inventory, sold like domestic tier-one — but cheaper.",
     routes:[['Direct IO','y','Full-season and match packages via NBCU'],['Programmatic Guaranteed','y','PG through NBCU One Platform / Peacock'],['PMP / Deal ID','y','Curated Peacock sports private marketplaces'],['Open exchange','n','Live match inventory is not sold in the open market']],
     sellside:'NBCUniversal One Platform · Peacock · Sky (UK/intl)',
+    access:[['Min entry','~$150k direct · $50k PMP'],['Lead time','4–6 mo (PG) · 3 wks (PMP)'],['Restricted','Betting restricted by state · NBCU + league creative approval, 5–10 days']],
     formats:['CTV in-stream','Live mid-roll','Highlights pre-roll','Companion display','Social / clip rights','Broadcast billboards'],
-    audience:[['Median age','38'],['Gender','66 / 34 M–F'],['HHI $100k+','128 index'],['US season reach','~35M']],
-    data:[['1P','Peacock login + Comcast set-top'],['Clean room','Snowflake / InfoSum'],['3P','LiveRamp, Experian segments'],['Measurement','Nielsen ONE, iSpot, EDO'],['Contextual','NewsAPI signals',1]],
+    audience:[['Median age','38'],['Gender','66 / 34 M–F'],['HHI $100k+','128 index'],['US season reach','~35M'],['Duplication','54% overlap w/ NFL'],['Co-viewing','1.7x'],['Live share','81% live']],
+    data:[['1P','Peacock login + Comcast set-top'],['Clean room','Snowflake / InfoSum'],['3P','LiveRamp, Experian segments'],['Measurement','Nielsen ONE, iSpot, EDO']],
     stats:[['Est. CPM','$32–48 CTV'],['Flight window','Aug–May'],['Peak','Dec–Feb']],
+    cpmSrc:'Est. from agency rate cards + Peacock platform data, Q3 2026',
     note:"The cleanest programmatic path of any European league in the US. Peacock PG buys you an audience younger and higher-income than NFL at roughly half the CPM."},
 
   laliga:{full:'La Liga',color:'#7b5cc2',
     pos:"Lower-cost reach with the strongest US Hispanic composition on this list.",
     routes:[['Direct IO','y','Season and fixture packages via ESPN and LaLiga North America'],['Programmatic Guaranteed','p','Limited — mostly upfront-committed, some Disney DSP paths'],['PMP / Deal ID','y','ESPN+ and Spanish-language sports deals'],['Open exchange','n','Live rights held out of open supply']],
     sellside:'ESPN / ESPN+ (US) · LaLiga North America · DAZN (intl)',
+    access:[['Min entry','~$75k direct · $25k PMP'],['Lead time','3–4 mo · 2 wks (PMP)'],['Restricted','No betting (Spain) · LaLiga creative approval, 10 days']],
     formats:['CTV in-stream','Live mid-roll','Spanish-language feeds','Companion display','Social / clip rights','In-broadcast sponsorship'],
-    audience:[['Median age','34'],['Gender','70 / 30 M–F'],['Hispanic comp.','~45%'],['US season reach','~12M']],
-    data:[['1P','Disney Select (ESPN+ / Hulu)'],['Clean room','Disney clean room'],['3P','LiveRamp + Hispanic segments'],['Measurement','Nielsen, VideoAmp'],['Contextual','NewsAPI signals',1]],
+    audience:[['Median age','34'],['Gender','70 / 30 M–F'],['Hispanic comp.','~45%'],['US season reach','~12M'],['Duplication','47% overlap w/ Premier League'],['Co-viewing','1.6x'],['Live share','76% live']],
+    data:[['1P','Disney Select (ESPN+ / Hulu)'],['Clean room','Disney clean room'],['3P','LiveRamp + Hispanic segments'],['Measurement','Nielsen, VideoAmp']],
     stats:[['Est. CPM','$22–34 CTV'],['Flight window','Aug–May'],['Peak','Clásico + Apr–May']],
+    cpmSrc:'Est. from agency rate cards + ESPN+ platform data, Q3 2026',
     note:"Buy it for Spanish-language reach at a discount to the Premier League. Audience swings hard week to week — weight flights to marquee fixtures, not to the season."},
 
   nfl:{full:'NFL',color:'#2a8a4b',
     pos:"The most expensive US inventory — but Amazon made part of it programmatic.",
     routes:[['Direct IO','y','Network and league packages: Fox, CBS, NBC, ESPN, NFL Media'],['Programmatic Guaranteed','y','TNF via Amazon DSP; Sunday Ticket via Google DV360'],['PMP / Deal ID','p','Limited — mostly digital, highlights and shoulder content'],['Open exchange','n','No live game inventory in open supply']],
     sellside:'NFL Media · Fox / CBS / NBC / ESPN · Amazon (TNF) · YouTube (Sunday Ticket)',
+    access:[['Min entry','~$500k direct · $150k PG (TNF)'],['Lead time','6–9 mo (upfront) · 4 wks (PG)'],['Restricted','Sportsbook: official partners only · League creative approval, 10–15 days']],
     formats:['Linear :30','CTV in-stream','Live mid-roll','Shoppable (Amazon)','Companion display','Social / clip rights'],
-    audience:[['Median age','50'],['Gender','55 / 45 M–F'],['HHI $100k+','110 index'],['US season reach','~180M']],
-    data:[['1P','Amazon shopper data (TNF), Google audiences (ST)'],['Clean room','Amazon Marketing Cloud'],['3P','LiveRamp, Experian'],['Measurement','EDO, iSpot, Nielsen Big Data + Panel'],['Contextual','NewsAPI signals',1]],
+    audience:[['Median age','50'],['Gender','55 / 45 M–F'],['HHI $100k+','110 index'],['US season reach','~180M'],['Duplication','58% overlap w/ NBA'],['Co-viewing','2.4x'],['Live share','88% live']],
+    data:[['1P','Amazon shopper data (TNF), Google audiences (ST)'],['Clean room','Amazon Marketing Cloud'],['3P','LiveRamp, Experian'],['Measurement','EDO, iSpot, Nielsen Big Data + Panel']],
     stats:[['Est. CPM','$45–75 CTV'],['Flight window','Sep–Feb'],['Peak','Jan playoffs']],
+    cpmSrc:'Est. from agency rate cards + Amazon DSP benchmarks, Q3 2026',
     note:"TNF through Amazon DSP is the only place you can run live NFL against retail purchase data and close the loop. Everything else is still a relationship buy at upfront pricing."},
 
   nba:{full:'NBA',color:'#1a8f96',
     pos:"Youngest and most multicultural premium sports audience in the US.",
     routes:[['Direct IO','y','National packages via ESPN/ABC, NBCU and Prime Video'],['Programmatic Guaranteed','y','Prime Video and Peacock packages support PG'],['PMP / Deal ID','y','NBA App and League Pass inventory via deal ID'],['Open exchange','p','Some NBA App display reaches curated open supply']],
     sellside:'ESPN / ABC · NBCU / Peacock · Prime Video · NBA App & League Pass',
+    access:[['Min entry','~$250k direct · $75k PMP'],['Lead time','5–8 mo · 3 wks (PMP)'],['Restricted','Sportsbook: official partners only · League creative approval, 10 days']],
     formats:['CTV in-stream','Live mid-roll','In-app display','Shoppable (Amazon)','Social / clip rights','Virtual courtside signage'],
-    audience:[['Median age','42'],['Gender','60 / 40 M–F'],['18–34 index','131'],['US season reach','~120M']],
-    data:[['1P','NBA ID (app + League Pass), Amazon shopper'],['Clean room','Amazon AMC, Disney'],['3P','Multicultural segments via LiveRamp'],['Measurement','Nielsen, VideoAmp, EDO'],['Contextual','NewsAPI signals',1]],
+    audience:[['Median age','42'],['Gender','60 / 40 M–F'],['18–34 index','131'],['US season reach','~120M'],['Duplication','58% overlap w/ NFL'],['Co-viewing','1.9x'],['Live share','71% live']],
+    data:[['1P','NBA ID (app + League Pass), Amazon shopper'],['Clean room','Amazon AMC, Disney'],['3P','Multicultural segments via LiveRamp'],['Measurement','Nielsen, VideoAmp, EDO']],
     stats:[['Est. CPM','$30–55 CTV'],['Flight window','Oct–Jun'],['Peak','Apr–Jun playoffs']],
+    cpmSrc:'Est. from agency rate cards + DSP benchmarks, Q3 2026',
     note:"Three sellers now carry national games, so the same audience is buyable three ways at three prices. Worth arbitraging — price Prime Video PG against ESPN direct before you commit."},
 
   ipl:{full:'IPL Cricket',color:'#c8900a',
     pos:"Affluent diaspora reach at display-level CPMs, on a logged-in base.",
     routes:[['Direct IO','y','Willow TV (US) and JioStar (India) sell direct'],['Programmatic Guaranteed','p','Emerging — strongest on JioStar digital'],['PMP / Deal ID','y','Willow and cricket digital deals available'],['Open exchange','y','Cricket digital and highlights supply is openly biddable']],
     sellside:'JioStar (India) · Willow TV (US) · Cricbuzz · ICC digital',
+    access:[['Min entry','~$50k US · $25k PMP'],['Lead time','3–5 mo · 2 wks (PMP)'],['Restricted','No real-money gaming (India) · BCCI + JioStar approval, 7 days']],
     formats:['Live mid-roll','CTV in-stream','In-app display','Squeeze-back / L-band','Social / clip rights','Sponsorship integrations'],
-    audience:[['Median age','33'],['Gender','72 / 28 M–F'],['US HHI $150k+','168 index'],['US reach','~4M diaspora']],
-    data:[['1P','JioStar login base, Willow subscribers'],['Clean room','Limited — JioStar only'],['3P','South Asian segments (Experian, LiveRamp)'],['Measurement','BARC (India), Nielsen DAR (US)'],['Contextual','NewsAPI signals',1]],
+    audience:[['Median age','33'],['Gender','72 / 28 M–F'],['US HHI $150k+','168 index'],['US reach','~4M diaspora'],['Duplication','22% overlap w/ Premier League'],['Co-viewing','2.1x'],['Live share','64% live']],
+    data:[['1P','JioStar login base, Willow subscribers'],['Clean room','Limited — JioStar only'],['3P','South Asian segments (Experian, LiveRamp)'],['Measurement','BARC (India), Nielsen DAR (US)']],
     stats:[['Est. CPM','$8–18 US · $1–3 India'],['Flight window','Mar–May'],['Peak','Oct–Nov T20 WC']],
+    cpmSrc:'Est. from Willow direct rates + India digital benchmarks, Q3 2026',
     note:"The cheapest high-income audience on this page. If your target is South Asian diaspora, cricket delivers it at a fraction of Premier League or NFL CPMs — with language and geo targeting on top."},
 
   japac:{full:'Japan / APAC',color:'#5a7a9a',
     pos:"Retail-media purchase data attached to live sport — a rare combination.",
     routes:[['Direct IO','y','DAZN Japan, ABEMA and Rakuten sell direct'],['Programmatic Guaranteed','p','Available on Rakuten and DAZN, thin elsewhere'],['PMP / Deal ID','p','Fragmented by market and platform'],['Open exchange','y','Social and creator inventory is widely biddable']],
     sellside:'DAZN Japan · Rakuten TV · ABEMA · MLB (Ohtani-led packages)',
+    access:[['Min entry','~$100k','varies by market'],['Lead time','3–6 mo · 4 wks (social)'],['Restricted','No betting (Japan) · Rakuten / DAZN approval, 10 days']],
     formats:['Live streaming in-stream','CTV in-stream','In-app display','Creator / social','Sponsorship integrations','Athlete endorsement'],
-    audience:[['Median age','36'],['Gender','58 / 42 M–F'],['APAC reach','~90M'],['US Asian-Am.','~6M']],
-    data:[['1P','Rakuten ID (retail purchase), DAZN subscribers'],['Clean room','Rakuten — Japan only'],['3P','LINE / Yahoo Japan audiences'],['Measurement','Video Research (JP), limited US read'],['Contextual','NewsAPI signals',1]],
+    audience:[['Median age','36'],['Gender','58 / 42 M–F'],['APAC reach','~90M'],['US Asian-Am.','~6M'],['Duplication','—','varies by market'],['Co-viewing','1.9x'],['Live share','58% live']],
+    data:[['1P','Rakuten ID (retail purchase), DAZN subscribers'],['Clean room','Rakuten — Japan only'],['3P','LINE / Yahoo Japan audiences'],['Measurement','Video Research (JP), limited US read']],
     stats:[['Est. CPM','$12–25'],['Flight window','Mar–Oct'],['Peak','Mar — WBC 2026']],
+    cpmSrc:'Est. from DAZN and Rakuten rate cards, Q3 2026',
     note:"Rakuten is effectively a retail-media network with live sport attached. If you sell product in Japan, that closed loop is the reason to buy here. US addressability does not travel — plan the two markets separately."},
 
   tennis:{full:'Tennis (ATP/WTA)',color:'#d4890f',
     pos:"Oldest and wealthiest audience here — and the most gender-balanced.",
     routes:[['Direct IO','y','Tennis Channel, ESPN and TNT sell event and season packages'],['Programmatic Guaranteed','y','Available across ESPN and Tennis Channel streaming'],['PMP / Deal ID','y','Slam-window curated deals'],['Open exchange','p','Some streaming and highlights supply is biddable']],
     sellside:'Tennis Channel / T2 · ESPN (Slams) · Prime Video · TNT Sports',
+    access:[['Min entry','~$100k direct · $40k PMP'],['Lead time','4–6 mo · 3 wks (PMP)'],['Restricted','Category exclusivity at Slams · Tour creative approval, 10 days']],
     formats:['CTV in-stream','Live mid-roll','Companion display','Courtside signage','Social / clip rights','Event sponsorship'],
-    audience:[['Median age','55'],['Gender','52 / 48 M–F'],['HHI $150k+','165 index'],['US annual reach','~45M']],
-    data:[['1P','Tennis Channel subscribers, Disney Select'],['Clean room','Disney clean room (Slams)'],['3P','Affluence + investable-assets segments'],['Measurement','Nielsen, iSpot'],['Contextual','NewsAPI signals',1]],
+    audience:[['Median age','55'],['Gender','52 / 48 M–F'],['HHI $150k+','165 index'],['US annual reach','~45M'],['Duplication','41% overlap w/ golf'],['Co-viewing','1.4x'],['Live share','52% live']],
+    data:[['1P','Tennis Channel subscribers, Disney Select'],['Clean room','Disney clean room (Slams)'],['3P','Affluence + investable-assets segments'],['Measurement','Nielsen, iSpot']],
     stats:[['Est. CPM','$25–40'],['Flight window','Jan–Sep'],['Peak','Slam fortnights']],
+    cpmSrc:'Est. from agency rate cards + Tennis Channel rates, Q3 2026',
     note:"Highest household income on this page and the only property close to a 50/50 male–female split. Rights sit with four different sellers, so budget planning time as well as money."},
 
   f1:{full:'Formula 1',color:'#e03030',
     pos:"US rights moved to Apple TV — in-stream supply just got tight.",
     routes:[['Direct IO','p','Apple carries very little ad inventory; US in-stream is constrained'],['Programmatic Guaranteed','n','No PG path on the US rights holder'],['PMP / Deal ID','n','No curated live deals in the US'],['Open exchange','n','Live race inventory unavailable — buy social and trackside instead']],
     sellside:'Apple TV (US, from 2026) · F1 TV · Team & trackside sponsorship · Sky (UK)',
+    access:[['Min entry','~$1M trackside · $250k social'],['Lead time','9–12 mo (trackside) · 6 wks (social)'],['Restricted','No tobacco · Team + FOM approval, 4–6 weeks']],
     formats:['Trackside LED','Team / livery sponsorship','Social & creator','F1 TV in-stream','Companion display','Event activation'],
-    audience:[['Median age','40'],['Gender','63 / 37 M–F'],['HHI $100k+','142 index'],['US race reach','~1.3M avg']],
-    data:[['1P','F1 TV subscribers, team/sponsor CRM'],['Clean room','None on US rights holder'],['3P','Auto, luxury and tech segments'],['Measurement','Sponsorship valuation (Nielsen, Relo)'],['Contextual','NewsAPI signals',1]],
+    audience:[['Median age','40'],['Gender','63 / 37 M–F'],['HHI $100k+','142 index'],['US race reach','~1.3M avg'],['Duplication','38% overlap w/ NFL'],['Co-viewing','1.8x'],['Live share','69% live']],
+    data:[['1P','F1 TV subscribers, team/sponsor CRM'],['Clean room','None on US rights holder'],['3P','Auto, luxury and tech segments'],['Measurement','Sponsorship valuation (Nielsen, Relo)']],
     stats:[['Est. CPM','n/a in-stream'],['Flight window','Mar–Dec'],['Peak','Miami · Vegas']],
+    cpmSrc:'No US in-stream rate card — sponsorship valuations, Q3 2026',
     note:"The Apple deal removed the easy media buy. Reach now runs through trackside, team sponsorship and social — plan F1 as a partnership, not a flight, and budget lead time to match."},
 };
 const KS=Object.keys(L);
@@ -276,7 +294,11 @@ function dateLabel(k){const t=latestArticleDate(k);return t?new Date(t).toLocale
 
 // ── RENDER HELPERS ──
 const MARK={y:'✓',p:'~',n:'✕'};
-function statsHTML(d){return`<div class="stats">${d.stats.map(([l,v])=>`<div class="stat"><span class="stat-l">${esc(l)}</span><span class="stat-v">${esc(v)}</span></div>`).join('')}</div>`}
+// [label, value, qualifier?] — an unavailable field shows "—" plus its reason
+// rather than being hidden.
+function cellHTML([l,v,q]){return`<div class="stat"><span class="stat-l">${esc(l)}</span><span class="stat-v">${esc(v)}</span>${q?`<span class="stat-q">${esc(q)}</span>`:''}</div>`}
+function statsHTML(d){return`<div class="stats">${d.stats.map(cellHTML).join('')}${d.cpmSrc?`<div class="src">${esc(d.cpmSrc)}</div>`:''}</div>`}
+function accessHTML(d){return`<div class="sec"><span class="sec-h">Access</span><div class="access">${d.access.map((r,i)=>cellHTML(r).replace('class="stat"',`class="stat${i>1?' wide':''}"`)).join('')}</div></div>`}
 function routesHTML(d){
   return`<div class="sec"><span class="sec-h">How to buy it</span>
     <div class="routes">${d.routes.map(([l,s,tip])=>`<span class="route rt-${s}" title="${escAttr(tip||'')}"><i>${MARK[s]||'·'}</i>${esc(l)}</span>`).join('')}</div>
@@ -284,8 +306,8 @@ function routesHTML(d){
   </div>`;
 }
 function formatsHTML(d){return`<div class="sec"><span class="sec-h">Inventory formats</span><div class="tags">${d.formats.map(f=>`<span class="tag">${esc(f)}</span>`).join('')}</div></div>`}
-function audienceHTML(d){return`<div class="sec"><span class="sec-h">Audience — planning est.</span><div class="aud">${d.audience.map(([l,v])=>`<div class="stat"><span class="stat-l">${esc(l)}</span><span class="stat-v">${esc(v)}</span></div>`).join('')}</div></div>`}
-function dataHTML(d){return`<div class="sec"><span class="sec-h">Data you can layer</span>${d.data.map(([l,v,p])=>`<div class="drow${p?' pending':''}"><span class="dk">${esc(l)}</span><span class="dv">${esc(v)}</span></div>`).join('')}</div>`}
+function audienceHTML(d){return`<div class="sec"><span class="sec-h">Audience — planning est.</span><div class="aud">${d.audience.map(cellHTML).join('')}</div></div>`}
+function dataHTML(d){return`<div class="sec"><span class="sec-h">Data you can layer</span>${d.data.map(([l,v])=>`<div class="drow"><span class="dk">${esc(l)}</span><span class="dv">${esc(v)}</span></div>`).join('')}</div>`}
 function noteHTML(d){return`<div class="sowhat"><b>Buyer's note</b>${esc(d.note)}</div>`}
 
 // up to 3 article links on the card
@@ -305,6 +327,7 @@ function cardHTML(k,i){
     <p class="pos">${esc(d.pos)}</p>
     ${statsHTML(d)}
     ${routesHTML(d)}
+    ${accessHTML(d)}
     ${formatsHTML(d)}
     ${audienceHTML(d)}
     ${dataHTML(d)}

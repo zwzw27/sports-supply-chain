@@ -17,7 +17,9 @@ ANTHROPIC_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # "quoted phrases" and (a OR b) groups. Each query anchors on the league, then
 # requires at least one international-expansion / rights term.
 QUERIES = {
-    "pl": '"Premier League" (streaming OR broadcast OR "media rights" OR international OR "United States" OR overseas OR audience)',
+    # "Premier League" also matches "Indian Premier League", so cricket is
+    # excluded explicitly — this was leaking IPL coverage onto the PL card.
+    "pl": '"Premier League" -"Indian Premier League" -cricket -IPL (streaming OR broadcast OR "media rights" OR international OR "United States" OR overseas OR audience)',
     "ipl": '(cricket OR "Indian Premier League") (broadcast OR streaming OR "media rights" OR international OR global OR T20)',
     "nfl": '"NFL" (international OR Germany OR Europe OR London OR "Game Pass" OR broadcast OR overseas OR expansion)',
     "nba": '"NBA" (international OR Europe OR FIBA OR China OR Africa OR broadcast OR expansion OR global)',
@@ -39,6 +41,54 @@ LEAGUE_CONTEXT = {
 }
 
 DATA_FILE = "data.json"
+
+# Cross-league contamination guard. GDELT queries over-match (the classic case:
+# "Premier League" matching "Indian Premier League") and the Claude filter scores
+# on topic, not on which property the article is actually about. This is the
+# deterministic backstop: if a headline carries another sport's markers and none
+# of its own, it does not belong on the card.
+SPORT_MARKERS = {
+    "football": ["premier league", "la liga", "laliga", "uefa", "champions league",
+                 "fifa", "soccer", "bundesliga", "serie a", "mls"],
+    "cricket": ["cricket", "ipl", "indian premier league", "t20", "bcci",
+                "major league cricket", " mlc", "icc "],
+    "gridiron": ["nfl", "super bowl", "american football"],
+    "basketball": ["nba", "wnba", "euroleague", "fiba", "basketball"],
+    "baseball": ["mlb", "baseball", "npb", "ohtani", "sumo", "world baseball classic"],
+    "tennis": ["atp", "wta", "tennis", "grand slam", "wimbledon", "roland garros"],
+    "motorsport": ["formula 1", "formula one", "f1 ", "grand prix", "motogp"],
+    "hockey": ["nhl", "hockey"],
+}
+
+LEAGUE_SPORT = {
+    "pl": "football",
+    "laliga": "football",
+    "nfl": "gridiron",
+    "nba": "basketball",
+    "ipl": "cricket",
+    "japac": "baseball",
+    "tennis": "tennis",
+    "f1": "motorsport",
+}
+
+
+def _markers_in(text, sport):
+    return any(m in text for m in SPORT_MARKERS.get(sport, []))
+
+
+def belongs_to_league(league, title):
+    """True if the headline is plausibly about this league's sport.
+
+    Rejects only clear mismatches: another sport's markers present and none of
+    its own. A headline with no markers either way is left for Claude to judge.
+    """
+    own_sport = LEAGUE_SPORT.get(league)
+    if not own_sport:
+        return True
+    t = f" {(title or '').lower()} "
+    if _markers_in(t, own_sport):
+        return True
+    return not any(_markers_in(t, s) for s in SPORT_MARKERS if s != own_sport)
 
 
 def fetch_gdelt(query, days_back=14, maxrecords=25):
@@ -107,6 +157,8 @@ Curating a feed about: {context}
 STRICT FILTERING.
 
 REJECT:
+- Anything whose primary subject is a different league, sport or competition
+  than the feed described above, even if it mentions this one in passing
 - Domestic results, scores, transfers, match previews, race results
 - Domestic-only business (salary caps, coaching, relegation)
 - Tangential mentions without international expansion focus
@@ -211,6 +263,14 @@ def main():
         # Filter through Claude
         filtered = filter_with_claude(league, all_raw)
         print(f"  Claude kept: {len(filtered)}")
+
+        # Backstop: drop anything that is about another sport entirely.
+        kept = [a for a in filtered if belongs_to_league(league, a.get("title", ""))]
+        if len(kept) != len(filtered):
+            for a in filtered:
+                if a not in kept:
+                    print(f"    Dropped (wrong league): {a.get('title','')[:70]}")
+        filtered = kept
 
         if not filtered:
             print("  Nothing passed filter")

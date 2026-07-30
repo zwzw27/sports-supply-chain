@@ -3,66 +3,12 @@
   "articles": {
     "pl": [
       {
-        "title": "American Billionaires Splash Cash on Indian Cricket Teams",
-        "source": "Fortune",
-        "url": "https://fortune.com/2026/03/29/cricket-teams-billion-dollars-rob-walton-american-businessmen/",
-        "summary": "First-ever $1B cricket team valuations as American investors including Waltons enter IPL market",
-        "score": 10,
-        "fetched_at": "2026-03-31T08:10:49.256011Z",
-        "league": "pl"
-      },
-      {
-        "title": "Cricket Legend Ashwin Set to Join U.S. League MLC",
-        "source": "ESPN",
-        "url": "https://www.espn.com/espn/story/_/id/48328671/cricket-legend-ravichandran-ashwin-set-join-us-league-mlc",
-        "summary": "First former Indian national team player joins Major League Cricket in U.S., signing with San Francisco Unicorns",
-        "score": 8,
-        "fetched_at": "2026-03-30T08:22:39.083625Z",
-        "league": "pl"
-      },
-      {
-        "title": "American Investors Bet Big on Indian Cricket With Two Separate Billion-Dollar Deals for IPL Teams",
-        "source": "Yahoo Entertainment",
-        "url": "https://sports.yahoo.com/articles/american-investors-bet-big-indian-180848166.html",
-        "summary": "US investors make billion-dollar IPL team acquisitions, marking major cross-border expansion into Asia's most-watched sports.",
-        "score": 9,
-        "fetched_at": "2026-03-29T07:53:48.620847Z",
-        "league": "pl"
-      },
-      {
-        "title": "For Women's Hockey Fans, the League's First U.S. Broadcast Is a Watershed Moment",
-        "source": "NBC News",
-        "url": "https://www.nbcnews.com/sports/hockey/womens-hockey-fans-leagues-first-us-broadcast-watershed-moment-rcna264790",
-        "summary": "PWHL's first national US broadcast marks expansion milestone after record Olympic growth in women's hockey viewership.",
-        "score": 8,
-        "fetched_at": "2026-03-29T07:53:48.620847Z",
-        "league": "pl"
-      },
-      {
         "title": "Baller League Targets Soccer Re-invention After Miami Launch",
         "source": "CNA",
         "url": "https://www.channelnewsasia.com/sport/baller-league-targets-soccer-re-invention-after-miami-launch-6019426",
         "summary": "Six-a-side Baller League USA debuts in Miami, aiming to redefine global soccer consumption with millions watching online.",
         "score": 8,
         "fetched_at": "2026-03-29T07:53:48.620847Z",
-        "league": "pl"
-      },
-      {
-        "title": "American Investors Bet Big on Indian Cricket with Two Separate Billion-Dollar Deals for IPL Teams",
-        "source": "Al Jazeera English",
-        "url": "https://www.aljazeera.com/sports/2026/3/25/us-investors-bet-big-on-indian-cricket-with-record-billion-dollar-ipl-deals",
-        "summary": "US investors make record billion-dollar acquisitions of Royal Challengers Bengaluru and Rajasthan Royals IPL teams",
-        "score": 8,
-        "fetched_at": "2026-03-28T07:46:37.904115Z",
-        "league": "pl"
-      },
-      {
-        "title": "IPG to Expand T20 Cricket Footprint Across Sri Lanka, Malaysia and Zimbabwe Following Merger",
-        "source": "GlobeNewswire",
-        "url": "https://www.globenewswire.com/news-release/2026/03/23/3260261/0/en/IPG-to-Expand-T20-Cricket-Footprint-Across-Sri-Lanka-Malaysia-and-Zimbabwe-Following-Merger-with-Flash-Sports-Media-Inc-following-Flash-s-merger-with-NASDAQ-listed-urban-gro-Inc.html",
-        "summary": "Commercial rights holder charts T20 cricket expansion into Bangladesh, UAE, Sri Lanka, Malaysia and Zimbabwe",
-        "score": 8,
-        "fetched_at": "2026-03-28T07:46:37.904115Z",
         "league": "pl"
       },
       {
@@ -216,15 +162,6 @@
         "league": "nba"
       },
       {
-        "title": "The NFL's European Final Four is Closer Than Ever After a Potential Overseas Division",
-        "source": "Marca",
-        "url": "https://www.marca.com/en/nfl/2026/03/17/69b97acde2704e193f8b45c3.html",
-        "summary": "NFL considers overseas division following NBA expansion model, signaling major international market push",
-        "score": 8,
-        "fetched_at": "2026-03-21T07:35:44.331428Z",
-        "league": "nba"
-      },
-      {
         "title": "How the NBA Keeps Younger Viewers Engaged",
         "source": "Streamingmedia.com",
         "url": "https://www.streamingmedia.com/Articles/ReadArticle.aspx?ArticleID=173848",
@@ -255,15 +192,6 @@
       }
     ],
     "japac": [
-      {
-        "title": "Cricket Legend Ashwin Set to Join U.S. League MLC",
-        "source": "ESPN",
-        "url": "https://www.espn.com/espn/story/_/id/48328671/cricket-legend-ravichandran-ashwin-set-join-us-league-mlc",
-        "summary": "India cricket legend Ravichandran Ashwin becomes first former national team player to join U.S. Major League Cricket",
-        "score": 9,
-        "fetched_at": "2026-03-30T08:22:39.083625Z",
-        "league": "japac"
-      },
       {
         "title": "WBC Is Thriving. Rob Manfred Says MLB Might Consider Moving It to Midseason",
         "source": "Japan Today",
