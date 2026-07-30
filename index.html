@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>The Global Sports Supply Chain · The Current</title>
+<title>Global Sports Inventory · The Current</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -23,6 +23,7 @@
   --tint-mint:#e2eee4;
   --border:#e7e4dd;
   --ok:#2a8a4b;
+  --warn:#b57a12;
   --err:#d9453c;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -44,18 +45,18 @@ a{color:inherit}
 .page{max-width:760px;margin:0 auto;padding:16px 20px 40px}
 .masthead{text-align:center;padding:2px 0 14px;border-bottom:1px solid var(--border);margin-bottom:14px}
 .masthead .kicker{justify-content:center;margin-bottom:10px}
-.masthead h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(27px,7.2vw,40px);line-height:1.04;letter-spacing:-.015em;max-width:15ch;margin:0 auto}
-.masthead .sub{font-family:'Newsreader',serif;font-size:clamp(13.5px,3.6vw,16px);font-style:italic;color:var(--muted);line-height:1.45;max-width:46ch;margin:8px auto 0}
+.masthead h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(27px,7.2vw,40px);line-height:1.04;letter-spacing:-.015em;max-width:16ch;margin:0 auto}
+.masthead .sub{font-size:12.5px;color:var(--muted);line-height:1.5;max-width:48ch;margin:9px auto 0}
 
 /* === SHARED === */
 .kicker{color:var(--blue);font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;display:flex;align-items:center;gap:7px}
 .kicker .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .byline{font-size:12.5px;color:var(--muted)}
 
-.sowhat{background:rgba(26,68,207,.07);border-left:3px solid var(--blue);padding:9px 11px;border-radius:0 5px 5px 0;font-size:12px;line-height:1.42;color:#2c2e44;margin:11px 0 0}
+.sowhat{background:rgba(26,68,207,.07);border-left:3px solid var(--blue);padding:9px 11px;border-radius:0 5px 5px 0;font-size:12px;line-height:1.42;color:#2c2e44;margin:12px 0 0}
 .sowhat b{display:block;font-family:'Inter',sans-serif;font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
 
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0 12px;margin:13px 0 0;padding-top:11px;border-top:1px solid rgba(20,22,58,.14)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0 12px;margin:12px 0 0;padding-top:11px;border-top:1px solid rgba(20,22,58,.14)}
 .stat{display:block;padding:0;border:none}
 .stat-l{display:block;font-size:8.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);line-height:1.2;margin-bottom:3px}
 .stat-v{display:block;font-size:11.5px;font-weight:600;line-height:1.25}
@@ -69,13 +70,43 @@ a{color:inherit}
 .nav{display:flex;gap:8px}
 .nav button{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:#fff;color:var(--ink);font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
 .nav button:active{background:var(--blue);color:#fff;border-color:var(--blue)}
-.track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -20px;padding:4px 20px 10px;scroll-padding:0 20px}
+.track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -20px;padding:4px 20px 10px;scroll-padding:0 20px;align-items:flex-start}
 .track::-webkit-scrollbar{display:none}
 .card{scroll-snap-align:center;flex:0 0 auto;width:calc(100vw - 56px);max-width:420px;border-radius:14px;padding:18px}
-.card-top{margin-bottom:9px}
+.card-top{margin-bottom:9px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
 .fresh-dot{display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 7px;border-radius:3px}
 .card h2{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(25px,6.8vw,32px);line-height:1.04;letter-spacing:-.012em;margin:0}
-.coverage{margin-top:14px;padding-top:12px;border-top:1px solid rgba(20,22,58,.14)}
+.pos{font-size:12.5px;line-height:1.42;color:#2c2e44;margin-top:6px}
+
+/* === BUYER SECTIONS === */
+.sec{margin-top:13px;padding-top:11px;border-top:1px solid rgba(20,22,58,.14)}
+.sec-h{display:block;font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 7px}
+
+.routes{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.route{display:flex;align-items:center;gap:5px;font-size:10.5px;font-weight:500;line-height:1.2;background:rgba(255,255,255,.62);border:1px solid rgba(20,22,58,.09);border-radius:6px;padding:6px 7px}
+.route i{font-style:normal;font-size:10px;font-weight:700;width:13px;height:13px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;line-height:1}
+.route.rt-y i{background:var(--ok)}
+.route.rt-p i{background:var(--warn)}
+.route.rt-n i{background:rgba(20,22,58,.26)}
+.route.rt-n{opacity:.62}
+
+.sellside{font-size:10.5px;line-height:1.4;color:#2c2e44;margin-top:8px}
+.sellside b{display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-right:5px}
+
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:10px;font-weight:500;line-height:1.2;padding:4px 8px;border-radius:20px;background:rgba(255,255,255,.62);border:1px solid rgba(20,22,58,.1)}
+
+.aud{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px}
+
+.drow{display:grid;grid-template-columns:84px 1fr;gap:8px;align-items:baseline;padding:4px 0;border-top:1px solid rgba(20,22,58,.07)}
+.drow:first-child{border-top:none;padding-top:0}
+.dk{font-size:8.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);line-height:1.35}
+.dv{font-size:11px;line-height:1.35}
+.drow.pending .dv{color:var(--muted);font-style:italic}
+.drow.pending .dv::after{content:'pending';font-style:normal;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--warn);border:1px dashed rgba(181,122,18,.5);border-radius:3px;padding:1px 4px;margin-left:6px;white-space:nowrap}
+
+/* coverage */
+.coverage{margin-top:13px;padding-top:11px;border-top:1px solid rgba(20,22,58,.14)}
 .cov-hdr{display:block;font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 2px}
 .cart{display:block;padding:8px 0;border-top:1px solid rgba(20,22,58,.08);text-decoration:none}
 .cart:first-of-type{border-top:none}
@@ -88,9 +119,14 @@ a{color:inherit}
 
 /* footer */
 .foot{margin-top:30px;padding-top:20px;border-top:2px solid var(--ink)}
-.foot .thesis{font-family:'Newsreader',serif;font-size:15.5px;line-height:1.55;color:#2c2e44}
-.foot .thesis b{font-weight:600;color:var(--ink)}
-.foot .by{font-size:12px;color:var(--muted);margin-top:10px}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+.legend span{display:flex;align-items:center;gap:6px;font-size:11px;color:#2c2e44}
+.legend i{font-style:normal;font-size:10px;font-weight:700;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;line-height:1}
+.legend .lg-y i{background:var(--ok)}
+.legend .lg-p i{background:var(--warn)}
+.legend .lg-n i{background:rgba(20,22,58,.26)}
+.foot .note{font-size:11.5px;line-height:1.5;color:var(--muted)}
+.foot .note b{display:block;font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);margin-bottom:4px}
 </style>
 </head>
 <body>
@@ -107,9 +143,9 @@ a{color:inherit}
 
 <div class="page">
   <div class="masthead">
-    <div class="kicker">Sports Rights &amp; Global Inventory</div>
-    <h1>The Global Sports Supply Chain</h1>
-    <p class="sub">American leagues export scarcity. European leagues export scale.</p>
+    <div class="kicker">Media Buying · Global Sports</div>
+    <h1>How to Buy Global Sports</h1>
+    <p class="sub">Eight rights holders. Who sells the inventory, which routes are programmatic, what the audience looks like, and what data you can layer on top.</p>
   </div>
 
   <div class="carousel-head">
@@ -120,8 +156,14 @@ a{color:inherit}
   <div class="dots" id="dots"></div>
 
   <div class="foot">
-    <div class="thesis"><b>The thesis:</b> American domestic rights fees are plateauing. Europe and Asia are where the incremental money is. Sports inventory is going global.</div>
-    <div class="by">The Current · Ahead of FIFA World Cup 2026</div>
+    <div class="legend">
+      <span class="lg-y"><i>✓</i> Available</span>
+      <span class="lg-p"><i>~</i> Limited / seasonal</span>
+      <span class="lg-n"><i>✕</i> Not available</span>
+    </div>
+    <div class="note"><b>How to read this</b>
+      Audience, CPM and buy-route figures are planning estimates for structure review — not verified rate-card data. Confirm against seller one-sheets before committing budget. Contextual and coverage signals are placeholders pending the NewsAPI review.
+    </div>
   </div>
 </div>
 
@@ -135,15 +177,88 @@ let feedData=null;
 const feedPromise=fetch('data.json').then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{feedData=d}).catch(()=>{feedData={articles:{}}});
 
 // ── LEAGUE DATA ──
+// routes: [label, state ('y' available / 'p' limited / 'n' none), tooltip]
+// data:   [label, value, pending?]
 const L={
-  pl:{full:'Premier League',color:'#d9453c',kicker:'Established export',desc:"NBC's $2.7bn deal proved the US model. Peacock locks in streaming revenue. Pre-season tours are brand infrastructure.",stats:[['US rights value','$2.7bn (2022–28)'],['US viewership','+28% since 2019'],['Strategy','Streaming lock-in']],sw:"PL inventory in the US is priced like domestic premium. But the audience skews younger and more affluent than NFL."},
-  laliga:{full:'La Liga',color:'#7b5cc2',kicker:'Star-driven export',desc:"Star power drives the global play. India is the growth bet. The US is contested. Middle East sovereign wealth buying clubs and rights.",stats:[['Broadcast reach','182 countries'],['India office','Opened 2024'],['Strategy','Star power + offices']],sw:"Cheaper than PL in most export markets, but audience is less predictable without marquee names."},
-  nfl:{full:'NFL',color:'#2a8a4b',kicker:'Scarcity pricing',desc:"Killed the DAZN deal to shop rights separately. Munich, Frankfurt, London, Australia anchor international packages.",stats:[['Game Pass growth','+24% YoY'],['DAZN deal','Terminated early'],['Strategy','Scarcity export']],sw:"Betting it can command US-style pricing abroad by keeping supply tight."},
-  nba:{full:'NBA',color:'#1a8f96',kicker:'Volume expansion',desc:"Widest export operation in sports. European league with FIBA launching 2027. Amazon in broadcast talks.",stats:[["Int'l revenue",'~30% of total'],['European league','2027'],['Strategy','Volume play']],sw:"Creating inventory where none existed. European basketball competes with domestic football for premium budgets."},
-  ipl:{full:'IPL Cricket',color:'#c8900a',kicker:'Diaspora + digital',desc:"T20 format built for global export — three hours, guaranteed result. Middle East is the beachhead. US cricket gets Olympics boost.",stats:[['Global rights','$6.2bn (2023–28)'],['Format','~3 hours'],['Strategy','Diaspora-first']],sw:"Reaches high-income diaspora audiences. CPMs lower than PL or NFL — for now."},
-  japac:{full:'Japan / APAC Sports',color:'#5a7a9a',kicker:'Cultural export',desc:"From Ohtani's global brand to sumo streaming — Asian sports reach international audiences through cultural crossover and streaming platforms.",stats:[['Ohtani deal','$700m / 10yr'],['APAC streaming','Growing 30%+ YoY'],['Strategy','Cultural crossover']],sw:"Asian sports don't follow Western rights models. They spread via fandom, streaming bundles, and star power."},
-  tennis:{full:'Tennis (ATP/WTA)',color:'#d4890f',kicker:'Global circuit',desc:"Grand Slams span four continents. Saudi Arabia and China expansion underway. Streaming rights fragmenting across platforms.",stats:[['Grand Slams','4 continents'],['Saudi push','New ATP events'],['Strategy','Circuit expansion']],sw:"Rights fragmenting — buyers need to track which platform holds what, where."},
-  f1:{full:'Formula 1',color:'#e03030',kicker:'Entertainment export',desc:"Netflix transformed F1 from European motorsport to global entertainment. Vegas, Miami, Saudi races built for commercial value.",stats:[['US viewership','+60% since 2018'],['New races','Vegas, Miami, Saudi'],['Strategy','Entertainment-first']],sw:"F1 proved content can create demand for live rights. Vegas priced at US sports levels."},
+  pl:{full:'Premier League',color:'#d9453c',
+    pos:"Premium US live inventory, sold like domestic tier-one — but cheaper.",
+    routes:[['Direct IO','y','Full-season and match packages via NBCU'],['Programmatic Guaranteed','y','PG through NBCU One Platform / Peacock'],['PMP / Deal ID','y','Curated Peacock sports private marketplaces'],['Open exchange','n','Live match inventory is not sold in the open market']],
+    sellside:'NBCUniversal One Platform · Peacock · Sky (UK/intl)',
+    formats:['CTV in-stream','Live mid-roll','Highlights pre-roll','Companion display','Social / clip rights','Broadcast billboards'],
+    audience:[['Median age','38'],['Gender','66 / 34 M–F'],['HHI $100k+','128 index'],['US season reach','~35M']],
+    data:[['1P','Peacock login + Comcast set-top'],['Clean room','Snowflake / InfoSum'],['3P','LiveRamp, Experian segments'],['Measurement','Nielsen ONE, iSpot, EDO'],['Contextual','NewsAPI signals',1]],
+    stats:[['Est. CPM','$32–48 CTV'],['Flight window','Aug–May'],['Peak','Dec–Feb']],
+    note:"The cleanest programmatic path of any European league in the US. Peacock PG buys you an audience younger and higher-income than NFL at roughly half the CPM."},
+
+  laliga:{full:'La Liga',color:'#7b5cc2',
+    pos:"Lower-cost reach with the strongest US Hispanic composition on this list.",
+    routes:[['Direct IO','y','Season and fixture packages via ESPN and LaLiga North America'],['Programmatic Guaranteed','p','Limited — mostly upfront-committed, some Disney DSP paths'],['PMP / Deal ID','y','ESPN+ and Spanish-language sports deals'],['Open exchange','n','Live rights held out of open supply']],
+    sellside:'ESPN / ESPN+ (US) · LaLiga North America · DAZN (intl)',
+    formats:['CTV in-stream','Live mid-roll','Spanish-language feeds','Companion display','Social / clip rights','In-broadcast sponsorship'],
+    audience:[['Median age','34'],['Gender','70 / 30 M–F'],['Hispanic comp.','~45%'],['US season reach','~12M']],
+    data:[['1P','Disney Select (ESPN+ / Hulu)'],['Clean room','Disney clean room'],['3P','LiveRamp + Hispanic segments'],['Measurement','Nielsen, VideoAmp'],['Contextual','NewsAPI signals',1]],
+    stats:[['Est. CPM','$22–34 CTV'],['Flight window','Aug–May'],['Peak','Clásico + Apr–May']],
+    note:"Buy it for Spanish-language reach at a discount to the Premier League. Audience swings hard week to week — weight flights to marquee fixtures, not to the season."},
+
+  nfl:{full:'NFL',color:'#2a8a4b',
+    pos:"The most expensive US inventory — but Amazon made part of it programmatic.",
+    routes:[['Direct IO','y','Network and league packages: Fox, CBS, NBC, ESPN, NFL Media'],['Programmatic Guaranteed','y','TNF via Amazon DSP; Sunday Ticket via Google DV360'],['PMP / Deal ID','p','Limited — mostly digital, highlights and shoulder content'],['Open exchange','n','No live game inventory in open supply']],
+    sellside:'NFL Media · Fox / CBS / NBC / ESPN · Amazon (TNF) · YouTube (Sunday Ticket)',
+    formats:['Linear :30','CTV in-stream','Live mid-roll','Shoppable (Amazon)','Companion display','Social / clip rights'],
+    audience:[['Median age','50'],['Gender','55 / 45 M–F'],['HHI $100k+','110 index'],['US season reach','~180M']],
+    data:[['1P','Amazon shopper data (TNF), Google audiences (ST)'],['Clean room','Amazon Marketing Cloud'],['3P','LiveRamp, Experian'],['Measurement','EDO, iSpot, Nielsen Big Data + Panel'],['Contextual','NewsAPI signals',1]],
+    stats:[['Est. CPM','$45–75 CTV'],['Flight window','Sep–Feb'],['Peak','Jan playoffs']],
+    note:"TNF through Amazon DSP is the only place you can run live NFL against retail purchase data and close the loop. Everything else is still a relationship buy at upfront pricing."},
+
+  nba:{full:'NBA',color:'#1a8f96',
+    pos:"Youngest and most multicultural premium sports audience in the US.",
+    routes:[['Direct IO','y','National packages via ESPN/ABC, NBCU and Prime Video'],['Programmatic Guaranteed','y','Prime Video and Peacock packages support PG'],['PMP / Deal ID','y','NBA App and League Pass inventory via deal ID'],['Open exchange','p','Some NBA App display reaches curated open supply']],
+    sellside:'ESPN / ABC · NBCU / Peacock · Prime Video · NBA App & League Pass',
+    formats:['CTV in-stream','Live mid-roll','In-app display','Shoppable (Amazon)','Social / clip rights','Virtual courtside signage'],
+    audience:[['Median age','42'],['Gender','60 / 40 M–F'],['18–34 index','131'],['US season reach','~120M']],
+    data:[['1P','NBA ID (app + League Pass), Amazon shopper'],['Clean room','Amazon AMC, Disney'],['3P','Multicultural segments via LiveRamp'],['Measurement','Nielsen, VideoAmp, EDO'],['Contextual','NewsAPI signals',1]],
+    stats:[['Est. CPM','$30–55 CTV'],['Flight window','Oct–Jun'],['Peak','Apr–Jun playoffs']],
+    note:"Three sellers now carry national games, so the same audience is buyable three ways at three prices. Worth arbitraging — price Prime Video PG against ESPN direct before you commit."},
+
+  ipl:{full:'IPL Cricket',color:'#c8900a',
+    pos:"Affluent diaspora reach at display-level CPMs, on a logged-in base.",
+    routes:[['Direct IO','y','Willow TV (US) and JioStar (India) sell direct'],['Programmatic Guaranteed','p','Emerging — strongest on JioStar digital'],['PMP / Deal ID','y','Willow and cricket digital deals available'],['Open exchange','y','Cricket digital and highlights supply is openly biddable']],
+    sellside:'JioStar (India) · Willow TV (US) · Cricbuzz · ICC digital',
+    formats:['Live mid-roll','CTV in-stream','In-app display','Squeeze-back / L-band','Social / clip rights','Sponsorship integrations'],
+    audience:[['Median age','33'],['Gender','72 / 28 M–F'],['US HHI $150k+','168 index'],['US reach','~4M diaspora']],
+    data:[['1P','JioStar login base, Willow subscribers'],['Clean room','Limited — JioStar only'],['3P','South Asian segments (Experian, LiveRamp)'],['Measurement','BARC (India), Nielsen DAR (US)'],['Contextual','NewsAPI signals',1]],
+    stats:[['Est. CPM','$8–18 US · $1–3 India'],['Flight window','Mar–May'],['Peak','Oct–Nov T20 WC']],
+    note:"The cheapest high-income audience on this page. If your target is South Asian diaspora, cricket delivers it at a fraction of Premier League or NFL CPMs — with language and geo targeting on top."},
+
+  japac:{full:'Japan / APAC',color:'#5a7a9a',
+    pos:"Retail-media purchase data attached to live sport — a rare combination.",
+    routes:[['Direct IO','y','DAZN Japan, ABEMA and Rakuten sell direct'],['Programmatic Guaranteed','p','Available on Rakuten and DAZN, thin elsewhere'],['PMP / Deal ID','p','Fragmented by market and platform'],['Open exchange','y','Social and creator inventory is widely biddable']],
+    sellside:'DAZN Japan · Rakuten TV · ABEMA · MLB (Ohtani-led packages)',
+    formats:['Live streaming in-stream','CTV in-stream','In-app display','Creator / social','Sponsorship integrations','Athlete endorsement'],
+    audience:[['Median age','36'],['Gender','58 / 42 M–F'],['APAC reach','~90M'],['US Asian-Am.','~6M']],
+    data:[['1P','Rakuten ID (retail purchase), DAZN subscribers'],['Clean room','Rakuten — Japan only'],['3P','LINE / Yahoo Japan audiences'],['Measurement','Video Research (JP), limited US read'],['Contextual','NewsAPI signals',1]],
+    stats:[['Est. CPM','$12–25'],['Flight window','Mar–Oct'],['Peak','Mar — WBC 2026']],
+    note:"Rakuten is effectively a retail-media network with live sport attached. If you sell product in Japan, that closed loop is the reason to buy here. US addressability does not travel — plan the two markets separately."},
+
+  tennis:{full:'Tennis (ATP/WTA)',color:'#d4890f',
+    pos:"Oldest and wealthiest audience here — and the most gender-balanced.",
+    routes:[['Direct IO','y','Tennis Channel, ESPN and TNT sell event and season packages'],['Programmatic Guaranteed','y','Available across ESPN and Tennis Channel streaming'],['PMP / Deal ID','y','Slam-window curated deals'],['Open exchange','p','Some streaming and highlights supply is biddable']],
+    sellside:'Tennis Channel / T2 · ESPN (Slams) · Prime Video · TNT Sports',
+    formats:['CTV in-stream','Live mid-roll','Companion display','Courtside signage','Social / clip rights','Event sponsorship'],
+    audience:[['Median age','55'],['Gender','52 / 48 M–F'],['HHI $150k+','165 index'],['US annual reach','~45M']],
+    data:[['1P','Tennis Channel subscribers, Disney Select'],['Clean room','Disney clean room (Slams)'],['3P','Affluence + investable-assets segments'],['Measurement','Nielsen, iSpot'],['Contextual','NewsAPI signals',1]],
+    stats:[['Est. CPM','$25–40'],['Flight window','Jan–Sep'],['Peak','Slam fortnights']],
+    note:"Highest household income on this page and the only property close to a 50/50 male–female split. Rights sit with four different sellers, so budget planning time as well as money."},
+
+  f1:{full:'Formula 1',color:'#e03030',
+    pos:"US rights moved to Apple TV — in-stream supply just got tight.",
+    routes:[['Direct IO','p','Apple carries very little ad inventory; US in-stream is constrained'],['Programmatic Guaranteed','n','No PG path on the US rights holder'],['PMP / Deal ID','n','No curated live deals in the US'],['Open exchange','n','Live race inventory unavailable — buy social and trackside instead']],
+    sellside:'Apple TV (US, from 2026) · F1 TV · Team & trackside sponsorship · Sky (UK)',
+    formats:['Trackside LED','Team / livery sponsorship','Social & creator','F1 TV in-stream','Companion display','Event activation'],
+    audience:[['Median age','40'],['Gender','63 / 37 M–F'],['HHI $100k+','142 index'],['US race reach','~1.3M avg']],
+    data:[['1P','F1 TV subscribers, team/sponsor CRM'],['Clean room','None on US rights holder'],['3P','Auto, luxury and tech segments'],['Measurement','Sponsorship valuation (Nielsen, Relo)'],['Contextual','NewsAPI signals',1]],
+    stats:[['Est. CPM','n/a in-stream'],['Flight window','Mar–Dec'],['Peak','Miami · Vegas']],
+    note:"The Apple deal removed the easy media buy. Reach now runs through trackside, team sponsorship and social — plan F1 as a partnership, not a flight, and budget lead time to match."},
 };
 const KS=Object.keys(L);
 const TINTS=['var(--tint-blue)','var(--tint-peach)','var(--tint-cream)','var(--tint-mint)'];
@@ -160,9 +275,18 @@ function isFresh(k){const d=latestArticleDate(k);if(!d)return false;return(Date.
 function dateLabel(k){const t=latestArticleDate(k);return t?new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'Live tracker'}
 
 // ── RENDER HELPERS ──
-function dot(d){return`<span class="dot" style="background:${d.color}"></span>`}
+const MARK={y:'✓',p:'~',n:'✕'};
 function statsHTML(d){return`<div class="stats">${d.stats.map(([l,v])=>`<div class="stat"><span class="stat-l">${esc(l)}</span><span class="stat-v">${esc(v)}</span></div>`).join('')}</div>`}
-function sowhatHTML(d){return`<div class="sowhat"><b>So what for buyers</b>${esc(d.sw)}</div>`}
+function routesHTML(d){
+  return`<div class="sec"><span class="sec-h">How to buy it</span>
+    <div class="routes">${d.routes.map(([l,s,tip])=>`<span class="route rt-${s}" title="${escAttr(tip||'')}"><i>${MARK[s]||'·'}</i>${esc(l)}</span>`).join('')}</div>
+    <div class="sellside"><b>Sell-side</b>${esc(d.sellside)}</div>
+  </div>`;
+}
+function formatsHTML(d){return`<div class="sec"><span class="sec-h">Inventory formats</span><div class="tags">${d.formats.map(f=>`<span class="tag">${esc(f)}</span>`).join('')}</div></div>`}
+function audienceHTML(d){return`<div class="sec"><span class="sec-h">Audience — planning est.</span><div class="aud">${d.audience.map(([l,v])=>`<div class="stat"><span class="stat-l">${esc(l)}</span><span class="stat-v">${esc(v)}</span></div>`).join('')}</div></div>`}
+function dataHTML(d){return`<div class="sec"><span class="sec-h">Data you can layer</span>${d.data.map(([l,v,p])=>`<div class="drow${p?' pending':''}"><span class="dk">${esc(l)}</span><span class="dv">${esc(v)}</span></div>`).join('')}</div>`}
+function noteHTML(d){return`<div class="sowhat"><b>Buyer's note</b>${esc(d.note)}</div>`}
 
 // up to 3 article links on the card
 function coverageInner(k){
@@ -178,8 +302,13 @@ function cardHTML(k,i){
   return`<article class="card" id="card-${k}" style="background:${TINTS[i%TINTS.length]}">
     ${isFresh(k)?`<div class="card-top"><span class="fresh-dot">New</span></div>`:''}
     <h2>${esc(d.full)}</h2>
+    <p class="pos">${esc(d.pos)}</p>
     ${statsHTML(d)}
-    ${sowhatHTML(d)}
+    ${routesHTML(d)}
+    ${formatsHTML(d)}
+    ${audienceHTML(d)}
+    ${dataHTML(d)}
+    ${noteHTML(d)}
     <div class="coverage" id="cov-${k}">${coverageInner(k)}</div>
   </article>`;
 }
